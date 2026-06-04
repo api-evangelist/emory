@@ -1,0 +1,64 @@
+---
+vocabulary:
+  name: Emory Digital Slide Archive Vocabulary
+  description: >-
+    Controlled vocabulary for the terms exposed by the Emory Digital Slide
+    Archive REST API, a Girder / HistomicsTK platform for digital pathology and
+    whole-slide imaging. Terms are derived from the live API resources and
+    response fields, not invented.
+  version: "3.2.14"
+  terms:
+    - term: Collection
+      definition: >-
+        A top-level Girder container that groups related folders; the Digital
+        Slide Archive uses collections to organize whole-slide image sets.
+      tags: [resource, container]
+    - term: Folder
+      definition: >-
+        A hierarchical Girder container nested within a collection or another
+        folder, holding items and sub-folders.
+      tags: [resource, container]
+    - term: Item
+      definition: >-
+        A Girder item representing a single logical object such as a whole-slide
+        image; carries the largeImage descriptor when tiled.
+      tags: [resource, slide]
+    - term: File
+      definition: >-
+        The binary payload (for example an .svs slide file) attached to an item.
+      tags: [resource, binary]
+    - term: Annotation
+      definition: >-
+        A geometric/markup overlay on a slide item, holding named elements with
+        detail and element counts and a version history.
+      tags: [resource, pathology]
+    - term: LargeImage
+      definition: >-
+        Descriptor on an item indicating a tiled whole-slide image, referencing
+        the source file (fileId) and tile source backend (sourceName, e.g. openslide).
+      tags: [imaging, tile-source]
+    - term: Meta
+      definition: >-
+        Arbitrary user-supplied metadata object attached to collections, folders,
+        and items.
+      tags: [metadata]
+    - term: Assetstore
+      definition: >-
+        A Girder storage backend where file binaries are persisted.
+      tags: [storage]
+    - term: Group
+      definition: >-
+        A Girder group used to assign shared access permissions to resources.
+      tags: [access-control]
+    - term: User
+      definition: >-
+        A Girder user account; resources record creatorId and updatedId references.
+      tags: [identity]
+    - term: Token
+      definition: >-
+        A Girder authentication token; supplied via the Girder-Token header.
+      tags: [authentication]
+    - term: Girder-Token
+      definition: >-
+        The apiKey HTTP header used to authenticate Girder REST API requests.
+      tags: [authentication, security]

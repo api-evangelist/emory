@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-schema/emory-collection-schema.json",
+  "title": "Girder Collection",
+  "description": "JSON Schema for the Emory Digital Slide Archive (Girder) collection resource, derived from live API responses.",
+  "type": "object",
+  "properties": {
+    "_accessLevel": {
+      "type": "integer"
+    },
+    "_id": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Arbitrary user metadata.",
+      "additionalProperties": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-schema/emory-annotation-schema.json",
+  "title": "Girder Annotation",
+  "description": "JSON Schema for the Emory Digital Slide Archive (Girder) annotation resource, derived from live API responses.",
+  "type": "object",
+  "properties": {
+    "_accessLevel": {
+      "type": "integer"
+    },
+    "_detailsCount": {
+      "type": "integer"
+    },
+    "_elementCount": {
+      "type": "integer"
+    },
+    "_id": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "_version": {
+      "type": "integer"
+    },
+    "annotation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "creatorId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "groups": {
+      "type": "array"
+    },
+    "itemId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    }
+  }
+}

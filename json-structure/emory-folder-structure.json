@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-structure/emory-folder-structure.json",
+  "name": "EmoryFolder",
+  "type": "object",
+  "description": "JSON Structure for the Emory Digital Slide Archive (Girder) folder resource.",
+  "properties": {
+    "_accessLevel": {
+      "type": "int64"
+    },
+    "_id": {
+      "type": "string"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "baseParentId": {
+      "type": "string"
+    },
+    "baseParentType": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "creatorId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "parentCollection": {
+      "type": "string"
+    },
+    "parentId": {
+      "type": "string"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "int64"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

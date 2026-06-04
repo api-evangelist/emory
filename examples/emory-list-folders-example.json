@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://computablebrain.emory.edu/api/v1/folder?parentType=collection&parentId=66bb7fdd91087bc31f60652f&limit=1"
+  },
+  "response": [
+    {
+      "_accessLevel": 0,
+      "_id": "66bbda7d91087bc31f606530",
+      "_modelType": "folder",
+      "baseParentId": "66bb7fdd91087bc31f60652f",
+      "baseParentType": "collection",
+      "created": "2024-08-13T22:13:17.626000+00:00",
+      "creatorId": "5f3d80d2615f2a24eb8fee20",
+      "description": "",
+      "meta": {},
+      "name": "2008",
+      "parentCollection": "collection",
+      "parentId": "66bb7fdd91087bc31f60652f",
+      "public": true,
+      "size": 0,
+      "updated": "2024-08-13T22:13:17.626000+00:00"
+    }
+  ]
+}

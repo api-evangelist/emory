@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "emory": "https://computablebrain.emory.edu/api/v1/vocab#",
+    "@vocab": "https://computablebrain.emory.edu/api/v1/vocab#",
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "id": "@id",
+    "_id": "@id",
+    "_modelType": "@type",
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "updated": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "public": "emory:public",
+    "size": {
+      "@id": "schema:contentSize",
+      "@type": "schema:Integer"
+    },
+    "meta": "emory:meta",
+    "creatorId": {
+      "@id": "schema:creator",
+      "@type": "@id"
+    },
+    "Collection": "schema:Collection",
+    "Folder": "emory:Folder",
+    "Item": {
+      "@id": "schema:CreativeWork",
+      "@type": "@id"
+    },
+    "Annotation": "schema:Annotation",
+    "Image": "schema:ImageObject",
+    "folderId": {
+      "@id": "emory:folder",
+      "@type": "@id"
+    },
+    "parentId": {
+      "@id": "emory:parent",
+      "@type": "@id"
+    },
+    "itemId": {
+      "@id": "emory:item",
+      "@type": "@id"
+    },
+    "largeImage": "emory:largeImage"
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "Emory University",
+  "url": "https://www.emory.edu/",
+  "description": "Private research university in Atlanta, Georgia, USA. This JSON-LD context maps the Emory Digital Slide Archive (Girder) API objects to schema.org and an Emory @vocab.",
+  "schema:department": {
+    "@type": "schema:Service",
+    "name": "Emory Digital Slide Archive REST API",
+    "url": "https://computablebrain.emory.edu/api/v1"
+  }
+}

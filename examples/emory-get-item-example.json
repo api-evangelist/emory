@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://computablebrain.emory.edu/api/v1/item/685aef6649ad236b5222957e"
+  },
+  "response": {
+    "_id": "685aef6649ad236b5222957e",
+    "_modelType": "item",
+    "baseParentId": "6786e572e332aec8f163ca69",
+    "baseParentType": "collection",
+    "created": "2025-06-24T18:33:10.186000+00:00",
+    "creatorId": "5f3d80d2615f2a24eb8fee20",
+    "description": "",
+    "folderId": "6855984049ad236b522294e2",
+    "largeImage": {
+      "fileId": "685aef6649ad236b5222957f",
+      "sourceName": "openslide"
+    },
+    "meta": {},
+    "name": "E24-12_H&E_5.svs",
+    "size": 3236759416,
+    "updated": "2025-06-24T18:33:10.186000+00:00"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-structure/emory-annotation-structure.json",
+  "name": "EmoryAnnotation",
+  "type": "object",
+  "description": "JSON Structure for the Emory Digital Slide Archive (Girder) annotation resource.",
+  "properties": {
+    "_accessLevel": {
+      "type": "int64"
+    },
+    "_detailsCount": {
+      "type": "int64"
+    },
+    "_elementCount": {
+      "type": "int64"
+    },
+    "_id": {
+      "type": "string"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "_version": {
+      "type": "int64"
+    },
+    "annotation": {
+      "type": "object"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "creatorId": {
+      "type": "string"
+    },
+    "groups": {
+      "type": "array"
+    },
+    "itemId": {
+      "type": "string"
+    },
+    "public": {
+      "type": "boolean"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedId": {
+      "type": "string"
+    }
+  }
+}

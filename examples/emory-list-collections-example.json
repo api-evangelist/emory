@@ -1,0 +1,20 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://computablebrain.emory.edu/api/v1/collection?limit=1"
+  },
+  "response": [
+    {
+      "_accessLevel": 0,
+      "_id": "66bb7fdd91087bc31f60652f",
+      "_modelType": "collection",
+      "created": "2024-08-13T15:46:37.337000+00:00",
+      "description": "",
+      "meta": {},
+      "name": "Emory University BDSA Thumbnails",
+      "public": true,
+      "size": 21103827122,
+      "updated": "2024-08-13T15:46:37.337000+00:00"
+    }
+  ]
+}

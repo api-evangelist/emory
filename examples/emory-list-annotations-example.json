@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://computablebrain.emory.edu/api/v1/annotation?limit=1"
+  },
+  "response": [
+    {
+      "_accessLevel": 0,
+      "_detailsCount": 0,
+      "_elementCount": 0,
+      "_id": "61afccfae1ecb49ffed8f12d",
+      "_modelType": "annotation",
+      "_version": 61999,
+      "annotation": {
+        "description": "",
+        "name": "Annotation 2020-11-12 14:58"
+      },
+      "created": "2020-11-12T22:59:02.074000+00:00",
+      "creatorId": "5f5a5574239fccd2dfc3fc55",
+      "groups": [],
+      "itemId": "61afccfae1ecb49ffed8f129",
+      "public": true,
+      "updated": "2021-02-23T20:50:36.469000+00:00",
+      "updatedId": "5f3d80d2615f2a24eb8fee20"
+    }
+  ]
+}

@@ -44,6 +44,20 @@ apis:
     properties:
       - type: Documentation
         url: https://computablebrain.emory.edu/api/v1
+      - type: OpenAPI
+        url: openapi/emory-digital-slide-archive.yaml
+      - type: JSONSchema
+        url: json-schema/emory-item-schema.json
+      - type: JSONStructure
+        url: json-structure/emory-item-structure.json
+      - type: x-examples
+        url: examples/emory-get-item-example.json
+      - type: x-rules
+        url: rules/emory-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/emory-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/emory-context.jsonld
   - aid: emory:canvas-lms
     name: Emory Canvas LMS REST API
     description: >-

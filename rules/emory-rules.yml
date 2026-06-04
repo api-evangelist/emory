@@ -1,0 +1,56 @@
+---
+# Spectral ruleset encoding patterns observed in the Emory Digital Slide Archive
+# (Girder REST API) OpenAPI description. Patterns reflect the real spec, not aspiration.
+formats:
+  - oas3
+rules:
+  emory-info-title:
+    description: API title must reference Girder / Digital Slide Archive.
+    given: $.info.title
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "(Girder|Digital Slide Archive)"
+
+  emory-server-https:
+    description: Servers must use the computablebrain.emory.edu host over HTTPS.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://computablebrain\\.emory\\.edu/api/v1"
+
+  emory-girder-token-security:
+    description: A Girder-Token apiKey security scheme should be defined.
+    given: $.components.securitySchemes
+    severity: warn
+    then:
+      field: Girder-Token
+      function: truthy
+
+  emory-operation-tags:
+    description: Every operation should be tagged with its Girder resource (item, folder, annotation, etc.).
+    given: $.paths[*][get,put,post,delete,patch]
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  emory-operation-id:
+    description: Girder operations expose a unique operationId.
+    given: $.paths[*][get,put,post,delete,patch]
+    severity: warn
+    then:
+      field: operationId
+      function: truthy
+
+  emory-id-path-param-string:
+    description: Resource {id} path parameters are 24-char Mongo ObjectId strings.
+    given: $.paths[*][*].parameters[?(@.name=='id' && @.in=='path')].schema.type
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^string$"

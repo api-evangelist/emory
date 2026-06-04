@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-schema/emory-item-schema.json",
+  "title": "Girder Item",
+  "description": "JSON Schema for the Emory Digital Slide Archive (Girder) item resource, derived from live API responses.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "baseParentId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "baseParentType": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "creatorId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "description": {
+      "type": "string"
+    },
+    "folderId": {
+      "type": "string",
+      "description": "Girder Mongo ObjectId (24-char hex)"
+    },
+    "largeImage": {
+      "type": "object",
+      "properties": {
+        "fileId": {
+          "type": "string"
+        },
+        "sourceName": {
+          "type": "string"
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Arbitrary user metadata.",
+      "additionalProperties": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/emory/main/json-structure/emory-item-structure.json",
+  "name": "EmoryItem",
+  "type": "object",
+  "description": "JSON Structure for the Emory Digital Slide Archive (Girder) item resource.",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "_modelType": {
+      "type": "string"
+    },
+    "baseParentId": {
+      "type": "string"
+    },
+    "baseParentType": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "creatorId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "folderId": {
+      "type": "string"
+    },
+    "largeImage": {
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "size": {
+      "type": "int64"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
