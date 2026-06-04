@@ -1,0 +1,113 @@
+---
+aid: emory
+name: Emory University
+description: >-
+  Emory University is a private research university in Atlanta, Georgia, United
+  States, ranked #196 in the QS World University Rankings 2025. Its public
+  developer and API footprint is modest and largely tied to the libraries and
+  research-computing units rather than a central developer portal. The most
+  visible programmatic surfaces are the Emory Libraries open-source GitHub
+  organization (digital-repository software built on the Samvera/Hyrax stack),
+  a public Digital Slide Archive REST API operated by Emory's biomedical
+  imaging group, federated Shibboleth/SAML identity, and the Instructure
+  Canvas LMS REST API exposed at the institution's Canvas instance. Most
+  institutional systems (OPUS student information, Course Atlas) are gated,
+  browser-based applications without documented public APIs.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/emory/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Libraries
+  - United States
+  - Atlanta
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: emory:digital-slide-archive
+    name: Emory Digital Slide Archive REST API
+    description: >-
+      Public REST API for the Emory Digital Slide Archive (computablebrain),
+      a Girder/HistomicsTK-based platform for digital pathology and
+      whole-slide imaging. The API exposes documented resource endpoints for
+      systems, items, files, folders and annotations, with a live Swagger
+      interface at /api/v1.
+    humanURL: https://computablebrain.emory.edu/api/v1
+    baseURL: https://computablebrain.emory.edu/api/v1
+    tags: [ Research, Imaging, Pathology, REST ]
+    properties:
+      - type: Documentation
+        url: https://computablebrain.emory.edu/api/v1
+  - aid: emory:canvas-lms
+    name: Emory Canvas LMS REST API
+    description: >-
+      Emory's instance of the Instructure Canvas learning management system
+      exposes the standard Canvas LMS REST API. Access requires an Emory
+      Canvas account and developer keys / API access tokens; the reference
+      documentation is mirrored at the institution's Canvas host.
+    humanURL: https://canvas.emory.edu/doc/api/
+    tags: [ Education, LMS, REST ]
+    properties:
+      - type: Documentation
+        url: https://canvas.emory.edu/doc/api/
+      - type: Authentication
+        url: https://canvas.emory.edu/doc/api/developer_keys.html
+  - aid: emory:shibboleth
+    name: Emory Identity (Shibboleth / SAML)
+    description: >-
+      Emory operates a federated Shibboleth identity provider for SAML-based
+      single sign-on across institutional and partner services
+      (InCommon federation). The IdP metadata endpoint is publicly reachable;
+      authentication itself is gated to Emory credential holders.
+    humanURL: https://login.emory.edu/
+    baseURL: https://login.emory.edu/idp/shibboleth
+    tags: [ Identity, Authentication, SAML, Shibboleth, SSO ]
+    properties:
+      - type: Documentation
+        url: https://login.emory.edu/
+  - aid: emory:libraries-github
+    name: Emory Libraries Digital Repository Software
+    description: >-
+      Emory Libraries (Library Technology and Digital Strategies) maintains a
+      large public open-source GitHub organization with ~120 repositories,
+      including the dlp-curate preservation workbench, TheKeep archival
+      curation app, dlp-lux discovery layer, and a Samvera/Hyrax fork. These
+      Ruby on Rails / Hyrax applications underpin the OpenEmory and Digital
+      Library Program repositories and their associated repository APIs.
+    humanURL: https://github.com/emory-libraries
+    tags: [ Libraries, Open Source, Digital Repository, Hyrax, Samvera ]
+    properties:
+      - type: Documentation
+        url: https://emory-libraries.github.io/
+      - type: GitHub
+        url: https://github.com/emory-libraries
+common:
+  - type: Website
+    url: https://www.emory.edu/
+  - type: DeveloperPortal
+    url: https://it.emory.edu/catalog/index.html
+  - type: GitHub
+    url: https://github.com/emory-libraries
+  - type: SourceCode
+    url: https://github.com/emory-libraries/dlp-curate
+  - type: Authentication
+    url: https://login.emory.edu/
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/emory-university/
+  - type: Plans
+    url: plans/emory-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/emory-rate-limits.yml
+  - type: FinOps
+    url: finops/emory-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

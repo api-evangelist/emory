@@ -1,0 +1,59 @@
+---
+name: Emory University
+description: Emory University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/emory/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Emory has no central, self-service developer portal. The confirmed public
+      programmatic surfaces are a live Digital Slide Archive REST API
+      (computablebrain, Girder/Swagger, returned a 200 from /api/v1 and
+      /api/v1/system/version), the Instructure Canvas LMS REST API mirrored at
+      the Emory Canvas host (gated by account + developer keys), a federated
+      Shibboleth/SAML identity provider (login.emory.edu, IdP metadata
+      reachable), and the active emory-libraries GitHub org (120 public repos of
+      Samvera/Hyrax digital-repository software). Institutional systems such as
+      OPUS and Course Atlas are gated browser apps with no documented public
+      API. The EmoryUniversity GitHub org exists but has 0 public repos, so the
+      libraries org was cataloged instead. No endpoints were fabricated; all
+      statuses below were probed live.
+    endpoints:
+      - url: https://www.emory.edu/
+        status: 200
+        note: Official institutional website.
+      - url: https://computablebrain.emory.edu/api/v1
+        status: 200
+        note: Digital Slide Archive REST API root with live Swagger docs.
+      - url: https://computablebrain.emory.edu/api/v1/system/version
+        status: 200
+        note: DSA system version endpoint responds, confirming a working API.
+      - url: https://canvas.emory.edu/doc/api/
+        status: 200
+        note: Canvas LMS REST API reference at Emory Canvas host; gated access.
+      - url: https://login.emory.edu/idp/shibboleth
+        status: 200
+        note: Shibboleth/SAML IdP metadata endpoint; authentication gated.
+      - url: https://login.emory.edu/
+        status: 200
+        note: Emory federated login service landing page.
+      - url: https://github.com/emory-libraries
+        status: 200
+        note: Active Emory Libraries open-source org, ~120 public repos.
+      - url: https://github.com/EmoryUniversity
+        status: 200
+        note: Org exists but reports 0 public repositories; not cataloged as primary.
+      - url: https://it.emory.edu/catalog/index.html
+        status: 200
+        note: IT Service Catalog; closest thing to a developer/integration index.
+      - url: https://atlas.emory.edu/
+        status: 202
+        note: Course Atlas browser tool; no documented public API.
+      - url: https://open.library.emory.edu/
+        status: 403
+        note: OpenEmory repository; blocks automated requests (403 to crawler).
+      - url: https://www.linkedin.com/school/emory-university/
+        status: 999
+        note: LinkedIn school page; 999 is LinkedIn anti-bot, page exists.
