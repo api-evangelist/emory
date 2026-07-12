@@ -102,6 +102,10 @@ apis:
       - type: GitHub
         url: https://github.com/emory-libraries
 common:
+  - type: DomainSecurity
+    url: security/emory-domain-security.yml
+  - type: Authentication
+    url: authentication/emory-authentication.yml
   - type: Website
     url: https://www.emory.edu/
   - type: DeveloperPortal

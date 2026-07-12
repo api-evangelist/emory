@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/emory-digital-slide-archive.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Girder-Token
+  type: apiKey
+  in: header
+  parameter: Girder-Token
+  sources:
+  - openapi/emory-digital-slide-archive.yaml
