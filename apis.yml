@@ -102,6 +102,8 @@ apis:
       - type: GitHub
         url: https://github.com/emory-libraries
 common:
+  - type: AgenticAccess
+    url: agentic-access/emory-agentic-access.yml
   - type: DomainSecurity
     url: security/emory-domain-security.yml
   - type: Authentication
