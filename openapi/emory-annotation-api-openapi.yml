@@ -1,0 +1,1146 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: annotation resource
+  name: annotation
+paths:
+  /annotation:
+    get:
+      operationId: annotation_find_annotation
+      parameters:
+      - name: itemId
+        in: query
+        required: false
+        description: List all annotations in this item.
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        description: List all annotations created by this user.
+        schema:
+          type: string
+      - name: text
+        in: query
+        required: false
+        description: Pass this to perform a full text search for annotation names and descriptions.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Pass to lookup an annotation by exact name match.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lowerName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Annotation'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the parent item.
+      summary: Search for annotations.
+      tags:
+      - annotation
+    post:
+      operationId: annotation_createAnnotation_post_annotation
+      parameters:
+      - name: itemId
+        in: query
+        required: true
+        description: The ID of the associated item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Annotation'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Validation Error: JSON doesn''t follow schema.'
+        '403':
+          description: Read access was denied for the item.
+      summary: Create an annotation.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the annotation.
+  /annotation/counts:
+    get:
+      operationId: annotation_getItemListAnnotationCounts_counts
+      parameters:
+      - name: items
+        in: query
+        required: true
+        description: A comma-separated list of item ids.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get annotation counts for a list of items.  If using actual a database other than DocumentDB, this also indicates if items are referenced as annotations.
+      tags:
+      - annotation
+  /annotation/folder/{id}:
+    delete:
+      operationId: annotation_deleteFolderAnnotations_delete_folder_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder
+        schema:
+          type: string
+      - name: recurse
+        in: query
+        required: false
+        description: Whether or not to retrieve all annotations from subfolders
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+      summary: Delete all user-owned annotations from the items in a folder
+      tags:
+      - annotation
+    get:
+      operationId: annotation_returnFolderAnnotations_folder_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder
+        schema:
+          type: string
+      - name: recurse
+        in: query
+        required: false
+        description: Whether or not to retrieve all annotations from subfolders
+        schema:
+          type: boolean
+          default: false
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: created
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: -1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get the user-owned annotations from the items in a folder
+      tags:
+      - annotation
+  /annotation/folder/{id}/access:
+    put:
+      operationId: annotation_setFolderAnnotationAccess_put_folder_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder
+        schema:
+          type: string
+      - name: access
+        in: query
+        required: true
+        description: The JSON-encoded access control list.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the annotation should be publicly visible.
+        schema:
+          type: boolean
+      - name: recurse
+        in: query
+        required: false
+        description: Whether or not to retrieve all annotations from subfolders
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+      summary: Set the access for all the user-owned annotations from the items in a folder
+      tags:
+      - annotation
+  /annotation/folder/{id}/create:
+    get:
+      operationId: annotation_canCreateFolderAnnotations_folder_id_create
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+      summary: Check if the user can create annotations in a folder
+      tags:
+      - annotation
+  /annotation/folder/{id}/present:
+    get:
+      operationId: annotation_existFolderAnnotations_folder_id_present
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder
+        schema:
+          type: string
+      - name: recurse
+        in: query
+        required: false
+        description: Whether or not to recursively check subfolders for annotations
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Check if the user owns any annotations for the items in a folder
+      tags:
+      - annotation
+  /annotation/images:
+    get:
+      description: By default, this endpoint will return a list of recently annotated images.  This list can be further filtered by passing the creatorId and/or imageName parameters.  The creatorId parameter will limit results to annotations created by the given user.  The imageName parameter will only include images whose name (or a token in the name) begins with the given string.
+      operationId: annotation_findAnnotatedImages_images
+      parameters:
+      - name: creatorId
+        in: query
+        required: false
+        description: Limit to annotations created by this user
+        schema:
+          type: string
+      - name: imageName
+        in: query
+        required: false
+        description: Filter results by image name (case-insensitive)
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: updated
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: -1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Search for annotated images.
+      tags:
+      - annotation
+  /annotation/item/{id}:
+    delete:
+      description: This deletes all annotation model records.
+      operationId: annotation_deleteItemAnnotations_delete_item_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item.
+      summary: Delete all annotations for an item.
+      tags:
+      - annotation
+    get:
+      description: This returns a list of annotation model records.
+      operationId: annotation_getItemAnnotations_item_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get all annotations for an item.
+      tags:
+      - annotation
+    post:
+      operationId: annotation_createItemAnnotations_post_item_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Validation Error: JSON doesn''t follow schema.'
+        '403':
+          description: Write access was denied for the item.
+      summary: Create multiple annotations on an item.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON list of annotation model records or annotations.  If these are complete models, the value of the "annotation" key is used and the other information is ignored (such as original creator ID).
+  /annotation/item/{id}/plot/data:
+    post:
+      operationId: annotation_getItemPlottableData_post_item_id_plot_data
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: adjacentItems
+        in: query
+        required: false
+        description: Whether to include adjacent item data.
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - 'true'
+          - __all__
+          default: false
+      - name: keys
+        in: query
+        required: true
+        description: A comma separated list of data keys to retrieve (not json).
+        schema:
+          type: string
+      - name: requiredKeys
+        in: query
+        required: false
+        description: A comma separated list of data keys that must be non null in all response rows (not json).
+        schema:
+          type: string
+      - name: sources
+        in: query
+        required: false
+        description: An optional comma separated list that can contain folder, item, annotation, annotationelement, datafile.
+        schema:
+          type: string
+      - name: uuid
+        in: query
+        required: false
+        description: An optional uuid to allow cancelling a previous request.  If specified and there are any outstanding requests with the same uuid, they may be cancelled to save resources.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get plottable data related to an item and its annotations.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                annotations:
+                  type: string
+                  description: A JSON list of annotation IDs that should be included.  An entry of \__all__ will include all annotations.
+                compute:
+                  type: string
+                  description: 'A dictionary with keys "columns": a list of columns to include in the computation; if unspecified or an empty list, no computation is done, "function": a string with the name of the function, such as umap, "params": additional parameters to pass to the function.  If none of the requiredKeys are compute.(x|y|z), the computation will not be performed.  Only rows which have all selected columns present will be included in the computation.'
+  /annotation/item/{id}/plot/list:
+    post:
+      operationId: annotation_getItemPlottableElements_post_item_id_plot_list
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: adjacentItems
+        in: query
+        required: false
+        description: Whether to include adjacent item data.
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - 'true'
+          - __all__
+          default: false
+      - name: sources
+        in: query
+        required: false
+        description: An optional comma separated list that can contain folder, item, annotation, annotationelement, datafile.
+        schema:
+          type: string
+      - name: uuid
+        in: query
+        required: false
+        description: An optional uuid to allow cancelling a previous request.  If specified and there are any outstanding requests with the same uuid, they may be cancelled to save resources.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a list of plottable data related to an item and its annotations.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                annotations:
+                  type: string
+                  description: A JSON list of annotation IDs that should be included.  An entry of \__all__ will include all annotations.
+  /annotation/old:
+    delete:
+      operationId: annotation_deleteOldAnnotations_delete_old
+      parameters:
+      - name: age
+        in: query
+        required: false
+        description: The minimum age in days.
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: versions
+        in: query
+        required: false
+        description: Keep at least this many history entries for each annotation.
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete old annotations.
+      tags:
+      - annotation
+    get:
+      operationId: annotation_getOldAnnotations_old
+      parameters:
+      - name: age
+        in: query
+        required: false
+        description: The minimum age in days.
+        schema:
+          type: integer
+          format: int32
+          default: 30
+      - name: versions
+        in: query
+        required: false
+        description: Keep at least this many history entries for each annotation.
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Report on old annotations.
+      tags:
+      - annotation
+  /annotation/schema:
+    get:
+      description: In addition to the schema, if IDs are specified on elements, all IDs must be unique.
+      operationId: annotation_getAnnotationSchema_schema
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get the official Annotation schema
+      tags:
+      - annotation
+      parameters: []
+  /annotation/{id}:
+    delete:
+      operationId: annotation_deleteAnnotation_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the annotation.
+      summary: Delete an annotation.
+      tags:
+      - annotation
+    get:
+      description: Use "size" or "details" as possible sort keys.
+      operationId: annotation_getAnnotation_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: left
+        in: query
+        required: false
+        description: The left column of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: right
+        in: query
+        required: false
+        description: The right column (exclusive) of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: top
+        in: query
+        required: false
+        description: The top row of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: bottom
+        in: query
+        required: false
+        description: The bottom row (exclusive) of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: low
+        in: query
+        required: false
+        description: The lowest z value of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: high
+        in: query
+        required: false
+        description: The highest z value (exclusive) of the area to fetch.
+        schema:
+          type: number
+          format: float
+      - name: minimumSize
+        in: query
+        required: false
+        description: Only annotations larger than or equal to this size in pixels will be returned.  Size is determined by the length of the diagonal of the bounding box of an element.  This probably should be 1 at the maximum zoom, 2 at the next level down, 4 at the next, etc.
+        schema:
+          type: number
+          format: float
+      - name: maxDetails
+        in: query
+        required: false
+        description: Limit the number of annotations returned based on complexity.  The complexity of an annotation is how many points are used to defined it.  This is applied in addition to the limit.  Using maxDetails helps ensure results will be able to be rendered.
+        schema:
+          type: integer
+          format: int32
+      - name: minElements
+        in: query
+        required: false
+        description: If maxDetails is specified, always return at least this many elements, even if they are very detailed.
+        schema:
+          type: integer
+          format: int32
+      - name: centroids
+        in: query
+        required: false
+        description: If true, only return the centroids of each element.  The results are returned as a packed binary array with a json wrapper.
+        schema:
+          type: boolean
+      - name: bbox
+        in: query
+        required: false
+        description: If true, add _bbox records to each element.  These are computed when the annotation is stored and cannot be modified.  Cannot be used with the centroids option.
+        schema:
+          type: boolean
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _id
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the annotation.
+      summary: Get an annotation by id.
+      tags:
+      - annotation
+    patch:
+      operationId: annotation_patchAnnotation_patch_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: No Content; the annotation was successfully updated but is not returned
+        '400':
+          description: 'Invalid JSON passed in request body.
+
+
+            Validation Error: JSON doesn''t follow schema.'
+        '403':
+          description: Write access was denied for the item.
+      summary: Patch an annotation or its elements.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the annotation patch.  This is a list.  Each entry is an operation that contains "op", "path", and possibly "value".  "op" can be any of "replace", "add", or "remove".  "path" is either a root property (e.g., "name"), or "elements/id:{element id}".  Any path to a dictionary or list can be extended via .../(key or index) components.  Add and replace operations must include the value.
+    put:
+      operationId: annotation_updateAnnotation_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: itemId
+        in: query
+        required: false
+        description: Pass this to move the annotation to a new item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Invalid JSON passed in request body.
+
+
+            Validation Error: JSON doesn''t follow schema.'
+        '403':
+          description: Write access was denied for the item.
+      summary: Update an annotation or move it to a different item.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        description: A JSON object containing the annotation.  If the "annotation":"elements" property is not set, the elements will not be modified.
+  /annotation/{id}/access:
+    get:
+      operationId: annotation_getAnnotationAccess_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the annotation.
+      summary: Get the access control list for an annotation.
+      tags:
+      - annotation
+    put:
+      operationId: annotation_updateAnnotationAccess_put_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: access
+        in: query
+        required: true
+        description: The JSON-encoded access control list.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the annotation should be publicly visible.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the annotation.
+      summary: Update the access control list for an annotation.
+      tags:
+      - annotation
+  /annotation/{id}/copy:
+    post:
+      operationId: annotation_copyAnnotation_post_id_copy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: itemId
+        in: query
+        required: true
+        description: The ID of the destination item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item.
+      summary: Copy an annotation from one item to an other.
+      tags:
+      - annotation
+  /annotation/{id}/history:
+    get:
+      operationId: annotation_getAnnotationHistoryList_id_history
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _version
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: -1
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: Read access was denied for the annotation.
+      summary: Get a list of an annotation's history.
+      tags:
+      - annotation
+  /annotation/{id}/history/revert:
+    put:
+      description: This can be used to undelete an annotation by reverting to the most recent version.
+      operationId: annotation_revertAnnotationHistory_put_id_history_revert
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: version
+        in: query
+        required: false
+        description: The version of the annotation.  If not specified, if the annotation was deleted this undeletes it.  If it was not deleted, this reverts to the previous version.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Annotation history version not found.
+        '403':
+          description: Read access was denied for the annotation.
+      summary: Revert an annotation to a specific version.
+      tags:
+      - annotation
+  /annotation/{id}/history/{version}:
+    get:
+      operationId: annotation_getAnnotationHistory_id_history_version
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        description: The version of the annotation.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Annotation history version not found.
+        '403':
+          description: Read access was denied for the annotation.
+      summary: Get a specific version of an annotation's history.
+      tags:
+      - annotation
+  /annotation/{id}/metadata:
+    delete:
+      operationId: annotation_deleteMetadata_delete_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the annotation.
+      summary: Delete metadata (annotation.attributes) fields on an annotation.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON list containing the metadata fields to delete
+    put:
+      description: Set metadata fields to null in order to delete them.
+      operationId: annotation_setMetadata_put_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: allowNull
+        in: query
+        required: false
+        description: Whether "null" is allowed as a metadata value.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Annotation'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the annotation.
+      summary: Set metadata (annotation.attributes) fields on an annotation.
+      tags:
+      - annotation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata keys to add
+  /annotation/{id}/{format}:
+    get:
+      description: Use "size" or "details" as possible sort keys.
+      operationId: annotation_getAnnotationWithFormat_id_format
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation.
+        schema:
+          type: string
+      - name: format
+        in: path
+        required: true
+        description: The format of the annotation.
+        schema:
+          type: string
+          enum:
+          - geojson
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the annotation.
+      summary: Get an annotation by id in a specific format.
+      tags:
+      - annotation
+components:
+  schemas:
+    Annotation:
+      type: object
+    string:
+      type: string
+    Item:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

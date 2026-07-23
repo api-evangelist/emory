@@ -1,0 +1,2545 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation item API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: item resource
+  name: item
+paths:
+  /item:
+    get:
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      operationId: item_find_item
+      parameters:
+      - name: folderId
+        in: query
+        required: false
+        description: Pass this to list all items in a folder.
+        schema:
+          type: string
+      - name: text
+        in: query
+        required: false
+        description: Pass this to perform a full text search for items.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Pass to lookup an item by exact name match. Must pass folderId as well when using this.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lowerName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Item'
+                type: array
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the parent folder.
+      summary: List or search for items.
+      tags:
+      - item
+    post:
+      operationId: item_createItem_post_item
+      parameters:
+      - name: folderId
+        in: query
+        required: true
+        description: The ID of the parent folder.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: true
+        description: Name for the item.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the item.
+        schema:
+          type: string
+          default: ''
+      - name: reuseExisting
+        in: query
+        required: false
+        description: Return existing item (by name) if it exists.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied on the parent folder.
+      summary: Create a new item.
+      tags:
+      - item
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: A JSON object containing the metadata keys to add
+  /item/query:
+    get:
+      operationId: item_getItemsByQuery_query
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Find items that match this Mongo query.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _id
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Item'
+                type: array
+        '400':
+          description: A parameter was invalid.
+      summary: List items that match a query.
+      tags:
+      - item
+  /item/test/tiles:
+    get:
+      operationId: item_getTestTilesInfo_test_tiles
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get test large image metadata.
+      tags:
+      - item
+      parameters: []
+  /item/test/tiles/zxy/{z}/{x}/{y}:
+    get:
+      operationId: item_getTestTile_test_tiles_zxy_z_x_y
+      parameters:
+      - name: z
+        in: path
+        required: true
+        description: The layer number of the tile (0 is the most zoomed-out layer).
+        schema:
+          type: string
+      - name: x
+        in: path
+        required: true
+        description: The X coordinate of the tile (0 is the left side).
+        schema:
+          type: string
+      - name: y
+        in: path
+        required: true
+        description: The Y coordinate of the tile (0 is the top).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a test large image tile.
+      tags:
+      - item
+  /item/{id}:
+    delete:
+      operationId: item_deleteItem_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item.
+      summary: Delete an item by ID.
+      tags:
+      - item
+    get:
+      operationId: item_getItem_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get an item by ID.
+      tags:
+      - item
+    put:
+      operationId: item_updateItem_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Name for the item.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the item.
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: Pass this to move the item to a new folder.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item or folder.
+      summary: Edit an item or move it to another folder.
+      tags:
+      - item
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: A JSON object containing the metadata keys to add
+  /item/{id}/adjacent_images:
+    get:
+      operationId: item_getPreviousAndNextImages_id_adjacent_images
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The current item ID
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: The (virtual) folder ID the image is located in
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '404':
+          description: Image not found
+      summary: Get the previous and next image in the same folder as the given item.
+      tags:
+      - item
+  /item/{id}/aperio:
+    delete:
+      operationId: item_removeAperio_delete_id_aperio
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation item
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove Aperio specific metadata from an item
+      tags:
+      - item
+    get:
+      operationId: item_findAperio_id_aperio
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the slide image item
+        schema:
+          type: string
+      - name: tag
+        in: query
+        required: false
+        description: Filter by the given tag string
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Find Aperio annotation items associated with a slide image.
+      tags:
+      - item
+    post:
+      operationId: item_importDocument_post_id_aperio
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the item containing the annotation file
+        schema:
+          type: string
+      - name: imageId
+        in: query
+        required: true
+        description: The ID of the slide image
+        schema:
+          type: string
+      - name: tag
+        in: query
+        required: false
+        description: A searchable tag to store with the metadata
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import an item as an Aperio annotation
+      tags:
+      - item
+    put:
+      operationId: item_modifyAperio_put_id_aperio
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the annotation file
+        schema:
+          type: string
+      - name: tag
+        in: query
+        required: true
+        description: A searchable tag to store with the metadata
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Set the tag associated with the annotation file
+      tags:
+      - item
+  /item/{id}/copy:
+    post:
+      description: If no folderId parameter is specified, creates a copy of the item in its current containing folder.
+      operationId: item_copyItem_post_id_copy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the original item.
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: The ID of the parent folder.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Name for the new item.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the new item.
+        schema:
+          type: string
+      - name: copyAnnotations
+        in: query
+        required: false
+        description: Copy annotations when copying item (default true)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: 'A parameter was invalid.
+
+
+            ID was invalid.'
+        '403':
+          description: 'Read access was denied on the original item.
+
+
+            Write access was denied on the parent folder.'
+      summary: Copy an item.
+      tags:
+      - item
+  /item/{id}/download:
+    get:
+      operationId: item_download_id_download
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Byte offset into the file.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: format
+        in: query
+        required: false
+        description: If unspecified, items with one file are downloaded as that file, and other items are downloaded as a zip archive.  If 'zip', a zip archive is always sent.
+        schema:
+          type: string
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value, only applied for single file items.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+          default: attachment
+      - name: extraParameters
+        in: query
+        required: false
+        description: Arbitrary data to send along with the download request, only applied for single file items.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Download the contents of an item.
+      tags:
+      - item
+  /item/{id}/files:
+    get:
+      operationId: item_getFiles_id_files
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/File'
+                type: array
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get the files within an item.
+      tags:
+      - item
+  /item/{id}/metadata:
+    delete:
+      operationId: item_deleteMetadata_delete_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the item.
+      summary: Delete metadata fields on an item.
+      tags:
+      - item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON list containing the metadata fields to delete
+    put:
+      description: Set metadata fields to null in order to delete them.
+      operationId: item_setMetadata_put_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: allowNull
+        in: query
+        required: false
+        description: Whether "null" is allowed as a metadata value.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the item.
+      summary: Set metadata fields on an item.
+      tags:
+      - item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata keys to add
+  /item/{id}/next_image:
+    get:
+      operationId: item_getNextImage_id_next_image
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The current image ID
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: The (virtual) folder ID the image is located in
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '404':
+          description: Image not found
+      summary: Get the next image in the same folder as the given item.
+      tags:
+      - item
+  /item/{id}/position:
+    get:
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      operationId: item_findPosition_id_position
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: Pass this to list all items in a folder.
+        schema:
+          type: string
+      - name: text
+        in: query
+        required: false
+        description: Pass this to perform a full text search for items.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Pass to lookup an item by exact name match. Must pass folderId as well when using this.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lowerName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the parent folder.
+      summary: Report the offset of an item in a list or search.
+      tags:
+      - item
+  /item/{id}/previous_image:
+    get:
+      operationId: item_getPreviousImage_id_previous_image
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The current item ID
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: The (virtual) folder ID the image is located in
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '404':
+          description: Image not found
+      summary: Get the previous image in the same folder as the given item.
+      tags:
+      - item
+  /item/{id}/rootpath:
+    get:
+      operationId: item_rootpath_id_rootpath
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get the path to the root of the item's hierarchy.
+      tags:
+      - item
+  /item/{itemId}/internal_metadata/{key}:
+    delete:
+      operationId: item_deleteMetadataKey_delete_itemId_internal_metadata_key
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        description: The metadata key to delete.
+        schema:
+          type: string
+          default: meta
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item.
+      summary: Delete a single internal metadata key on this item.
+      tags:
+      - item
+    get:
+      operationId: item_getMetadataKey_itemId_internal_metadata_key
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        description: The metadata key to retrieve.
+        schema:
+          type: string
+          default: meta
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get the value for a single internal metadata key on this item.
+      tags:
+      - item
+    put:
+      operationId: item_updateMetadataKey_put_itemId_internal_metadata_key
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: key
+        in: path
+        required: true
+        description: The metadata key which should have a new value.                 The default key, "meta" is equivalent to the external metadata.                 Editing the "meta" key is equivalent to using PUT /item/{id}/metadata.
+        schema:
+          type: string
+          default: meta
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item.
+      summary: Overwrite the value for a single internal metadata key on this item.
+      tags:
+      - item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: The new value that should be written for the chosen metadata key
+  /item/{itemId}/tiles:
+    delete:
+      operationId: item_deleteTiles_delete_itemId_tiles
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a large image from this item.
+      tags:
+      - item
+    get:
+      operationId: item_getTilesInfo_itemId_tiles
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get large image metadata.
+      tags:
+      - item
+    post:
+      operationId: item_createTiles_post_itemId_tiles
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The source item.
+        schema:
+          type: string
+      - name: fileId
+        in: query
+        required: false
+        description: The source file containing the image.  Required if there is more than one file in the item.
+        schema:
+          type: string
+      - name: force
+        in: query
+        required: false
+        description: Always use a job to create the large image.
+        schema:
+          type: boolean
+          default: false
+      - name: notify
+        in: query
+        required: false
+        description: If a job is required to create the large image, a nofication can be sent when it is complete.
+        schema:
+          type: boolean
+          default: true
+      - name: localJob
+        in: query
+        required: false
+        description: If true, run as a local job; if false, run via the remote worker
+        schema:
+          type: boolean
+      - name: tileSize
+        in: query
+        required: false
+        description: Tile size
+        schema:
+          type: integer
+          format: int32
+          default: 256
+      - name: compression
+        in: query
+        required: false
+        description: Internal compression format
+        schema:
+          type: string
+          enum:
+          - none
+          - jpeg
+          - deflate
+          - lzw
+          - zstd
+          - packbits
+          - webp
+          - jp2k
+      - name: quality
+        in: query
+        required: false
+        description: JPEG compression quality where 0 is small and 100 is highest quality
+        schema:
+          type: integer
+          format: int32
+          default: 90
+      - name: level
+        in: query
+        required: false
+        description: Compression level for deflate (zip) or zstd.
+        schema:
+          type: integer
+          format: int32
+      - name: predictor
+        in: query
+        required: false
+        description: Predictor for deflate (zip) or lzw.
+        schema:
+          type: string
+          enum:
+          - none
+          - horizontal
+          - float
+          - 'yes'
+      - name: psnr
+        in: query
+        required: false
+        description: JP2K compression target peak-signal-to-noise-ratio where 0 is lossless and otherwise higher numbers are higher quality
+        schema:
+          type: integer
+          format: int32
+      - name: cr
+        in: query
+        required: false
+        description: JP2K target compression ratio where 1 is lossless
+        schema:
+          type: integer
+          format: int32
+      - name: concurrent
+        in: query
+        required: false
+        description: Suggested number of maximum concurrent processes to use during conversion.  Values less than or equal to 0 use the number of logical cpus less that value.  Default is -2.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create a large image for this item.
+      tags:
+      - item
+  /item/{itemId}/tiles/bands:
+    get:
+      operationId: item_getBandInformation_itemId_tiles_bands
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get band information for a large image item.
+      tags:
+      - item
+  /item/{itemId}/tiles/convert:
+    post:
+      description: This can be used to make an item that is a different internal format than the original item.
+      operationId: item_convertImage_post_itemId_tiles_convert
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The source item.
+        schema:
+          type: string
+      - name: fileId
+        in: query
+        required: false
+        description: The source file containing the image.  Required if there is more than one file in the item.
+        schema:
+          type: string
+      - name: folderId
+        in: query
+        required: false
+        description: The destination folder.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: A new name for the output item.
+        schema:
+          type: string
+      - name: localJob
+        in: query
+        required: false
+        description: If true, run as a local job; if false, run via the remote worker
+        schema:
+          type: boolean
+      - name: tileSize
+        in: query
+        required: false
+        description: Tile size
+        schema:
+          type: integer
+          format: int32
+          default: 256
+      - name: onlyFrame
+        in: query
+        required: false
+        description: Only convert a specific 0-based frame of a multiframe file.  If not specified, all frames are converted.
+        schema:
+          type: integer
+          format: int32
+      - name: format
+        in: query
+        required: false
+        description: File format
+        schema:
+          type: string
+          enum:
+          - tiff
+          - aperio
+      - name: compression
+        in: query
+        required: false
+        description: Internal compression format
+        schema:
+          type: string
+          enum:
+          - none
+          - jpeg
+          - deflate
+          - lzw
+          - zstd
+          - packbits
+          - webp
+          - jp2k
+      - name: quality
+        in: query
+        required: false
+        description: JPEG compression quality where 0 is small and 100 is highest quality
+        schema:
+          type: integer
+          format: int32
+          default: 90
+      - name: level
+        in: query
+        required: false
+        description: Compression level for deflate (zip) or zstd.
+        schema:
+          type: integer
+          format: int32
+      - name: predictor
+        in: query
+        required: false
+        description: Predictor for deflate (zip) or lzw.
+        schema:
+          type: string
+          enum:
+          - none
+          - horizontal
+          - float
+          - 'yes'
+      - name: psnr
+        in: query
+        required: false
+        description: JP2K compression target peak-signal-to-noise-ratio where 0 is lossless and otherwise higher numbers are higher quality
+        schema:
+          type: integer
+          format: int32
+      - name: cr
+        in: query
+        required: false
+        description: JP2K target compression ratio where 1 is lossless
+        schema:
+          type: integer
+          format: int32
+      - name: concurrent
+        in: query
+        required: false
+        description: Suggested number of maximum concurrent processes to use during conversion.  Values less than or equal to 0 use the number of logical cpus less that value.  Default is -2.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create a new large image item based on an existing item
+      tags:
+      - item
+  /item/{itemId}/tiles/dzi.dzi:
+    get:
+      operationId: item_getDZIInfo_itemId_tiles_dzi.dzi
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: overlap
+        in: query
+        required: false
+        description: Pixel overlap (default 0), must be non-negative.
+        schema:
+          type: integer
+          format: int32
+      - name: tilesize
+        in: query
+        required: false
+        description: Tile size (default 256), must be a power of 2
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get DeepZoom compatible metadata.
+      tags:
+      - item
+  /item/{itemId}/tiles/dzi_files/{level}/{xandy}:
+    get:
+      operationId: item_getDZITile_itemId_tiles_dzi_files_level_xandy
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: level
+        in: path
+        required: true
+        description: The deepzoom layer number of the tile (8 is the most zoomed-out layer).
+        schema:
+          type: string
+      - name: xandy
+        in: path
+        required: true
+        description: The X and Y coordinate of the tile in the form (x)_(y).(extension) where (0_0 is the left top).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a DeepZoom image tile.
+      tags:
+      - item
+  /item/{itemId}/tiles/fzxy/{frame}/{z}/{x}/{y}:
+    get:
+      operationId: item_getTileWithFrame_itemId_tiles_fzxy_frame_z_x_y
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: frame
+        in: path
+        required: true
+        description: The frame number of the tile.
+        schema:
+          type: string
+      - name: z
+        in: path
+        required: true
+        description: The layer number of the tile (0 is the most zoomed-out layer).
+        schema:
+          type: string
+      - name: x
+        in: path
+        required: true
+        description: The X coordinate of the tile (0 is the left side).
+        schema:
+          type: string
+      - name: y
+        in: path
+        required: true
+        description: The Y coordinate of the tile (0 is the top).
+        schema:
+          type: string
+      - name: redirect
+        in: query
+        required: false
+        description: If the tile exists as a complete file, allow an HTTP redirect instead of returning the data directly.  The redirect might not have the correct mime type.  "exact" must match the image encoding and quality parameters, "encoding" must match the image encoding but disregards quality, and "any" will redirect to any image if possible.
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - exact
+          - encoding
+          - any
+          default: 'false'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a large image tile with a frame number.
+      tags:
+      - item
+  /item/{itemId}/tiles/histogram:
+    get:
+      description: This can take all of the parameters as the region endpoint, plus some histogram-specific parameters.  Only typically used parameters are listed.  The returned result is a list with one entry per channel (always one of L, LA, RGB, or RGBA colorspace).  Each entry has the histogram values, bin edges, minimum and maximum values for the channel, and number of samples (pixels) used in the computation.
+      operationId: item_getHistogram_itemId_tiles_histogram
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: width
+        in: query
+        required: false
+        description: The maximum width of the analyzed region in pixels.
+        schema:
+          type: integer
+          format: int32
+          default: 2048
+      - name: height
+        in: query
+        required: false
+        description: The maximum height of the analyzed region in pixels.
+        schema:
+          type: integer
+          format: int32
+          default: 2048
+      - name: resample
+        in: query
+        required: false
+        description: If false, an existing level of the image is used for the histogram.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - 'true'
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          default: 'false'
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      - name: bins
+        in: query
+        required: false
+        description: The number of bins in the histogram.
+        schema:
+          type: integer
+          format: int32
+          default: 256
+      - name: rangeMin
+        in: query
+        required: false
+        description: The minimum value in the histogram.  Defaults to the minimum value in the image.
+        schema:
+          type: number
+          format: float
+      - name: rangeMax
+        in: query
+        required: false
+        description: The maximum value in the histogram.  Defaults to the maximum value in the image.
+        schema:
+          type: number
+          format: float
+      - name: roundRange
+        in: query
+        required: false
+        description: If true and neither a minimum or maximum is specified for the range, round the bin edges and adjust the number of bins for integer data with smaller ranges.
+        schema:
+          type: boolean
+          default: false
+      - name: density
+        in: query
+        required: false
+        description: If true, scale the results by the number of samples.
+        schema:
+          type: boolean
+          default: false
+      - name: cache
+        in: query
+        required: false
+        description: Report on or request caching the specified histogram for all frames.  Scheduling creates a local job.
+        schema:
+          type: string
+          enum:
+          - none
+          - report
+          - schedule
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a histogram for any region of a large image item.
+      tags:
+      - item
+  /item/{itemId}/tiles/images:
+    get:
+      operationId: item_getAssociatedImagesList_itemId_tiles_images
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a list of additional images associated with a large image.
+      tags:
+      - item
+  /item/{itemId}/tiles/images/{image}:
+    get:
+      description: Because associated images may contain PHI, admin access to the item is required.
+      operationId: item_getAssociatedImage_itemId_tiles_images_image
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: image
+        in: path
+        required: true
+        description: The key of the associated image.
+        schema:
+          type: string
+      - name: width
+        in: query
+        required: false
+        description: The maximum width of the image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: height
+        in: query
+        required: false
+        description: The maximum height of the image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: encoding
+        in: query
+        required: false
+        description: Image output encoding
+        schema:
+          type: string
+          enum:
+          - JPEG
+          - PNG
+          - TIFF
+          default: JPEG
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+      - name: contentDispositionFilename
+        in: query
+        required: false
+        description: Specify the filename used in the Content-Disposition response header.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get an image associated with a large image.
+      tags:
+      - item
+  /item/{itemId}/tiles/images/{image}/metadata:
+    get:
+      operationId: item_getAssociatedImageMetadata_itemId_tiles_images_image_metadata
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: image
+        in: path
+        required: true
+        description: The key of the associated image.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get metadata for an image associated with a large image.
+      tags:
+      - item
+  /item/{itemId}/tiles/internal_metadata:
+    get:
+      operationId: item_getInternalMetadata_itemId_tiles_internal_metadata
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get large image internal metadata.
+      tags:
+      - item
+  /item/{itemId}/tiles/pixel:
+    get:
+      description: When frameList is provided, returns a list of pixel dictionaries, one for each frame. Otherwise returns a single pixel dictionary.
+      operationId: item_getTilesPixel_itemId_tiles_pixel
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: left
+        in: query
+        required: false
+        description: The left column (0-based) of the pixel.
+        schema:
+          type: number
+          format: float
+      - name: top
+        in: query
+        required: false
+        description: The top row (0-based) of the pixel.
+        schema:
+          type: number
+          format: float
+      - name: units
+        in: query
+        required: false
+        description: Units used for left and top.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1].
+        schema:
+          type: string
+          enum:
+          - base_pixels
+          - fraction
+          - km
+          - m
+          - mag_pixels
+          - mm
+          - nm
+          - proj4:EPSG:4326
+          - projection
+          - um
+          default: base_pixels
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      - name: frameList
+        in: query
+        required: false
+        description: Comma-separated list of frame numbers to query. If provided, returns a list of pixel values for each frame.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a single pixel of a large image item.
+      tags:
+      - item
+  /item/{itemId}/tiles/region:
+    get:
+      description: If neither width nor height is specified, the full resolution region is returned.  If a width or height is specified, aspect ratio is always preserved (if both are given, the resulting image may be smaller in one of the two dimensions).  When scaling must be applied, the image is downsampled from a higher resolution layer, never upsampled.
+      operationId: item_getTilesRegion_itemId_tiles_region
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: left
+        in: query
+        required: false
+        description: The left column (0-based) of the region to process.  Negative values are offsets from the right edge.
+        schema:
+          type: number
+          format: float
+      - name: top
+        in: query
+        required: false
+        description: The top row (0-based) of the region to process.  Negative values are offsets from the bottom edge.
+        schema:
+          type: number
+          format: float
+      - name: right
+        in: query
+        required: false
+        description: The right column (0-based from the left) of the region to process.  The region will not include this column.  Negative values are offsets from the right edge.
+        schema:
+          type: number
+          format: float
+      - name: bottom
+        in: query
+        required: false
+        description: The bottom row (0-based from the top) of the region to process.  The region will not include this row.  Negative values are offsets from the bottom edge.
+        schema:
+          type: number
+          format: float
+      - name: regionWidth
+        in: query
+        required: false
+        description: The width of the region to process.
+        schema:
+          type: number
+          format: float
+      - name: regionHeight
+        in: query
+        required: false
+        description: The height of the region to process.
+        schema:
+          type: number
+          format: float
+      - name: units
+        in: query
+        required: false
+        description: Units used for left, top, right, bottom, regionWidth, and regionHeight.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1].
+        schema:
+          type: string
+          enum:
+          - base_pixels
+          - fraction
+          - km
+          - m
+          - mag_pixels
+          - mm
+          - nm
+          - proj4:EPSG:4326
+          - projection
+          - um
+          default: base_pixels
+      - name: width
+        in: query
+        required: false
+        description: The maximum width of the output image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: height
+        in: query
+        required: false
+        description: The maximum height of the output image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: fill
+        in: query
+        required: false
+        description: A fill color.  If output dimensions are specified and fill is specified and not "none", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted.
+        schema:
+          type: string
+      - name: magnification
+        in: query
+        required: false
+        description: Magnification of the output image.  If neither width for height is specified, the magnification, mm_x, and mm_y parameters are used to select the output size.
+        schema:
+          type: number
+          format: float
+      - name: mm_x
+        in: query
+        required: false
+        description: The size of the output pixels in millimeters
+        schema:
+          type: number
+          format: float
+      - name: mm_y
+        in: query
+        required: false
+        description: The size of the output pixels in millimeters
+        schema:
+          type: number
+          format: float
+      - name: exact
+        in: query
+        required: false
+        description: If magnification, mm_x, or mm_y are specified, they must match an existing level of the image exactly.
+        schema:
+          type: boolean
+          default: false
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      - name: encoding
+        in: query
+        required: false
+        description: Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol
+        schema:
+          type: string
+          enum:
+          - JPEG
+          - PNG
+          - TIFF
+          - TILED
+          - JFIF
+          - AVIF
+          - BMP
+          - DIB
+          - PCX
+          - EPS
+          - GIF
+          - JPEG2000
+          - MPO
+          - PPM
+          - SGI
+          - TGA
+          - WEBP
+          - XBM
+          - pickle
+          - pickle:3
+          - pickle:4
+          - pickle:5
+          default: JPEG
+      - name: jpegQuality
+        in: query
+        required: false
+        description: Quality used for generating JPEG images
+        schema:
+          type: integer
+          format: int32
+          default: 95
+      - name: jpegSubsampling
+        in: query
+        required: false
+        description: Chroma subsampling used for generating JPEG images.  0, 1, and 2 are full, half, and quarter resolution chroma respectively.
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          default: '0'
+      - name: tiffCompression
+        in: query
+        required: false
+        description: Compression method when storing a TIFF image
+        schema:
+          type: string
+          enum:
+          - none
+          - raw
+          - lzw
+          - tiff_lzw
+          - jpeg
+          - deflate
+          - tiff_adobe_deflate
+      - name: style
+        in: query
+        required: false
+        description: JSON-encoded style string
+        schema:
+          type: string
+      - name: resample
+        in: query
+        required: false
+        description: If false, an existing level of the image is used for the region.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - 'true'
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+      - name: contentDispositionFilename
+        in: query
+        required: false
+        description: Specify the filename used in the Content-Disposition response header.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            Insufficient memory.'
+        '403':
+          description: Read access was denied for the item.
+      summary: Get any region of a large image item, optionally scaling it.
+      tags:
+      - item
+  /item/{itemId}/tiles/thumbnail:
+    get:
+      description: Aspect ratio is always preserved.  If both width and height are specified, the resulting thumbnail may be smaller in one of the two dimensions.  If neither width nor height is given, a default size will be returned.  This creates a thumbnail from the lowest level of the source image, which means that asking for a large thumbnail will not be a high-quality image.
+      operationId: item_getTilesThumbnail_itemId_tiles_thumbnail
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: width
+        in: query
+        required: false
+        description: The maximum width of the thumbnail in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: height
+        in: query
+        required: false
+        description: The maximum height of the thumbnail in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: fill
+        in: query
+        required: false
+        description: A fill color.  If width and height are both specified and fill is specified and not "none", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted.
+        schema:
+          type: string
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      - name: encoding
+        in: query
+        required: false
+        description: Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol
+        schema:
+          type: string
+          enum:
+          - JPEG
+          - PNG
+          - TIFF
+          - TILED
+          - JFIF
+          - AVIF
+          - BMP
+          - DIB
+          - PCX
+          - EPS
+          - GIF
+          - JPEG2000
+          - MPO
+          - PPM
+          - SGI
+          - TGA
+          - WEBP
+          - XBM
+          - pickle
+          - pickle:3
+          - pickle:4
+          - pickle:5
+          default: JPEG
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+      - name: contentDispositionFilename
+        in: query
+        required: false
+        description: Specify the filename used in the Content-Disposition response header.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a thumbnail of a large image item.
+      tags:
+      - item
+  /item/{itemId}/tiles/thumbnails:
+    delete:
+      operationId: item_deleteTilesThumbnails_delete_itemId_tiles_thumbnails
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: keep
+        in: query
+        required: false
+        description: Number of thumbnails to keep.  Ignored if a key is specified.
+        schema:
+          type: integer
+          format: int32
+          default: 10000
+      - name: key
+        in: query
+        required: false
+        description: A specific key to delete
+        schema:
+          type: string
+      - name: thumbnail
+        in: query
+        required: false
+        description: If a key is specified, true if the key is a thumbnail; false if the key is a data record
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Delete thumbnail and data files associated with a large_image item.
+      tags:
+      - item
+    get:
+      operationId: item_listTilesThumbnails_itemId_tiles_thumbnails
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: List all thumbnail and data files associated with a large_image item.
+      tags:
+      - item
+    post:
+      operationId: item_addTilesThumbnails_post_itemId_tiles_thumbnails
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: true
+        description: A specific key to delete
+        schema:
+          type: string
+      - name: thumbnail
+        in: query
+        required: false
+        description: If a key is specified, true if the key is a thumbnail; false if the key is a data record
+        schema:
+          type: boolean
+      - name: mimeType
+        in: query
+        required: false
+        description: The MIME type of the file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Associate or replace a thumbnail or data file with a large_image items.
+      tags:
+      - item
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: An image or data block to associated with the large_image item.
+  /item/{itemId}/tiles/tile_frames:
+    get:
+      operationId: item_tileFrames_itemId_tiles_tile_frames
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: framesAcross
+        in: query
+        required: false
+        description: How many frames across
+        schema:
+          type: integer
+          format: int32
+      - name: frameList
+        in: query
+        required: false
+        description: Comma-separated list of frames
+        schema:
+          type: string
+      - name: cache
+        in: query
+        required: false
+        description: Cache the results for future use
+        schema:
+          type: boolean
+          default: false
+      - name: left
+        in: query
+        required: false
+        description: The left column (0-based) of the region to process.  Negative values are offsets from the right edge.
+        schema:
+          type: number
+          format: float
+      - name: top
+        in: query
+        required: false
+        description: The top row (0-based) of the region to process.  Negative values are offsets from the bottom edge.
+        schema:
+          type: number
+          format: float
+      - name: right
+        in: query
+        required: false
+        description: The right column (0-based from the left) of the region to process.  The region will not include this column.  Negative values are offsets from the right edge.
+        schema:
+          type: number
+          format: float
+      - name: bottom
+        in: query
+        required: false
+        description: The bottom row (0-based from the top) of the region to process.  The region will not include this row.  Negative values are offsets from the bottom edge.
+        schema:
+          type: number
+          format: float
+      - name: regionWidth
+        in: query
+        required: false
+        description: The width of the region to process.
+        schema:
+          type: number
+          format: float
+      - name: regionHeight
+        in: query
+        required: false
+        description: The height of the region to process.
+        schema:
+          type: number
+          format: float
+      - name: units
+        in: query
+        required: false
+        description: Units used for left, top, right, bottom, regionWidth, and regionHeight.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1].
+        schema:
+          type: string
+          enum:
+          - base_pixels
+          - fraction
+          - km
+          - m
+          - mag_pixels
+          - mm
+          - nm
+          - proj4:EPSG:4326
+          - projection
+          - um
+          default: base_pixels
+      - name: width
+        in: query
+        required: false
+        description: The maximum width of the output image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: height
+        in: query
+        required: false
+        description: The maximum height of the output image in pixels.
+        schema:
+          type: integer
+          format: int32
+      - name: fill
+        in: query
+        required: false
+        description: A fill color.  If output dimensions are specified and fill is specified and not "none", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted.
+        schema:
+          type: string
+      - name: magnification
+        in: query
+        required: false
+        description: Magnification of the output image.  If neither width for height is specified, the magnification, mm_x, and mm_y parameters are used to select the output size.
+        schema:
+          type: number
+          format: float
+      - name: mm_x
+        in: query
+        required: false
+        description: The size of the output pixels in millimeters
+        schema:
+          type: number
+          format: float
+      - name: mm_y
+        in: query
+        required: false
+        description: The size of the output pixels in millimeters
+        schema:
+          type: number
+          format: float
+      - name: exact
+        in: query
+        required: false
+        description: If magnification, mm_x, or mm_y are specified, they must match an existing level of the image exactly.
+        schema:
+          type: boolean
+          default: false
+      - name: frame
+        in: query
+        required: false
+        description: For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images.
+        schema:
+          type: integer
+          format: int32
+      - name: encoding
+        in: query
+        required: false
+        description: Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol
+        schema:
+          type: string
+          enum:
+          - JPEG
+          - PNG
+          - TIFF
+          - TILED
+          - JFIF
+          - AVIF
+          - BMP
+          - DIB
+          - PCX
+          - EPS
+          - GIF
+          - JPEG2000
+          - MPO
+          - PPM
+          - SGI
+          - TGA
+          - WEBP
+          - XBM
+          - pickle
+          - pickle:3
+          - pickle:4
+          - pickle:5
+          default: JPEG
+      - name: jpegQuality
+        in: query
+        required: false
+        description: Quality used for generating JPEG images
+        schema:
+          type: integer
+          format: int32
+          default: 95
+      - name: jpegSubsampling
+        in: query
+        required: false
+        description: Chroma subsampling used for generating JPEG images.  0, 1, and 2 are full, half, and quarter resolution chroma respectively.
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          default: '0'
+      - name: tiffCompression
+        in: query
+        required: false
+        description: Compression method when storing a TIFF image
+        schema:
+          type: string
+          enum:
+          - none
+          - raw
+          - lzw
+          - tiff_lzw
+          - jpeg
+          - deflate
+          - tiff_adobe_deflate
+      - name: style
+        in: query
+        required: false
+        description: JSON-encoded style string
+        schema:
+          type: string
+      - name: resample
+        in: query
+        required: false
+        description: If false, an existing level of the image is used for the region.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - 'true'
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+      - name: contentDispositionFilename
+        in: query
+        required: false
+        description: Specify the filename used in the Content-Disposition response header.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            Insufficient memory.'
+        '403':
+          description: Read access was denied for the item.
+      summary: Composite thumbnails of multiple frames into a single image.
+      tags:
+      - item
+  /item/{itemId}/tiles/tile_frames/quad_info:
+    get:
+      operationId: item_tileFramesQuadInfo_itemId_tiles_tile_frames_quad_info
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: format
+        in: query
+        required: false
+        description: Optional format parameters, such as "encoding=JPEG&jpegQuality=85&jpegSubsampling=1".  If specified, these replace the defaults.
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: false
+        description: Addition query parameters that would be passed to tile endpoints, such as style.
+        schema:
+          type: string
+      - name: frameBase
+        in: query
+        required: false
+        description: Starting frame number (default 0).  If c/z/t/xy then step through values from 0 to number of that axis - 1.  The axis specification in only useful for cache reporting or scheduling
+        schema:
+          type: integer
+          format: int32
+      - name: frameStride
+        in: query
+        required: false
+        description: Only use every frameStride frame of the image (default 1).  c/z/t/xy to use the length of that axis
+        schema:
+          type: integer
+          format: int32
+      - name: frameGroup
+        in: query
+        required: false
+        description: Group frames when using multiple textures to keep boundaries at a multiple of the group size number.  c/z/t/xy to use the length of that axis.
+        schema:
+          type: integer
+          format: int32
+      - name: frameGroupFactor
+        in: query
+        required: false
+        description: Ignore grouping if the resultant images would be more than this factor smaller than without grouping (default 4)
+        schema:
+          type: integer
+          format: int32
+      - name: frameGroupStride
+        in: query
+        required: false
+        description: Reorder frames based on the to stride (default 1).  "auto" to use frameGroup / frameStride if that value is an integer.
+        schema:
+          type: integer
+          format: int32
+      - name: maxTextureSize
+        in: query
+        required: false
+        description: Maximum texture size in either dimension.  This should be the smaller of a desired value and of the intended graphics environment texture buffer (default 16384).
+        schema:
+          type: integer
+          format: int32
+      - name: maxTextures
+        in: query
+        required: false
+        description: Maximum number of textures to use (default 1).
+        schema:
+          type: integer
+          format: int32
+      - name: maxTotalTexturePixels
+        in: query
+        required: false
+        description: Limit the total area of all combined textures (default 2**30).
+        schema:
+          type: integer
+          format: int32
+      - name: alignment
+        in: query
+        required: false
+        description: Individual frame alignment within a texture.  Used to avoid jpeg artifacts from crossing frames (default 16).
+        schema:
+          type: integer
+          format: int32
+      - name: maxFrameSize
+        in: query
+        required: false
+        description: If specified, frames will never be larger than this, even if the texture size allows it (default None).
+        schema:
+          type: integer
+          format: int32
+      - name: cache
+        in: query
+        required: false
+        description: Report on or request caching the resultant frames.  Scheduling creates a local job.
+        schema:
+          type: string
+          enum:
+          - none
+          - report
+          - schedule
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get parameters for using tile_frames as background sprite images.
+      tags:
+      - item
+  /item/{itemId}/tiles/zxy/{z}/{x}/{y}:
+    get:
+      operationId: item_getTile_itemId_tiles_zxy_z_x_y
+      parameters:
+      - name: itemId
+        in: path
+        required: true
+        description: The ID of the item.
+        schema:
+          type: string
+      - name: z
+        in: path
+        required: true
+        description: The layer number of the tile (0 is the most zoomed-out layer).
+        schema:
+          type: string
+      - name: x
+        in: path
+        required: true
+        description: The X coordinate of the tile (0 is the left side).
+        schema:
+          type: string
+      - name: y
+        in: path
+        required: true
+        description: The Y coordinate of the tile (0 is the top).
+        schema:
+          type: string
+      - name: redirect
+        in: query
+        required: false
+        description: If the tile exists as a complete file, allow an HTTP redirect instead of returning the data directly.  The redirect might not have the correct mime type.  "exact" must match the image encoding and quality parameters, "encoding" must match the image encoding but disregards quality, and "any" will redirect to any image if possible.
+        schema:
+          type: string
+          enum:
+          - 'false'
+          - exact
+          - encoding
+          - any
+          default: 'false'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the item.
+      summary: Get a large image tile.
+      tags:
+      - item
+components:
+  schemas:
+    File:
+      type: object
+    string:
+      type: string
+    Item:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

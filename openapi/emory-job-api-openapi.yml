@@ -1,0 +1,422 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation job API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: job resource
+  name: job
+paths:
+  /job:
+    get:
+      operationId: job_listJobs_job
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        description: The ID of the user whose jobs will be listed. If not passed or empty, will use the currently logged in user. If set to "None", will list all jobs that do not have an owning user.
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        required: false
+        description: Id of the parent job.
+        schema:
+          type: string
+      - name: types
+        in: query
+        required: false
+        description: Filter for type
+        schema:
+          type: string
+      - name: statuses
+        in: query
+        required: false
+        description: Filter for status
+        schema:
+          type: string
+      - name: handlers
+        in: query
+        required: false
+        description: Filter for handler
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: created
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: -1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List jobs for a given user.
+      tags:
+      - job
+    post:
+      operationId: job_createJob_post_job
+      parameters:
+      - name: title
+        in: query
+        required: true
+        description: Title of the job.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: Type of the job.
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        required: false
+        description: ID of the parent job.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the job is publicly visible.
+        schema:
+          type: boolean
+          default: false
+      - name: handler
+        in: query
+        required: false
+        description: Job handler string.
+        schema:
+          type: string
+      - name: args
+        in: query
+        required: false
+        description: Job arguments
+        schema:
+          type: string
+      - name: kwargs
+        in: query
+        required: false
+        description: Job keyword arguments
+        schema:
+          type: string
+      - name: otherFields
+        in: query
+        required: false
+        description: Other fields specific to the job handler
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create a job model
+      tags:
+      - job
+  /job/all:
+    get:
+      operationId: job_listAllJobs_all
+      parameters:
+      - name: types
+        in: query
+        required: false
+        description: Filter for type
+        schema:
+          type: string
+      - name: statuses
+        in: query
+        required: false
+        description: Filter for status
+        schema:
+          type: string
+      - name: handlers
+        in: query
+        required: false
+        description: Filter for handler
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: created
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: -1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List all jobs.
+      tags:
+      - job
+  /job/old:
+    delete:
+      operationId: job_deleteOldJobs_delete_old
+      parameters:
+      - name: age
+        in: query
+        required: false
+        description: The minimum age in days.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: status
+        in: query
+        required: false
+        description: A comma-separated list of statuses to include.  Blank for all.
+        schema:
+          type: string
+          default: 0,1,2
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete old jobs.
+      tags:
+      - job
+    get:
+      operationId: job_getOldJobs_old
+      parameters:
+      - name: age
+        in: query
+        required: false
+        description: The minimum age in days.
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: status
+        in: query
+        required: false
+        description: A comma-separated list of statuses to include.  Blank for all.
+        schema:
+          type: string
+          default: 0,1,2
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Report on old jobs.
+      tags:
+      - job
+  /job/typeandstatus:
+    get:
+      operationId: job_jobsTypesAndStatuses_typeandstatus
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get types and statuses of jobs of current user
+      tags:
+      - job
+      parameters: []
+  /job/typeandstatus/all:
+    get:
+      operationId: job_allJobsTypesAndStatuses_typeandstatus_all
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: Admin access was denied for the job.
+      summary: Get types and statuses of all jobs
+      tags:
+      - job
+      parameters: []
+  /job/{id}:
+    delete:
+      operationId: job_deleteJob_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the job.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the job.
+      summary: Delete an existing job.
+      tags:
+      - job
+    get:
+      operationId: job_getJob_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the job.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the job.
+      summary: Get a job by ID.
+      tags:
+      - job
+    put:
+      description: In most cases, regular users should not call this endpoint. It will typically be used by a batch processing system to send updates regarding the execution of the job. If using a non-user-associated token for authorization, the token must be granted the "jobs.job_<id>" scope, where <id> is the ID of the job being updated.
+      operationId: job_updateJob_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the job.
+        schema:
+          type: string
+      - name: log
+        in: query
+        required: false
+        description: A message to add to the job's log field. If you want to overwrite any existing log content, pass another parameter "overwrite=true".
+        schema:
+          type: string
+      - name: overwrite
+        in: query
+        required: false
+        description: If passing a log parameter, you may set this to "true" if you wish to overwrite the log field rather than append to it.
+        schema:
+          type: boolean
+          default: false
+      - name: status
+        in: query
+        required: false
+        description: Update the status of the job. See the JobStatus enumeration in the constants module in this plugin for the numerical values of each status.
+        schema:
+          type: string
+      - name: progressTotal
+        in: query
+        required: false
+        description: Maximum progress value, set <= 0 to indicate indeterminate progress for this job.
+        schema:
+          type: number
+          format: float
+      - name: progressCurrent
+        in: query
+        required: false
+        description: Current progress value.
+        schema:
+          type: number
+          format: float
+      - name: progressMessage
+        in: query
+        required: false
+        description: Current progress message.
+        schema:
+          type: string
+      - name: notify
+        in: query
+        required: false
+        description: If this update should trigger a notification, set this field to true.
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the job.
+      summary: Update an existing job.
+      tags:
+      - job
+  /job/{id}/cancel:
+    put:
+      operationId: job_cancelJob_put_id_cancel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the job.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the job.
+      summary: Cancel a job by ID.
+      tags:
+      - job
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

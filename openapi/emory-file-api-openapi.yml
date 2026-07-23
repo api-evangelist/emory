@@ -1,0 +1,682 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation file API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: file resource
+  name: file
+paths:
+  /file:
+    post:
+      description: Use POST /file/chunk to send the contents of the file.  The data for the first chunk of the file can be included with this query by sending it as the body of the request using an appropriate content-type and with the other parameters as part of the query string.  If the entire file is uploaded via this call, the resulting file is returned.
+      operationId: file_initUpload_post_file
+      parameters:
+      - name: parentType
+        in: query
+        required: true
+        description: Type being uploaded into.
+        schema:
+          type: string
+          enum:
+          - folder
+          - item
+      - name: parentId
+        in: query
+        required: true
+        description: The ID of the parent.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: true
+        description: Name of the file being created.
+        schema:
+          type: string
+      - name: size
+        in: query
+        required: false
+        description: Size in bytes of the file.
+        schema:
+          type: integer
+          format: int32
+      - name: mimeType
+        in: query
+        required: false
+        description: The MIME type of the file.
+        schema:
+          type: string
+      - name: linkUrl
+        in: query
+        required: false
+        description: If this is a link file, pass its URL instead of size and mimeType using this parameter.
+        schema:
+          type: string
+      - name: reference
+        in: query
+        required: false
+        description: If included, this information is passed to the data.process event when the upload is complete.
+        schema:
+          type: string
+      - name: assetstoreId
+        in: query
+        required: false
+        description: Direct the upload to a specific assetstore (admin-only).
+        schema:
+          type: string
+      - name: uploadExtraParameters
+        in: query
+        required: false
+        description: Arbitrary data to send along with the upload request.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Upload'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied on the parent folder.
+        '500':
+          description: Failed to create upload.
+      summary: Start a new upload or create an empty or link file.
+      tags:
+      - file
+  /file/chunk:
+    post:
+      description: The data for the chunk should be sent as the body of the request using an appropriate content-type and with the other parameters as part of the query string.
+      operationId: file_readChunk_post_chunk
+      parameters:
+      - name: offset
+        in: query
+        required: false
+        description: Offset of the chunk in the file.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: uploadExtraParameters
+        in: query
+        required: false
+        description: Arbitrary data to send along with the upload request.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            Received too many bytes.
+
+
+            Chunk is smaller than the minimum size.'
+        '403':
+          description: You are not the user who initiated the upload.
+        '500':
+          description: Failed to store upload.
+      summary: Upload a chunk of a file.
+      tags:
+      - file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                uploadId:
+                  type: string
+                  description: The ID of the document.
+              required:
+              - uploadId
+  /file/completion:
+    post:
+      description: This is only required in certain non-standard upload behaviors. Clients should know which behavior models require the finalize step to be called in their behavior handlers.
+      operationId: file_finalizeUpload_post_completion
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            The upload does not require finalization.
+
+
+            Not enough bytes have been uploaded.'
+        '403':
+          description: You are not the user who initiated the upload.
+      summary: Finalize an upload explicitly if necessary.
+      tags:
+      - file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                uploadId:
+                  type: string
+                  description: The ID of the document.
+              required:
+              - uploadId
+  /file/hashsum/{algo}/{hash}:
+    get:
+      operationId: file_getByHash_hashsum_algo_hash
+      parameters:
+      - name: algo
+        in: path
+        required: true
+        description: The type of the given hashsum (case insensitive).
+        schema:
+          type: string
+          enum:
+          - sha512
+      - name: hash
+        in: path
+        required: true
+        description: The hexadecimal hashsum of the file to download (case insensitive).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Return a list of files matching a hashsum.
+      tags:
+      - file
+  /file/hashsum/{algo}/{hash}/download:
+    get:
+      operationId: file_downloadWithHash_hashsum_algo_hash_download
+      parameters:
+      - name: algo
+        in: path
+        required: true
+        description: The type of the given hashsum (case insensitive).
+        schema:
+          type: string
+          enum:
+          - sha512
+      - name: hash
+        in: path
+        required: true
+        description: The hexadecimal hashsum of the file to download (case insensitive).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: No file with the given hash exists.
+      summary: Download a file by its hashsum.
+      tags:
+      - file
+  /file/offset:
+    get:
+      operationId: file_requestOffset_offset
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: The ID was invalid, or the offset did not match the server's record.
+      summary: Request required offset before resuming an upload.
+      tags:
+      - file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                uploadId:
+                  type: string
+                  description: The ID of the document.
+              required:
+              - uploadId
+  /file/query:
+    get:
+      operationId: file_getFilesByQuery_query
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Find files that match this Mongo query.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _id
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/File'
+                type: array
+        '400':
+          description: A parameter was invalid.
+      summary: List files that match a query.
+      tags:
+      - file
+  /file/upload/{id}:
+    delete:
+      operationId: file_cancelUpload_delete_upload_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: You lack permission to cancel this upload.
+      summary: Cancel a partially completed upload.
+      tags:
+      - file
+  /file/{id}:
+    delete:
+      operationId: file_deleteFile_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied on the parent folder.
+      summary: Delete a file by ID.
+      tags:
+      - file
+    get:
+      operationId: file_getFile_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the file.
+      summary: Get a file's information.
+      tags:
+      - file
+    put:
+      operationId: file_updateFile_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: The name to set on the file.
+        schema:
+          type: string
+      - name: mimeType
+        in: query
+        required: false
+        description: The MIME type of the file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied on the parent folder.
+      summary: Change file metadata such as name or MIME type.
+      tags:
+      - file
+  /file/{id}/contents:
+    put:
+      description: After calling this, send the chunks just like you would with a normal file upload.
+      operationId: file_updateFileContents_put_id_contents
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: size
+        in: query
+        required: true
+        description: Size in bytes of the new file.
+        schema:
+          type: integer
+          format: int32
+      - name: reference
+        in: query
+        required: false
+        description: If included, this information is passed to the data.process event when the upload is complete.
+        schema:
+          type: string
+      - name: assetstoreId
+        in: query
+        required: false
+        description: Direct the upload to a specific assetstore (admin-only).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Change the contents of an existing file.
+      tags:
+      - file
+  /file/{id}/copy:
+    post:
+      operationId: file_copy_post_id_copy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Copy a file.
+      tags:
+      - file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                itemId:
+                  type: string
+                  description: The ID of the item to copy the file to.
+              required:
+              - itemId
+  /file/{id}/download:
+    get:
+      description: This endpoint also accepts the HTTP "Range" header for partial file downloads.
+      operationId: file_download_id_download
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Start downloading at this offset in bytes within the file.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: endByte
+        in: query
+        required: false
+        description: If you only wish to download part of the file, pass this as the index of the last byte to download. Unlike the HTTP Range header, the endByte parameter is non-inclusive, so you should set it to the index of the byte one past the final byte you wish to receive.
+        schema:
+          type: integer
+          format: int32
+      - name: contentDisposition
+        in: query
+        required: false
+        description: Specify the Content-Disposition response header disposition-type value.
+        schema:
+          type: string
+          enum:
+          - inline
+          - attachment
+          default: attachment
+      - name: extraParameters
+        in: query
+        required: false
+        description: Arbitrary data to send along with the download request.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied on the parent folder.
+      summary: Download a file.
+      tags:
+      - file
+  /file/{id}/download/{name}:
+    get:
+      description: The name parameter doesn't alter the download.  Some download clients save files based on the last part of a path, and specifying the name satisfies those clients.
+      operationId: file_downloadWithName_id_download_name
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the file.
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        description: The name of the file.  This is ignored.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        description: Start downloading at this offset in bytes within the file.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied on the parent folder.
+      summary: Download a file.
+      tags:
+      - file
+  /file/{id}/hashsum:
+    post:
+      operationId: file_computeHashes_post_id_hashsum
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the file.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to track progress of the operation
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied on the file.
+      summary: Manually compute the checksum values for a given file.
+      tags:
+      - file
+  /file/{id}/hashsum_file/{algo}:
+    get:
+      description: This is meant to be used in conjunction with CMake's ExternalData module.
+      operationId: file_downloadKeyFile_id_hashsum_file_algo
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the file.
+        schema:
+          type: string
+      - name: algo
+        in: path
+        required: true
+        description: The hashsum algorithm.
+        schema:
+          type: string
+          enum:
+          - sha512
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the file.
+      summary: Download the hashsum key file for a given file.
+      tags:
+      - file
+  /file/{id}/import/adjust_path:
+    post:
+      operationId: file_adjustFileImportPath_post_id_import_adjust_path
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: path
+        in: query
+        required: true
+        description: The new import path of the file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied on the parent folder.
+      summary: Adjust the import path of a file.
+      tags:
+      - file
+  /file/{id}/move:
+    put:
+      operationId: file_moveFileToAssetstore_put_id_move
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Controls whether progress notifications will be sent.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Move a file to a different assetstore.
+      tags:
+      - file
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                assetstoreId:
+                  type: string
+                  description: The destination assetstore.
+              required:
+              - assetstoreId
+components:
+  schemas:
+    Upload:
+      type: object
+    File:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

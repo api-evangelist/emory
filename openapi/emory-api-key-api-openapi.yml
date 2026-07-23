@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation api_key API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: api_key resource
+  name: api_key
+paths:
+  /api_key:
+    get:
+      description: Only site administrators may list keys for other users. If no userId parameter is passed, lists keys for the current user.
+      operationId: api_key_listKeys_api_key
+      parameters:
+      - name: userId
+        in: query
+        required: false
+        description: ID of the user whose keys to list.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List API keys for a given user.
+      tags:
+      - api_key
+    post:
+      operationId: api_key_createKey_post_api_key
+      parameters:
+      - name: name
+        in: query
+        required: false
+        description: Name for the API key.
+        schema:
+          type: string
+          default: ''
+      - name: scope
+        in: query
+        required: false
+        description: JSON list of scopes for this key.
+        schema:
+          type: string
+      - name: tokenDuration
+        in: query
+        required: false
+        description: Max number of days tokens created with this key will last.
+        schema:
+          type: string
+      - name: active
+        in: query
+        required: false
+        description: Whether the key is currently active.
+        schema:
+          type: boolean
+          default: true
+      - name: targetUserId
+        in: query
+        required: false
+        description: Id of user to apply the key to
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create a new API key.
+      tags:
+      - api_key
+  /api_key/token:
+    post:
+      operationId: api_key_createToken_post_token
+      parameters:
+      - name: key
+        in: query
+        required: true
+        description: The API key.
+        schema:
+          type: string
+      - name: duration
+        in: query
+        required: false
+        description: Number of days that the token should last.
+        schema:
+          type: number
+          format: float
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create a token from an API key.
+      tags:
+      - api_key
+  /api_key/{id}:
+    delete:
+      operationId: api_key_deleteKey_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the API key to delete.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete an API key.
+      tags:
+      - api_key
+    put:
+      operationId: api_key_updateKey_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the API key.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Name for the key.
+        schema:
+          type: string
+      - name: scope
+        in: query
+        required: false
+        description: JSON list of scopes for this key.
+        schema:
+          type: string
+          default: []
+      - name: tokenDuration
+        in: query
+        required: false
+        description: Max number of days tokens created with this key will last.
+        schema:
+          type: string
+      - name: active
+        in: query
+        required: false
+        description: Whether the key is currently active.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Update an API key.
+      tags:
+      - api_key
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

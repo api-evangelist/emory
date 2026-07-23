@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation notification API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: notification resource
+  name: notification
+paths:
+  /notification:
+    get:
+      description: This endpoint can be used for manual long-polling when SSE support is disabled or otherwise unavailable. The events are always returned in chronological order.
+      operationId: notification_listNotifications_notification
+      parameters:
+      - name: since
+        in: query
+        required: false
+        description: Filter out events before this date.
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You are not logged in.
+      summary: List notification events
+      tags:
+      - notification
+  /notification/stream:
+    get:
+      description: This uses long-polling to keep the connection open for several minutes at a time (or longer) and should be requested with an EventSource object or other SSE-capable client. <p>Notifications are returned within a few seconds of when they occur.  When no notification occurs for the timeout duration, the stream is closed. <p>This connection can stay open indefinitely long.
+      operationId: notification_stream_stream
+      parameters:
+      - name: timeout
+        in: query
+        required: false
+        description: The duration without a notification before the stream is closed.
+        schema:
+          type: integer
+          format: int32
+          default: 300
+      - name: since
+        in: query
+        required: false
+        description: Filter out events before this time stamp.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You are not logged in.
+        '503':
+          description: The notification stream is not enabled.
+      summary: Stream notifications for a given user via the SSE protocol.
+      tags:
+      - notification
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

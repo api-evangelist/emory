@@ -1,0 +1,1003 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation tcga API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: tcga resource
+  name: tcga
+paths:
+  /tcga:
+    delete:
+      operationId: tcga_deleteCollection_delete_tcga
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove the TCGA collection
+      tags:
+      - tcga
+      parameters: []
+    get:
+      operationId: tcga_getCollection_tcga
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get the TCGA collection
+      tags:
+      - tcga
+      parameters: []
+    post:
+      operationId: tcga_setCollection_post_tcga
+      parameters:
+      - name: collectionId
+        in: query
+        required: true
+        description: The id of the collection
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Set the TCGA collection
+      tags:
+      - tcga
+  /tcga/aperio:
+    post:
+      operationId: tcga_importTCGADocument_post_aperio
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The id of the item or root to import
+        schema:
+          type: string
+      - name: tag
+        in: query
+        required: false
+        description: Import annotations with this tag
+        schema:
+          type: string
+      - name: recursive
+        in: query
+        required: false
+        description: Perform a recursive search for annotations
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import an item as an Aperio annotation
+      tags:
+      - tcga
+  /tcga/case:
+    get:
+      operationId: tcga_findCase_case
+      parameters:
+      - name: cohort
+        in: query
+        required: true
+        description: The id of the cohort document
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List cases in the TCGA dataset
+      tags:
+      - tcga
+    post:
+      operationId: tcga_importCase_post_case
+      parameters:
+      - name: folderId
+        in: query
+        required: true
+        description: The id of the folder to import
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import a folder as a TCGA case
+      tags:
+      - tcga
+  /tcga/case/label/{label}:
+    get:
+      operationId: tcga_getCaseByLabel_case_label_label
+      parameters:
+      - name: label
+        in: path
+        required: true
+        description: The label of the case
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Label was invalid
+      summary: Get a case document from a label
+      tags:
+      - tcga
+  /tcga/case/search:
+    get:
+      description: Only one of "value" or "substring" may be provided.
+      operationId: tcga_searchCase_case_search
+      parameters:
+      - name: table
+        in: query
+        required: true
+        description: A table to search
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: false
+        description: A key that should be present
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: false
+        description: The value associated with the given key
+        schema:
+          type: string
+      - name: substring
+        in: query
+        required: false
+        description: Find values containing this substring
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Search for cases by clinical data
+      tags:
+      - tcga
+  /tcga/case/{id}:
+    delete:
+      operationId: tcga_deleteCase_delete_case_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a case document
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getCase_case_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a case document from an id
+      tags:
+      - tcga
+  /tcga/case/{id}/images:
+    get:
+      operationId: tcga_listCaseImages_case_id_images
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List images under a case
+      tags:
+      - tcga
+  /tcga/case/{id}/metadata/tables:
+    get:
+      operationId: tcga_listCaseTables_case_id_metadata_tables
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List tables present inside case metadata
+      tags:
+      - tcga
+  /tcga/case/{id}/metadata/{table}:
+    delete:
+      operationId: tcga_deleteCaseMetadata_delete_case_id_metadata_table
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      - name: table
+        in: path
+        required: true
+        description: The table to remove
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete case metadata
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getCaseMetadata_case_id_metadata_table
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      - name: table
+        in: path
+        required: true
+        description: The table name to get
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get case metadata
+      tags:
+      - tcga
+    post:
+      operationId: tcga_setCaseMetadata_post_case_id_metadata_table
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      - name: table
+        in: path
+        required: true
+        description: The table to update
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create or replace case metadata
+      tags:
+      - tcga
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata to create
+    put:
+      description: Set metadata fields to null to delete them.
+      operationId: tcga_updateCaseMetadata_put_case_id_metadata_table
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the case
+        schema:
+          type: string
+      - name: table
+        in: path
+        required: true
+        description: The table to update
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Update case metadata
+      tags:
+      - tcga
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata to update
+  /tcga/cohort:
+    get:
+      operationId: tcga_findCohort_cohort
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List cohorts in the TCGA dataset
+      tags:
+      - tcga
+    post:
+      operationId: tcga_importCohort_post_cohort
+      parameters:
+      - name: folderId
+        in: query
+        required: true
+        description: The id of the folder to import
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import a folder as a TCGA cohort type
+      tags:
+      - tcga
+  /tcga/cohort/{id}:
+    delete:
+      operationId: tcga_deleteCohort_delete_cohort_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the cohort
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a cohort type
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getCohort_cohort_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the cohort
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a cohort document from an id
+      tags:
+      - tcga
+  /tcga/cohort/{id}/images:
+    get:
+      operationId: tcga_cohortListImages_cohort_id_images
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the cohort
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List slide images in a cohort
+      tags:
+      - tcga
+  /tcga/cohort/{id}/slides:
+    get:
+      operationId: tcga_cohortListSlides_cohort_id_slides
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the cohort
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List slides in a cohort
+      tags:
+      - tcga
+  /tcga/image:
+    get:
+      operationId: tcga_findImage_image
+      parameters:
+      - name: slide
+        in: query
+        required: false
+        description: The id of slide document
+        schema:
+          type: string
+      - name: caseName
+        in: query
+        required: false
+        description: The name of the case
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Find images
+      tags:
+      - tcga
+    post:
+      operationId: tcga_importImage_post_image
+      parameters:
+      - name: itemId
+        in: query
+        required: true
+        description: The id of the item to import
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import an item as a TCGA slide image
+      tags:
+      - tcga
+  /tcga/image/{id}:
+    delete:
+      operationId: tcga_deleteImage_delete_image_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the image
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove an image
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getImage_image_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the image
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get an image document by id
+      tags:
+      - tcga
+  /tcga/import:
+    post:
+      description: This will run as a local job that will execute asynchronously.
+      operationId: tcga_importCollection_post_import
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Recursively import the TCGA collection
+      tags:
+      - tcga
+      parameters: []
+  /tcga/pathology:
+    get:
+      operationId: tcga_findPathology_pathology
+      parameters:
+      - name: case
+        in: query
+        required: true
+        description: The id of a case document
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Find pathologies for a case
+      tags:
+      - tcga
+    post:
+      operationId: tcga_importPathology_post_pathology
+      parameters:
+      - name: id
+        in: query
+        required: true
+        description: The id of the item to import
+        schema:
+          type: string
+      - name: recursive
+        in: query
+        required: false
+        description: Perform a recursive search for pathologies
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import an item as a TCGA pathology
+      tags:
+      - tcga
+  /tcga/pathology/{id}:
+    delete:
+      operationId: tcga_deletePathology_delete_pathology_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the pathology
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a pathology
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getPathology_pathology_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the pathology
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a pathology document by id
+      tags:
+      - tcga
+  /tcga/slide:
+    get:
+      operationId: tcga_findSlide_slide
+      parameters:
+      - name: case
+        in: query
+        required: true
+        description: The id of case document
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Find slides for a case
+      tags:
+      - tcga
+    post:
+      operationId: tcga_importSlide_post_slide
+      parameters:
+      - name: folderId
+        in: query
+        required: true
+        description: The id of the folder to import
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Import a folder as a TCGA slide
+      tags:
+      - tcga
+  /tcga/slide/{id}:
+    delete:
+      operationId: tcga_deleteSlide_delete_slide_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the slide
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a slide
+      tags:
+      - tcga
+    get:
+      operationId: tcga_getSlide_slide_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The id of the slide
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a slide document by id
+      tags:
+      - tcga
+components:
+  schemas:
+    string:
+      type: string
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

@@ -1,0 +1,335 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation large_image API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: large_image resource
+  name: large_image
+paths:
+  /large_image/associated_images:
+    delete:
+      operationId: large_image_deleteAssociatedImages_delete_associated_images
+      parameters:
+      - name: imageKey
+        in: query
+        required: false
+        description: If specific, only include images with the specified key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete cached associated image files from large_image items.
+      tags:
+      - large_image
+    get:
+      description: The imageKey can also be "tileFrames".
+      operationId: large_image_countAssociatedImages_associated_images
+      parameters:
+      - name: imageKey
+        in: query
+        required: false
+        description: If specific, only include images with the specified key
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Count the number of cached associated image files for large_image items.
+      tags:
+      - large_image
+  /large_image/cache:
+    get:
+      operationId: large_image_cacheInfo_cache
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get information on caches.
+      tags:
+      - large_image
+      parameters: []
+  /large_image/cache/clear:
+    put:
+      operationId: large_image_cacheClear_put_cache_clear
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Clear tile source caches to release resources and file handles.
+      tags:
+      - large_image
+      parameters: []
+  /large_image/config/format:
+    post:
+      operationId: large_image_configFormat_post_config_format
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Reformat a Girder config file
+      tags:
+      - large_image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: The contents of config file to format.
+  /large_image/config/replace:
+    post:
+      operationId: large_image_configReplace_post_config_replace
+      parameters:
+      - name: restart
+        in: query
+        required: false
+        description: Whether to restart the server after updating the config file
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Replace the existing Girder config file
+      tags:
+      - large_image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: The new contents of config file.
+  /large_image/config/validate:
+    post:
+      description: Returns a list of errors found.
+      operationId: large_image_configValidate_post_config_validate
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Validate a Girder config file
+      tags:
+      - large_image
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: The contents of config file to validate.
+  /large_image/folder/{id}/tiles:
+    put:
+      description: Does not work for new items with multiple files.
+      operationId: large_image_createLargeImages_put_folder_id_tiles
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder.
+        schema:
+          type: string
+      - name: createJobs
+        in: query
+        required: false
+        description: If true, a job will be used to create the image when needed; if always, a job will always be used; if false, a job will never be used, creating a version of the image in a preferred format.
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - always
+          default: 'false'
+      - name: localJobs
+        in: query
+        required: false
+        description: If true, run each creation job locally; if false, run via the remote worker.
+        schema:
+          type: boolean
+          default: 'false'
+      - name: recurse
+        in: query
+        required: false
+        description: If true, items in child folders will also be checked.
+        schema:
+          type: boolean
+          default: false
+      - name: cancelJobs
+        in: query
+        required: false
+        description: If true, unfinished large image job(s) associated with items in the folder will be canceled, then a new large image created; if false, items with an unfinished large image will be skipped.
+        schema:
+          type: boolean
+          default: false
+      - name: redoExisting
+        in: query
+        required: false
+        description: If true, existing large images should be removed and recreated. Otherwise they will be skipped.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the folder.
+      summary: Create large images for all items within a folder.
+      tags:
+      - large_image
+  /large_image/histograms:
+    delete:
+      operationId: large_image_deleteHistograms_delete_histograms
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete cached histograms from large_image items.
+      tags:
+      - large_image
+      parameters: []
+    get:
+      operationId: large_image_countHistograms_histograms
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Count the number of cached histograms for large_image items.
+      tags:
+      - large_image
+      parameters: []
+  /large_image/settings:
+    get:
+      operationId: large_image_getPublicSettings_settings
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get public settings for large image display.
+      tags:
+      - large_image
+      parameters: []
+  /large_image/sources:
+    get:
+      operationId: large_image_listSources_sources
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List all Girder tile sources with associated extensions, mime types, and versions.  Lower values indicate a higher priority for an extension or mime type with that source.
+      tags:
+      - large_image
+      parameters: []
+  /large_image/thumbnails:
+    delete:
+      operationId: large_image_deleteThumbnails_delete_thumbnails
+      parameters:
+      - name: spec
+        in: query
+        required: false
+        description: A JSON list of thumbnail specifications to delete.  If empty, all cached thumbnails are deleted.  The specifications typically include width, height, encoding, and encoding options.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Delete cached thumbnail files from large_image items.
+      tags:
+      - large_image
+    get:
+      operationId: large_image_countThumbnails_thumbnails
+      parameters:
+      - name: spec
+        in: query
+        required: false
+        description: A JSON list of thumbnail specifications to count.  If empty, all cached thumbnails are counted.  The specifications typically include width, height, encoding, and encoding options.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Count the number of cached thumbnail files for large_image items.
+      tags:
+      - large_image
+    put:
+      description: 'This creates a local job that processes all large_image items.  A common spec for the Girder API is: [{"width": 160, "height": 100}, {"width": 160, "height": 100, "imageKey": "macro"}, {"width": 160, "height": 100, "imageKey": "label"}]'
+      operationId: large_image_createThumbnails_put_thumbnails
+      parameters:
+      - name: spec
+        in: query
+        required: true
+        description: A JSON list of thumbnail specifications to create.  The specifications typically include width, height, encoding, and encoding options.
+        schema:
+          type: string
+      - name: logInterval
+        in: query
+        required: false
+        description: The number of seconds between log messages.  This also determines how often the creation job is checked if it has been canceled or deleted.  A value of 0 will log after each thumbnail is checked or created.
+        schema:
+          type: number
+          format: float
+      - name: concurrent
+        in: query
+        required: false
+        description: The number of concurrent threads to use when making thumbnails.  0 or unspecified to base this on the number of reported cpus.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Create cached thumbnail files from large_image items.
+      tags:
+      - large_image
+  /large_image/tiles/incomplete:
+    delete:
+      description: This is used to clean up all large image conversion jobs that have failed to complete.  If a job is in progress, it will be cancelled.  The return value is the number of items that were adjusted.
+      operationId: large_image_deleteIncompleteTiles_delete_tiles_incomplete
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Remove large images from items where the large image job incomplete.
+      tags:
+      - large_image
+      parameters: []
+components:
+  schemas:
+    string:
+      type: string
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

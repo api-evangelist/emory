@@ -1,0 +1,55 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation files API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: files resource
+  name: files
+paths:
+  /files:
+    get:
+      operationId: files_filesResponseRoot_files
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List subitems or download a resource based on its path
+      tags:
+      - files
+      parameters: []
+  /files/{path}:
+    get:
+      operationId: files_filesResponse_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: List subitems or download a resource based on its path
+      tags:
+      - files
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

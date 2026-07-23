@@ -1,0 +1,598 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation group API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: group resource
+  name: group
+paths:
+  /group:
+    get:
+      operationId: group_find_group
+      parameters:
+      - name: text
+        in: query
+        required: false
+        description: Pass this to perform a full-text search for groups.
+        schema:
+          type: string
+      - name: exact
+        in: query
+        required: false
+        description: If true, only return exact name matches. This is case sensitive.
+        schema:
+          type: boolean
+          default: false
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Search for groups or list all groups.
+      tags:
+      - group
+    post:
+      description: Must be logged in.
+      operationId: group_createGroup_post_group
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: Unique name for the group.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description of the group.
+        schema:
+          type: string
+          default: ''
+      - name: public
+        in: query
+        required: false
+        description: Whether the group should be publicly visible.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied on the parent
+      summary: Create a new group.
+      tags:
+      - group
+  /group/{id}:
+    delete:
+      operationId: group_deleteGroup_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the group.
+      summary: Delete a group by ID.
+      tags:
+      - group
+    get:
+      operationId: group_getGroup_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the group.
+      summary: Get a group by ID.
+      tags:
+      - group
+    put:
+      operationId: group_updateGroup_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: The name to set on the group.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the group.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the group should be publicly visible
+        schema:
+          type: boolean
+      - name: addAllowed
+        in: query
+        required: false
+        description: Can admins or moderators directly add members to this group?  Only system administrators are allowed to set this field
+        schema:
+          type: string
+          enum:
+          - default
+          - 'no'
+          - yesmod
+          - yesadmin
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied for the group.
+      summary: Update a group by ID.
+      tags:
+      - group
+  /group/{id}/access:
+    get:
+      operationId: group_getGroupAccess_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the group.
+      summary: Get the access control list for a group.
+      tags:
+      - group
+  /group/{id}/admin:
+    delete:
+      operationId: group_demote_delete_id_admin
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You don't have permission to demote users.
+      summary: Demote a user to a normal group member.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to demote.
+              required:
+              - userId
+    post:
+      operationId: group_promoteToAdmin_post_id_admin
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: You don't have permission to promote users.
+      summary: Promote a member to be an administrator of the group.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to promote.
+              required:
+              - userId
+  /group/{id}/invitation:
+    get:
+      operationId: group_getGroupInvitations_id_invitation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lastName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied for the group.
+      summary: Show outstanding invitations for a group.
+      tags:
+      - group
+    post:
+      description: The "force" option to this endpoint is only available to administrators and can be used to bypass the invitation process and instead add the user directly to the group.
+      operationId: group_inviteToGroup_post_id_invitation
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: level
+        in: query
+        required: false
+        description: The access level the user will be given when they accept the invitation.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: quiet
+        in: query
+        required: false
+        description: If you do not want this action to send an email to the target user, set this to true.
+        schema:
+          type: boolean
+          default: false
+      - name: force
+        in: query
+        required: false
+        description: Add user directly rather than sending an invitation (admin-only option).
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied for the group.
+      summary: Invite a user to join a group, or accept a user's request to join.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to invite or accept.
+              required:
+              - userId
+  /group/{id}/member:
+    delete:
+      description: If the specified user is not yet a member of the group, this will delete any outstanding invitation or membership request for the user. Passing no userId parameter will assume that the current user is removing themself.
+      operationId: group_removeFromGroup_delete_id_member
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You don't have permission to remove that user.
+      summary: Remove a user from a group, or uninvite them.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to remove. If not passed, will remove yourself from the group.
+    get:
+      operationId: group_listMembers_id_member
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lastName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the group.
+      summary: List members of a group.
+      tags:
+      - group
+    post:
+      operationId: group_joinGroup_post_id_member
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: You were not invited to this group, or do not have read access to it.
+      summary: Request to join a group, or accept an invitation to join.
+      tags:
+      - group
+  /group/{id}/moderator:
+    delete:
+      operationId: group_demote_delete_id_moderator
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You don't have permission to demote users.
+      summary: Demote a user to a normal group member.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to demote.
+              required:
+              - userId
+    post:
+      operationId: group_promoteToModerator_post_id_moderator
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: You don't have permission to promote users.
+      summary: Promote a member to be a moderator of the group.
+      tags:
+      - group
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: The ID of the user to promote.
+              required:
+              - userId
+components:
+  schemas:
+    Group:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

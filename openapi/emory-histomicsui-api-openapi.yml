@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation histomicsui API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: histomicsui resource
+  name: histomicsui
+paths:
+  /histomicsui/child_metadata/{id}:
+    get:
+      operationId: histomicsui_getChildMetadata_child_metadata_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the resource.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: The type of the resource
+        schema:
+          type: string
+          enum:
+          - folder
+          - collection
+          - user
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Access was denied for the resource.
+      summary: Get all metadata for a resource and all folders and items that are children of a resource.
+      tags:
+      - histomicsui
+  /histomicsui/quarantine/{id}:
+    put:
+      operationId: histomicsui_putQuarantine_put_quarantine_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item
+      summary: Move an item to the quarantine folder.
+      tags:
+      - histomicsui
+  /histomicsui/quarantine/{id}/restore:
+    put:
+      operationId: histomicsui_restoreQuarantine_put_quarantine_id_restore
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the item
+      summary: Restore a quarantined item to its original folder.
+      tags:
+      - histomicsui
+  /histomicsui/query_metadata:
+    get:
+      operationId: histomicsui_findItemsByMetadata_query_metadata
+      parameters:
+      - name: key
+        in: query
+        required: true
+        description: The metadata key
+        schema:
+          type: string
+      - name: value
+        in: query
+        required: true
+        description: The (json encoded) metadata value
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: name
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Required parameters were not provided.
+
+
+            Invalid value provided.'
+      summary: Get a list of items with a specific metadata value.
+      tags:
+      - histomicsui
+  /histomicsui/settings:
+    get:
+      operationId: histomicsui_getPublicSettings_settings
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get public settings for HistomicsUI.
+      tags:
+      - histomicsui
+      parameters: []
+components:
+  schemas:
+    Item:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

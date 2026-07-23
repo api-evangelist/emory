@@ -1,0 +1,655 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation resource API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: resource resource
+  name: resource
+paths:
+  /resource:
+    delete:
+      operationId: resource_delete_delete_resource
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to delete. Each type is a list of ids.  For example: {"item": [(item id 1), (item id2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            No resources specified.
+
+
+            Resource not found.'
+        '403':
+          description: Admin access was denied for a resource.
+      summary: Delete a set of items, folders, or other resources.
+      tags:
+      - resource
+  /resource/copy:
+    post:
+      operationId: resource_copyResources_post_copy
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to copy. Each type is a list of ids.  Only folders and items may be specified.  For example: {"item": [(item id 1), (item id2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: parentType
+        in: query
+        required: true
+        description: Parent type for the new parent of these resources.
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        required: true
+        description: Parent ID for the new parent of these resources.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      - name: copyAnnotations
+        in: query
+        required: false
+        description: Copy annotations when copying resources (default true)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            Resource type not supported.
+
+
+            No resources specified.
+
+
+            Resource not found.
+
+
+            ID was invalid.'
+      summary: Copy a set of items and folders.
+      tags:
+      - resource
+  /resource/download:
+    get:
+      description: This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.
+      operationId: resource_download_download
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to download. Each type is a list of ids. For example: {"item": [(item id 1), (item id 2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: includeMetadata
+        in: query
+        required: false
+        description: Include any metadata in JSON files in the archive.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            No resources specified.
+
+
+            Resource not found.'
+        '403':
+          description: Read access was denied for a resource.
+      summary: Download a set of items, folders, collections, and users as a zip archive.
+      tags:
+      - resource
+    post:
+      description: This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.
+      operationId: resource_download_post_download
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to download. Each type is a list of ids. For example: {"item": [(item id 1), (item id 2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: includeMetadata
+        in: query
+        required: false
+        description: Include any metadata in JSON files in the archive.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            No resources specified.
+
+
+            Resource not found.'
+        '403':
+          description: Read access was denied for a resource.
+      summary: Download a set of items, folders, collections, and users as a zip archive.
+      tags:
+      - resource
+  /resource/lookup:
+    get:
+      operationId: resource_lookup_lookup
+      parameters:
+      - name: path
+        in: query
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Look up a resource in the data hierarchy by path.
+      tags:
+      - resource
+  /resource/metadata:
+    put:
+      operationId: resource_putResourceMetadata_put_metadata
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to modify.  Each type is a list of ids. For example: {"item": [(item id 1), (item id 2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: allowNull
+        in: query
+        required: false
+        description: Whether "null" is allowed as a metadata value.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            No resources specified.
+
+
+            Resource not found.'
+        '403':
+          description: Write access was denied for a resource.
+      summary: Set metadata on multiple resources at once.
+      tags:
+      - resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata keys to add
+  /resource/move:
+    put:
+      operationId: resource_moveResources_put_move
+      parameters:
+      - name: resources
+        in: query
+        required: true
+        description: 'A JSON-encoded set of resources to move. Each type is a list of ids.  Only folders and items may be specified.  For example: {"item": [(item id 1), (item id2)], "folder": [(folder id 1)]}.'
+        schema:
+          type: string
+      - name: parentType
+        in: query
+        required: true
+        description: Parent type for the new parent of these resources.
+        schema:
+          type: string
+          enum:
+          - user
+          - collection
+          - folder
+      - name: parentId
+        in: query
+        required: true
+        description: Parent ID for the new parent of these resources.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Unsupported or unknown resource type.
+
+
+            Invalid resources format.
+
+
+            Resource type not supported.
+
+
+            No resources specified.
+
+
+            Resource not found.
+
+
+            ID was invalid.'
+      summary: Move a set of items and folders.
+      tags:
+      - resource
+  /resource/path/download/{path}:
+    get:
+      operationId: resource_pathDownload_path_download_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Download a resource based on its path
+      tags:
+      - resource
+  /resource/path/redirect/{path}:
+    delete:
+      description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
+      operationId: resource_pathRedirect_delete_path_redirect_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Redirect to a model endpoint based on a resource path
+      tags:
+      - resource
+    get:
+      description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
+      operationId: resource_pathRedirect_path_redirect_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Redirect to a model endpoint based on a resource path
+      tags:
+      - resource
+    post:
+      description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
+      operationId: resource_pathRedirect_post_path_redirect_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Redirect to a model endpoint based on a resource path
+      tags:
+      - resource
+    put:
+      description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
+      operationId: resource_pathRedirect_put_path_redirect_path
+      parameters:
+      - name: path
+        in: path
+        required: true
+        description: The path of the resource.  The path must be an absolute Unix path starting with either "/user/[user name]", for a user's resources or "/collection/[collection name]", for resources under a collection.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'Path is invalid.
+
+
+            Path refers to a resource that does not exist.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Redirect to a model endpoint based on a resource path
+      tags:
+      - resource
+  /resource/paths:
+    post:
+      operationId: resource_getMultipleResourcePaths_post_paths
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get resource paths for multiple resources at once.
+      tags:
+      - resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: 'A JSON-encoded set of resources to get resource paths.Each type is a list of ids. For example: {"item": [(item id 1), (item id 2)], "folder": [(folder id 1)]}.'
+  /resource/search:
+    get:
+      operationId: resource_search_search
+      parameters:
+      - name: q
+        in: query
+        required: true
+        description: The search query.
+        schema:
+          type: string
+      - name: mode
+        in: query
+        required: false
+        description: The search mode. Can always use either a text search or a prefix-based search.
+        schema:
+          type: string
+          default: text
+      - name: types
+        in: query
+        required: true
+        description: A JSON list of resource types to search for, e.g. ["user", "folder", "item"].
+        schema:
+          type: string
+      - name: level
+        in: query
+        required: false
+        description: Minimum required access level.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid type list format.
+      summary: Search for resources in the system.
+      tags:
+      - resource
+  /resource/{id}:
+    get:
+      operationId: resource_getResource_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the resource.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: The type of the resource (item, file, etc.).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the resource.
+      summary: Get any resource by ID.
+      tags:
+      - resource
+  /resource/{id}/items:
+    get:
+      operationId: resource_getResourceItems_id_items
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the resource.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: The type of the resource (folder, collection, or user).
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _id
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Access was denied for the resource.
+      summary: Get all of the items that are children of a resource.
+      tags:
+      - resource
+  /resource/{id}/path:
+    get:
+      operationId: resource_path_id_path
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the resource.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: The type of the resource (item, file, etc.).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid resource type.'
+        '403':
+          description: Read access was denied for the resource.
+      summary: Get path of a resource.
+      tags:
+      - resource
+  /resource/{id}/timestamp:
+    put:
+      operationId: resource_setTimestamp_put_id_timestamp
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the resource.
+        schema:
+          type: string
+      - name: type
+        in: query
+        required: true
+        description: The type of the resource (item, file, etc.).
+        schema:
+          type: string
+      - name: created
+        in: query
+        required: false
+        description: The new created timestamp.
+        schema:
+          type: string
+      - name: updated
+        in: query
+        required: false
+        description: The new updated timestamp.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Access was denied for the resource.
+      summary: Set the created or updated timestamp for a resource.
+      tags:
+      - resource
+components:
+  schemas:
+    string:
+      type: string
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

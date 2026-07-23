@@ -1,0 +1,84 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation token API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: token resource
+  name: token
+paths:
+  /token/current:
+    get:
+      operationId: token_currentSession_current
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: A parameter was invalid.
+      summary: Retrieve the current session information.
+      tags:
+      - token
+      parameters: []
+  /token/scopes:
+    get:
+      operationId: token_listScopes_scopes
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List all token scopes available in the system.
+      tags:
+      - token
+      parameters: []
+  /token/session:
+    delete:
+      description: Attempts to delete your authentication cookie.
+      operationId: token_deleteSession_delete_session
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: A parameter was invalid.
+      summary: Remove a session from the system.
+      tags:
+      - token
+      parameters: []
+    get:
+      description: If you are logged in, this will return a token associated with that login.
+      operationId: token_getSession_session
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '400':
+          description: A parameter was invalid.
+      summary: Get an anonymous session token for the system.
+      tags:
+      - token
+      parameters: []
+components:
+  schemas:
+    Token:
+      type: object
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

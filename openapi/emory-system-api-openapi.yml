@@ -1,0 +1,493 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation system API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: system resource
+  name: system
+paths:
+  /system/access_flag:
+    get:
+      operationId: system_getAccessFlags_access_flag
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: List all access flags available in the system.
+      tags:
+      - system
+      parameters: []
+  /system/check:
+    get:
+      description: Must be a system administrator to call this with any mode other than basic.
+      operationId: system_systemStatus_check
+      parameters:
+      - name: mode
+        in: query
+        required: false
+        description: Select details to return. "quick" are the details that can be answered without much load on the system. "slow" also includes some resource-intensive queries.
+        schema:
+          type: string
+          enum:
+          - basic
+          - quick
+          - slow
+          default: basic
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Report the current system status.
+      tags:
+      - system
+    put:
+      description: Must be a system administrator to call this.  This verifies and corrects some issues, such as incorrect folder sizes.
+      operationId: system_systemConsistencyCheck_put_check
+      parameters:
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Perform a variety of system checks to verify that all is well.
+      tags:
+      - system
+  /system/configuration:
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getConfigurationOption_configuration
+      parameters:
+      - name: section
+        in: query
+        required: true
+        description: The section identifying the configuration option.
+        schema:
+          type: string
+      - name: key
+        in: query
+        required: true
+        description: The key identifying the configuration option.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+        '404':
+          description: No such option with the given section/key exists.
+      summary: Get the value of a system configuration option.
+      tags:
+      - system
+  /system/ldap_server/status:
+    get:
+      description: You must be an administrator to call this.
+      operationId: system__ldapServerTest_ldap_server_status
+      parameters:
+      - name: uri
+        in: query
+        required: true
+        description: The URI of the server.
+        schema:
+          type: string
+      - name: bindName
+        in: query
+        required: true
+        description: The LDAP identity to bind with.
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        description: Password to bind with.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not an administrator.
+      summary: Test connection status to a LDAP server.
+      tags:
+      - system
+  /system/log:
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getLog_log
+      parameters:
+      - name: bytes
+        in: query
+        required: false
+        description: Controls how many bytes (from the end of the log) to show. Pass 0 to show the whole log.
+        schema:
+          type: integer
+          format: int32
+          default: 4096
+      - name: log
+        in: query
+        required: false
+        description: Which log to tail.
+        schema:
+          type: string
+          enum:
+          - error
+          - info
+          default: error
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Show the most recent contents of the server logs.
+      tags:
+      - system
+  /system/log/level:
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getLogLevel_log_level
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Get the current log level.
+      tags:
+      - system
+      parameters: []
+    put:
+      description: Must be a system administrator to call this.
+      operationId: system_setLogLevel_put_log_level
+      parameters:
+      - name: level
+        in: query
+        required: true
+        description: The new level to set.
+        schema:
+          type: string
+          enum:
+          - CRITICAL
+          - ERROR
+          - WARNING
+          - INFO
+          - DEBUG
+          default: INFO
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Set the current log level.
+      tags:
+      - system
+  /system/plugins:
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getPlugins_plugins
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Get the lists of all available and all loaded plugins.
+      tags:
+      - system
+      parameters: []
+  /system/restart:
+    put:
+      description: Must be a system administrator to call this.
+      operationId: system_restartServer_put_restart
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Restart the Girder REST server.
+      tags:
+      - system
+      parameters: []
+  /system/setting:
+    delete:
+      description: Must be a system administrator to call this. This is used to explicitly restore a setting to its default value.
+      operationId: system_unsetSetting_delete_setting
+      parameters:
+      - name: key
+        in: query
+        required: true
+        description: The key identifying the setting to unset.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Unset the value for a system setting.
+      tags:
+      - system
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getSetting_setting
+      parameters:
+      - name: key
+        in: query
+        required: false
+        description: The key identifying this setting.
+        schema:
+          type: string
+      - name: list
+        in: query
+        required: false
+        description: A JSON list of keys representing a set of settings to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Get the value of a system setting, or a list of them.
+      tags:
+      - system
+    put:
+      description: Must be a system administrator to call this. If the value passed is a valid JSON object, it will be parsed and stored as an object.
+      operationId: system_setSetting_put_setting
+      parameters: []
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+        '500':
+          description: Failed to set system setting.
+      summary: Set the value for a system setting, or a list of them.
+      tags:
+      - system
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: The key identifying this setting.
+                value:
+                  type: string
+                  description: The value for this setting.
+                list:
+                  type: string
+                  description: A JSON list of objects with key and value representing a list of settings to set.
+  /system/setting/collection_creation_policy/access:
+    get:
+      description: Get result in the same structure as the access endpoints of collection, file, and group
+      operationId: system_getCollectionCreationPolicyAccess_setting_collection_creation_policy_access
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get access of content creation policy.
+      tags:
+      - system
+      parameters: []
+  /system/setting/default:
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getSettingDefault_setting_default
+      parameters:
+      - name: key
+        in: query
+        required: false
+        description: The key identifying this setting.
+        schema:
+          type: string
+      - name: list
+        in: query
+        required: false
+        description: A JSON list of keys representing a set of settings to return.
+        schema:
+          type: string
+      - name: default
+        in: query
+        required: false
+        description: If "none", return a null value if a setting is currently the default value. If "default", return the default value of the setting(s).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Get the value of a system setting, or a list of them.
+      tags:
+      - system
+  /system/uploads:
+    delete:
+      description: Must be a system administrator to call this. This frees resources that were allocated for the uploads and clears the uploads from database.
+      operationId: system_discardPartialUploads_delete_uploads
+      parameters:
+      - name: uploadId
+        in: query
+        required: false
+        description: Clear only a specific upload.
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        description: Restrict clearing uploads to those started by a specific user.
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        required: false
+        description: Restrict clearing uploads to those within a specific folder or item.
+        schema:
+          type: string
+      - name: assetstoreId
+        in: query
+        required: false
+        description: Restrict clearing uploads within a specific assetstore.
+        schema:
+          type: string
+      - name: minimumAge
+        in: query
+        required: false
+        description: Restrict clearing uploads to those that are at least this many days old.
+        schema:
+          type: number
+          format: float
+      - name: includeUntracked
+        in: query
+        required: false
+        description: Some assetstores can have partial uploads that are no longer in the Girder database.  If this is True, remove all of them (only filtered by assetstoreId).
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+        '500':
+          description: Failed to delete upload
+      summary: Discard uploads that have not been finished.
+      tags:
+      - system
+    get:
+      description: Must be a system administrator to call this.
+      operationId: system_getPartialUploads_uploads
+      parameters:
+      - name: uploadId
+        in: query
+        required: false
+        description: List only a specific upload.
+        schema:
+          type: string
+      - name: userId
+        in: query
+        required: false
+        description: Restrict listing uploads to those started by a specific user.
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        required: false
+        description: Restrict listing uploads to those within a specific folder or item.
+        schema:
+          type: string
+      - name: assetstoreId
+        in: query
+        required: false
+        description: Restrict listing uploads within a specific assetstore.
+        schema:
+          type: string
+      - name: minimumAge
+        in: query
+        required: false
+        description: Restrict listing uploads to those that are at least this many days old.
+        schema:
+          type: number
+          format: float
+      - name: includeUntracked
+        in: query
+        required: false
+        description: Some assetstores can have partial uploads that are no longer in the Girder database.  If this is True, include all of them (only filtered by assetstoreId) in the result list.
+        schema:
+          type: boolean
+          default: true
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: updated
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '403':
+          description: You are not a system administrator.
+      summary: Get a list of uploads that have not been finished.
+      tags:
+      - system
+  /system/version:
+    get:
+      operationId: system_getVersion_version
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get the version information for this server.
+      tags:
+      - system
+      parameters: []
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

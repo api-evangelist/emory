@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation dicomweb_assetstore API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: dicomweb_assetstore resource
+  name: dicomweb_assetstore
+paths:
+  /dicomweb_assetstore/{id}/import:
+    post:
+      operationId: dicomweb_assetstore_importData_post_id_import
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the assetstore representing the DICOMweb server.
+        schema:
+          type: string
+      - name: destinationId
+        in: query
+        required: true
+        description: The ID of the parent folder, collection, or user in the Girder data hierarchy under which to import the files.
+        schema:
+          type: string
+      - name: destinationType
+        in: query
+        required: false
+        description: The type of the parent object to import into.
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+          default: folder
+      - name: limit
+        in: query
+        required: false
+        description: The maximum number of studies to import.
+        schema:
+          type: string
+      - name: filters
+        in: query
+        required: false
+        description: Any search parameters to filter the studies query.
+        schema:
+          type: string
+          default: '{}'
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this operation.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: You are not an administrator.
+      summary: Import references to DICOM objects from a DICOMweb server
+      tags:
+      - dicomweb_assetstore
+components:
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey

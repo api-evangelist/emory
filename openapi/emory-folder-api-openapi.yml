@@ -1,0 +1,888 @@
+openapi: 3.0.3
+info:
+  title: Girder REST API (Emory Digital Slide Archive) annotation folder API
+  version: 3.2.14
+  description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.txt
+servers:
+- url: https://computablebrain.emory.edu/api/v1
+tags:
+- description: folder resource
+  name: folder
+paths:
+  /folder:
+    get:
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      operationId: folder_find_folder
+      parameters:
+      - name: parentType
+        in: query
+        required: false
+        description: Type of the folder's parent
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+      - name: parentId
+        in: query
+        required: false
+        description: The ID of the folder's parent.
+        schema:
+          type: string
+      - name: text
+        in: query
+        required: false
+        description: Pass to perform a text search.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Pass to lookup a folder by exact name match. Must pass parentType and parentId as well when using this.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lowerName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Folder'
+                type: array
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the parent resource.
+      summary: Search for folders by certain properties.
+      tags:
+      - folder
+    post:
+      operationId: folder_createFolder_post_folder
+      parameters:
+      - name: parentType
+        in: query
+        required: false
+        description: Type of the folder's parent
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+          default: folder
+      - name: parentId
+        in: query
+        required: true
+        description: The ID of the folder's parent.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: true
+        description: Name of the folder.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the folder.
+        schema:
+          type: string
+          default: ''
+      - name: reuseExisting
+        in: query
+        required: false
+        description: Return existing folder if it exists rather than creating a new one.
+        schema:
+          type: boolean
+          default: false
+      - name: public
+        in: query
+        required: false
+        description: Whether the folder should be publicly visible. By default, inherits the value from parent folder, or in the case of user or collection parentType, defaults to False.
+        schema:
+          type: boolean
+      - name: isVirtual
+        in: query
+        required: false
+        description: Whether this is a virtual folder.
+        schema:
+          type: boolean
+      - name: virtualItemsQuery
+        in: query
+        required: false
+        description: Query to use to do virtual item lookup, as JSON.
+        schema:
+          type: string
+      - name: virtualItemsSort
+        in: query
+        required: false
+        description: Sort to use during virtual item lookup, as JSON.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Write access was denied on the parent
+      summary: Create a new folder.
+      tags:
+      - folder
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: A JSON object containing the metadata keys to add
+  /folder/query:
+    get:
+      operationId: folder_getFoldersByQuery_query
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Find folders that match this Mongo query.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Result set size limit.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: offset
+        in: query
+        required: false
+        description: Offset into result set.
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: _id
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Folder'
+                type: array
+        '400':
+          description: A parameter was invalid.
+      summary: List folders that match a query.
+      tags:
+      - folder
+  /folder/{id}:
+    delete:
+      operationId: folder_deleteFolder_delete_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the folder.
+      summary: Delete a folder by ID.
+      tags:
+      - folder
+    get:
+      operationId: folder_getFolder_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the folder.
+      summary: Get a folder by ID.
+      tags:
+      - folder
+    put:
+      operationId: folder_updateFolder_put_id
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Name of the folder.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the folder.
+        schema:
+          type: string
+      - name: parentType
+        in: query
+        required: false
+        description: Type of the folder's parent
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+      - name: parentId
+        in: query
+        required: false
+        description: Parent ID for the new parent of this folder.
+        schema:
+          type: string
+      - name: isVirtual
+        in: query
+        required: false
+        description: Whether this is a virtual folder.
+        schema:
+          type: boolean
+      - name: virtualItemsQuery
+        in: query
+        required: false
+        description: Query to use to do virtual item lookup, as JSON.
+        schema:
+          type: string
+      - name: virtualItemsSort
+        in: query
+        required: false
+        description: Sort to use during virtual item lookup, as JSON.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied for the folder or its new parent object.
+      summary: Update a folder or move it into a new parent.
+      tags:
+      - folder
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                metadata:
+                  type: string
+                  description: A JSON object containing the metadata keys to add
+  /folder/{id}/access:
+    get:
+      operationId: folder_getFolderAccess_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the folder.
+      summary: Get the access control list for a folder.
+      tags:
+      - folder
+    put:
+      operationId: folder_updateFolderAccess_put_id_access
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: access
+        in: query
+        required: true
+        description: The JSON-encoded access control list.
+        schema:
+          type: string
+      - name: publicFlags
+        in: query
+        required: false
+        description: JSON list of public access flags.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the folder should be publicly visible.
+        schema:
+          type: boolean
+      - name: recurse
+        in: query
+        required: false
+        description: Whether the policies should be applied to all subfolders under this folder as well.
+        schema:
+          type: boolean
+          default: false
+      - name: progress
+        in: query
+        required: false
+        description: If recurse is set to True, this controls whether progress notifications will be sent.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Admin access was denied for the folder.
+      summary: Update the access control list for a folder.
+      tags:
+      - folder
+  /folder/{id}/contents:
+    delete:
+      description: Cleans out all the items and subfolders from under a folder, but does not remove the folder itself.
+      operationId: folder_deleteContents_delete_id_contents
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the folder to clean.
+        schema:
+          type: string
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Write access was denied on the folder.
+      summary: Remove all contents from a folder.
+      tags:
+      - folder
+  /folder/{id}/copy:
+    post:
+      operationId: folder_copyFolder_post_id_copy
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the original folder.
+        schema:
+          type: string
+      - name: parentType
+        in: query
+        required: false
+        description: Type of the new folder's parent
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+      - name: parentId
+        in: query
+        required: false
+        description: The ID of the parent document.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Name for the new folder.
+        schema:
+          type: string
+      - name: description
+        in: query
+        required: false
+        description: Description for the new folder.
+        schema:
+          type: string
+      - name: public
+        in: query
+        required: false
+        description: Whether the folder should be publicly visible. By default, inherits the value from parent folder, or in the case of user or collection parentType, defaults to False. If 'original', use the value of the original folder.
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          - original
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on this task.
+        schema:
+          type: boolean
+          default: false
+      - name: copyAnnotations
+        in: query
+        required: false
+        description: Copy annotations when copying folder (default true)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: 'A parameter was invalid.
+
+
+            ID was invalid.'
+        '403':
+          description: 'Read access was denied on the original folder.
+
+
+            Write access was denied on the parent.'
+      summary: Copy a folder.
+      tags:
+      - folder
+  /folder/{id}/details:
+    get:
+      operationId: folder_getFolderDetails_id_details
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the folder.
+      summary: Get detailed information about a folder.
+      tags:
+      - folder
+  /folder/{id}/download:
+    get:
+      operationId: folder_downloadFolder_id_download
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: mimeFilter
+        in: query
+        required: false
+        description: JSON list of MIME types to include.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the folder.
+      summary: Download an entire folder as a zip archive.
+      tags:
+      - folder
+  /folder/{id}/metadata:
+    delete:
+      operationId: folder_deleteMetadata_delete_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the folder.
+      summary: Delete metadata fields on a folder.
+      tags:
+      - folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON list containing the metadata fields to delete
+    put:
+      description: Set metadata fields to null in order to delete them.
+      operationId: folder_setMetadata_put_id_metadata
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: allowNull
+        in: query
+        required: false
+        description: Whether "null" is allowed as a metadata value.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Folder'
+        '400':
+          description: 'ID was invalid.
+
+
+            Invalid JSON passed in request body.
+
+
+            Metadata key name was invalid.'
+        '403':
+          description: Write access was denied for the folder.
+      summary: Set metadata fields on an folder.
+      tags:
+      - folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: A JSON object containing the metadata keys to add
+  /folder/{id}/move:
+    put:
+      operationId: folder_moveFolder_put_id_move
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: Source folder ID
+        schema:
+          type: string
+      - name: ignoreImported
+        in: query
+        required: true
+        description: Ignore files that have been directly imported
+        schema:
+          type: boolean
+          default: true
+      - name: progress
+        in: query
+        required: false
+        description: Whether to record progress on the move.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Move folder contents to an assetstore.
+      tags:
+      - folder
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                assetstoreId:
+                  type: string
+                  description: Destination assetstore ID
+              required:
+              - assetstoreId
+  /folder/{id}/position:
+    get:
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      operationId: folder_findPosition_id_position
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: parentType
+        in: query
+        required: false
+        description: Type of the folder's parent
+        schema:
+          type: string
+          enum:
+          - folder
+          - user
+          - collection
+      - name: parentId
+        in: query
+        required: false
+        description: The ID of the folder's parent.
+        schema:
+          type: string
+      - name: text
+        in: query
+        required: false
+        description: Pass to perform a text search.
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        description: Pass to lookup a folder by exact name match. Must pass parentType and parentId as well when using this.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        description: Field to sort the result set by.
+        schema:
+          type: string
+          default: lowerName
+      - name: sortdir
+        in: query
+        required: false
+        description: 'Sort order: 1 for ascending, -1 for descending.'
+        schema:
+          type: integer
+          format: int32
+          enum:
+          - 1
+          - -1
+          default: 1
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+        '403':
+          description: Read access was denied on the parent resource.
+      summary: Report the offset of a folder in a list or search.
+      tags:
+      - folder
+  /folder/{id}/rootpath:
+    get:
+      operationId: folder_rootpath_id_rootpath
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: ID was invalid.
+        '403':
+          description: Read access was denied for the folder.
+      summary: Get the path to the root of the folder's hierarchy.
+      tags:
+      - folder
+  /folder/{id}/yaml_config/{name}:
+    get:
+      description: 'This walks up the chain of parent folders until the file is found.  If not found, the .config folder in the parent collection or user is checked.
+
+
+        Any yaml file can be returned.  If the top-level is a dictionary and contains keys "access" or "groups" where those are dictionaries, the returned value will be modified based on the current user.  The "groups" dictionary contains keys that are group names and values that update the main dictionary.  All groups that the user is a member of are merged in alphabetical order.  If a key and value of "\__all\__": True exists, the replacement is total; otherwise it is a merge.  If the "access" dictionary exists, the "user" and "admin" subdictionaries are merged if a calling user is present and if the user is an admin, respectively (both get merged for admins).'
+      operationId: folder_getYAMLConfigFile_id_yaml_config_name
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        description: The name of the file.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a config file.
+      tags:
+      - folder
+    put:
+      description: This replaces or creates an item in the specified folder with the specified name containing a single file also of the specified name.  The file is added to the default assetstore, and any existing file may be permanently deleted.
+      operationId: folder_putYAMLConfigFile_put_id_yaml_config_name
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the document.
+        schema:
+          type: string
+      - name: name
+        in: path
+        required: true
+        description: The name of the file.
+        schema:
+          type: string
+      - name: user_context
+        in: query
+        required: true
+        description: Whether these settings should only apply to the current user.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: A parameter was invalid.
+      summary: Get a config file.
+      tags:
+      - folder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/string'
+        required: true
+        description: The contents of yaml config file to validate.
+components:
+  schemas:
+    Folder:
+      type: object
+    string:
+      type: string
+  securitySchemes:
+    Girder-Token:
+      in: header
+      name: Girder-Token
+      type: apiKey
