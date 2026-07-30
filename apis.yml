@@ -14,9 +14,22 @@ description: >-
   institutional systems (OPUS student information, Course Atlas) are gated,
   browser-based applications without documented public APIs.
 type: Index
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/emory.png
 url: https://raw.githubusercontent.com/api-evangelist/emory/refs/heads/main/apis.yml
 tags:
   - Education
@@ -30,77 +43,586 @@ created: '2026-06-03'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: emory:digital-slide-archive
-    name: Emory Digital Slide Archive REST API
-    description: >-
-      Public REST API for the Emory Digital Slide Archive (computablebrain),
-      a Girder/HistomicsTK-based platform for digital pathology and
-      whole-slide imaging. The API exposes documented resource endpoints for
-      systems, items, files, folders and annotations, with a live Swagger
-      interface at /api/v1.
-    humanURL: https://computablebrain.emory.edu/api/v1
-    baseURL: https://computablebrain.emory.edu/api/v1
-    tags: [ Research, Imaging, Pathology, REST ]
-    properties:
-      - type: Documentation
-        url: https://computablebrain.emory.edu/api/v1
-      - type: OpenAPI
-        url: openapi/emory-digital-slide-archive.yaml
-      - type: JSONSchema
-        url: json-schema/emory-item-schema.json
-      - type: JSONStructure
-        url: json-structure/emory-item-structure.json
-      - type: x-examples
-        url: examples/emory-get-item-example.json
-      - type: x-rules
-        url: rules/emory-rules.yml
-      - type: x-vocabulary
-        url: vocabulary/emory-vocabulary.yml
-      - type: x-json-ld
-        url: json-ld/emory-context.jsonld
-  - aid: emory:canvas-lms
-    name: Emory Canvas LMS REST API
-    description: >-
-      Emory's instance of the Instructure Canvas learning management system
-      exposes the standard Canvas LMS REST API. Access requires an Emory
-      Canvas account and developer keys / API access tokens; the reference
-      documentation is mirrored at the institution's Canvas host.
-    humanURL: https://canvas.emory.edu/doc/api/
-    tags: [ Education, LMS, REST ]
-    properties:
-      - type: Documentation
-        url: https://canvas.emory.edu/doc/api/
-      - type: Authentication
-        url: https://canvas.emory.edu/doc/api/developer_keys.html
-  - aid: emory:shibboleth
-    name: Emory Identity (Shibboleth / SAML)
-    description: >-
-      Emory operates a federated Shibboleth identity provider for SAML-based
-      single sign-on across institutional and partner services
-      (InCommon federation). The IdP metadata endpoint is publicly reachable;
-      authentication itself is gated to Emory credential holders.
-    humanURL: https://login.emory.edu/
-    baseURL: https://login.emory.edu/idp/shibboleth
-    tags: [ Identity, Authentication, SAML, Shibboleth, SSO ]
-    properties:
-      - type: Documentation
-        url: https://login.emory.edu/
-  - aid: emory:libraries-github
-    name: Emory Libraries Digital Repository Software
-    description: >-
-      Emory Libraries (Library Technology and Digital Strategies) maintains a
-      large public open-source GitHub organization with ~120 repositories,
-      including the dlp-curate preservation workbench, TheKeep archival
-      curation app, dlp-lux discovery layer, and a Samvera/Hyrax fork. These
-      Ruby on Rails / Hyrax applications underpin the OpenEmory and Digital
-      Library Program repositories and their associated repository APIs.
-    humanURL: https://github.com/emory-libraries
-    tags: [ Libraries, Open Source, Digital Repository, Hyrax, Samvera ]
-    properties:
-      - type: Documentation
-        url: https://emory-libraries.github.io/
-      - type: GitHub
-        url: https://github.com/emory-libraries
+- aid: emory:canvas-lms
+  name: Emory Canvas LMS REST API
+  description: >-
+    Emory's instance of the Instructure Canvas learning management system exposes the standard Canvas
+    LMS REST API. Access requires an Emory Canvas account and developer keys / API access tokens; the
+    reference documentation is mirrored at the institution's Canvas host.
+  humanURL: https://canvas.emory.edu/doc/api/
+  tags:
+  - Education
+  - LMS
+  - REST
+  properties:
+  - type: Documentation
+    url: https://canvas.emory.edu/doc/api/
+  - type: Authentication
+    url: https://canvas.emory.edu/doc/api/developer_keys.html
+- aid: emory:shibboleth
+  name: Emory Identity (Shibboleth / SAML)
+  description: >-
+    Emory operates a federated Shibboleth identity provider for SAML-based single sign-on across institutional
+    and partner services (InCommon federation). The IdP metadata endpoint is publicly reachable; authentication
+    itself is gated to Emory credential holders.
+  humanURL: https://login.emory.edu/
+  baseURL: https://login.emory.edu/idp/shibboleth
+  tags:
+  - Identity
+  - Authentication
+  - SAML
+  - Shibboleth
+  - SSO
+  properties:
+  - type: Documentation
+    url: https://login.emory.edu/
+- aid: emory:libraries-github
+  name: Emory Libraries Digital Repository Software
+  description: >-
+    Emory Libraries (Library Technology and Digital Strategies) maintains a large public open-source GitHub
+    organization with ~120 repositories, including the dlp-curate preservation workbench, TheKeep archival
+    curation app, dlp-lux discovery layer, and a Samvera/Hyrax fork. These Ruby on Rails / Hyrax applications
+    underpin the OpenEmory and Digital Library Program repositories and their associated repository APIs.
+  humanURL: https://github.com/emory-libraries
+  tags:
+  - Libraries
+  - Open Source
+  - Digital Repository
+  - Hyrax
+  - Samvera
+  properties:
+  - type: Documentation
+    url: https://emory-libraries.github.io/
+  - type: GitHub
+    url: https://github.com/emory-libraries
+- aid: emory:emory-annotation-api
+  name: Emory University annotation API
+  description: annotation resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - annotation
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-annotation-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-api-key-api
+  name: Emory University api_key API
+  description: api_key resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - api_key
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-api-key-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-assetstore-api
+  name: Emory University assetstore API
+  description: assetstore resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - assetstore
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-assetstore-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-collection-api
+  name: Emory University collection API
+  description: collection resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - collection
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-collection-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-dicomweb-assetstore-api
+  name: Emory University dicomweb_assetstore API
+  description: dicomweb_assetstore resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - dicomweb_assetstore
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-dicomweb-assetstore-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-file-api
+  name: Emory University file API
+  description: file resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - file
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-file-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-files-api
+  name: Emory University files API
+  description: files resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - files
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-files-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-folder-api
+  name: Emory University folder API
+  description: folder resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - folder
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-folder-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-group-api
+  name: Emory University group API
+  description: group resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - group
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-group-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-histomicsui-api
+  name: Emory University histomicsui API
+  description: histomicsui resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - histomicsui
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-histomicsui-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-homepage-api
+  name: Emory University homepage API
+  description: homepage resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - homepage
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-homepage-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-item-api
+  name: Emory University item API
+  description: item resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - item
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-item-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-job-api
+  name: Emory University job API
+  description: job resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - job
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-job-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-large-image-api
+  name: Emory University large_image API
+  description: large_image resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - large_image
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-large-image-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-notification-api
+  name: Emory University notification API
+  description: notification resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - notification
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-notification-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-resource-api
+  name: Emory University resource API
+  description: resource resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - resource
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-resource-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-slicer-cli-web-api
+  name: Emory University slicer_cli_web API
+  description: slicer_cli_web resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - slicer_cli_web
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-slicer-cli-web-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-system-api
+  name: Emory University system API
+  description: system resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - system
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-system-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-tcga-api
+  name: Emory University tcga API
+  description: tcga resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - tcga
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-tcga-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-token-api
+  name: Emory University token API
+  description: token resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - token
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-token-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-user-api
+  name: Emory University user API
+  description: user resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - user
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-user-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
+- aid: emory:emory-worker-api
+  name: Emory University worker API
+  description: worker resource
+  humanURL: https://computablebrain.emory.edu/api/v1
+  baseURL: https://computablebrain.emory.edu/api/v1
+  tags:
+  - worker
+  properties:
+  - type: OpenAPI
+    url: openapi/emory-worker-api-openapi.yml
+  - type: Documentation
+    url: https://computablebrain.emory.edu/api/v1
+  - type: JSONSchema
+    url: json-schema/emory-item-schema.json
+  - type: JSONStructure
+    url: json-structure/emory-item-structure.json
+  - type: x-examples
+    url: examples/emory-get-item-example.json
+  - type: x-rules
+    url: rules/emory-rules.yml
+  - type: x-vocabulary
+    url: vocabulary/emory-vocabulary.yml
+  - type: x-json-ld
+    url: json-ld/emory-context.jsonld
 common:
   - type: AgenticAccess
     url: agentic-access/emory-agentic-access.yml
