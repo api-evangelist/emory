@@ -624,6 +624,10 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 common:
+  - type: IssueTracker
+    url: https://github.com/emory-libraries/dlp-curate/issues
+  - type: Releases
+    url: https://github.com/emory-libraries/dlp-curate/releases
   - type: AgenticAccess
     url: agentic-access/emory-agentic-access.yml
   - type: DomainSecurity
