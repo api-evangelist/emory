@@ -1,0 +1,3546 @@
+{
+  "item": [
+    {
+      "id": "46d251a0-fbd1-4856-a599-5743f9593358",
+      "name": "file",
+      "description": {
+        "content": "file resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26c0165f-d448-413e-a82d-4f81ffeb3091",
+          "name": "Start a new upload or create an empty or link file.",
+          "request": {
+            "name": "Start a new upload or create an empty or link file.",
+            "description": {
+              "content": "Use POST /file/chunk to send the contents of the file.  The data for the first chunk of the file can be included with this query by sending it as the body of the request using an appropriate content-type and with the other parameters as part of the query string.  If the entire file is uploaded via this call, the resulting file is returned.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "parentType",
+                  "value": "<string>",
+                  "description": "(Required) Type being uploaded into."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "(Required) The ID of the parent."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name of the file being created."
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "Size in bytes of the file."
+                },
+                {
+                  "disabled": false,
+                  "key": "mimeType",
+                  "value": "<string>",
+                  "description": "The MIME type of the file."
+                },
+                {
+                  "disabled": false,
+                  "key": "linkUrl",
+                  "value": "<string>",
+                  "description": "If this is a link file, pass its URL instead of size and mimeType using this parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "If included, this information is passed to the data.process event when the upload is complete."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetstoreId",
+                  "value": "<string>",
+                  "description": "Direct the upload to a specific assetstore (admin-only)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uploadExtraParameters",
+                  "value": "<string>",
+                  "description": "Arbitrary data to send along with the upload request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "146d65b5-d9e6-4ab1-947f-4e6f782f5df1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linkUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d164c32d-9797-418e-9248-cc10390a1d2b",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linkUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19179c32-1eda-426c-ba43-29c8e1096bd4",
+              "name": "Write access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linkUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e50cab16-cfb5-4134-8ab2-604f395bb6d4",
+              "name": "Failed to create upload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linkUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b6681cf-c124-4998-9c2e-0ba562db4a44",
+          "name": "Upload a chunk of a file.",
+          "request": {
+            "name": "Upload a chunk of a file.",
+            "description": {
+              "content": "The data for the chunk should be sent as the body of the request using an appropriate content-type and with the other parameters as part of the query string.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                "chunk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset of the chunk in the file."
+                },
+                {
+                  "disabled": false,
+                  "key": "uploadExtraParameters",
+                  "value": "<string>",
+                  "description": "Arbitrary data to send along with the upload request."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0f9758d-8d1b-41ee-812e-5263c4cdb54a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "chunk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f964673a-a4b7-4389-9646-b7735fb7af85",
+              "name": "ID was invalid.\n\nReceived too many bytes.\n\nChunk is smaller than the minimum size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "chunk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "df36b4ca-38b1-4768-a233-6096d840c5d9",
+              "name": "You are not the user who initiated the upload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "chunk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5ab126b-04b0-4b45-a305-21e47b8124cc",
+              "name": "Failed to store upload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "chunk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "uploadExtraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10a443dd-10cd-4975-9065-a57b051c873c",
+          "name": "Finalize an upload explicitly if necessary.",
+          "request": {
+            "name": "Finalize an upload explicitly if necessary.",
+            "description": {
+              "content": "This is only required in certain non-standard upload behaviors. Clients should know which behavior models require the finalize step to be called in their behavior handlers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                "completion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ee846c46-b23b-4f18-a000-19c267df11af",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "completion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d29bac8-59f8-4b92-980d-026f2074c94f",
+              "name": "ID was invalid.\n\nThe upload does not require finalization.\n\nNot enough bytes have been uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "completion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b8884911-be6d-4036-b68c-0a923605524f",
+              "name": "You are not the user who initiated the upload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "completion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d08f3d0-fde1-4786-9bcf-797f7a23577b",
+          "name": "Return a list of files matching a hashsum.",
+          "request": {
+            "name": "Return a list of files matching a hashsum.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                "hashsum",
+                ":algo",
+                ":hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "algo",
+                  "description": "(Required) The type of the given hashsum (case insensitive)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1009b13b-0a16-4100-a282-ddc90471caaa",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "hashsum",
+                    ":algo",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The type of the given hashsum (case insensitive)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c743cd3-239e-4ba6-98c1-1d7edf78a5f8",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "hashsum",
+                    ":algo",
+                    ":hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The type of the given hashsum (case insensitive)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0b5f81c-6388-4a10-b670-c21e26712f9a",
+          "name": "Download a file by its hashsum.",
+          "request": {
+            "name": "Download a file by its hashsum.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                "hashsum",
+                ":algo",
+                ":hash",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "algo",
+                  "description": "(Required) The type of the given hashsum (case insensitive)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hash",
+                  "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8219d24d-71a5-42c9-a605-681e8ac79825",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "hashsum",
+                    ":algo",
+                    ":hash",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The type of the given hashsum (case insensitive)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cfbe83f7-d242-45eb-acde-f08d081949f7",
+              "name": "No file with the given hash exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "hashsum",
+                    ":algo",
+                    ":hash",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The type of the given hashsum (case insensitive)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hash",
+                      "description": "(Required) The hexadecimal hashsum of the file to download (case insensitive)."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96cac34a-4351-4b23-9d63-7bb3ccecd0e1",
+          "name": "Request required offset before resuming an upload.",
+          "request": {
+            "name": "Request required offset before resuming an upload.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                "offset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "49a51e94-9321-4a38-951e-3f07a23b414f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "offset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42651540-8eff-4327-9388-16835d8fe0ec",
+              "name": "The ID was invalid, or the offset did not match the server's record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "offset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the document.",
+                        "type": "text/plain"
+                      },
+                      "key": "uploadId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3242b8eb-3d39-4415-8eae-0f112f12572b",
+          "name": "List files that match a query.",
+          "request": {
+            "name": "List files that match a query.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Find files that match this Mongo query."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "_id",
+                  "description": "Field to sort the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdir",
+                  "value": "1",
+                  "description": "Sort order: 1 for ascending, -1 for descending."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22e94f4b-2dc0-4c54-9c52-43f04c7c7df4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "_id"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9e55051-fef1-43e9-848d-8ea9bedb0439",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "_id"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ffad732-a073-4e8c-9359-ead268ef83ed",
+          "name": "Cancel a partially completed upload.",
+          "request": {
+            "name": "Cancel a partially completed upload.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                "upload",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1754282c-d333-48e1-b4d3-8b88608d2bd5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "upload",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c29ca717-def0-43f2-a46e-29170f721def",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "upload",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf42e07d-a090-435c-84de-c7abdc1fc17f",
+              "name": "You lack permission to cancel this upload.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    "upload",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07672e4d-ecdc-4980-8ebb-f0cfc9ac4578",
+          "name": "Delete a file by ID.",
+          "request": {
+            "name": "Delete a file by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34f5ed51-0927-4ce4-b047-90760d12cfd3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5115fc5f-5181-4c9a-873d-37b17f23b8a1",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6be58c42-e009-4836-a589-9c20f527e64e",
+              "name": "Write access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "962cf859-8084-4604-a575-5acda2c4f787",
+          "name": "Get a file's information.",
+          "request": {
+            "name": "Get a file's information.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6d5f8fd-e277-4c18-9ff9-9fd4358beb7d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6b0cf38-075f-462a-beae-4d79f90e7a74",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d08a8632-178a-45bb-b748-d9bf000305de",
+              "name": "Read access was denied on the file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe4e32d9-5adc-49bd-8644-cb819231f5bf",
+          "name": "Change file metadata such as name or MIME type.",
+          "request": {
+            "name": "Change file metadata such as name or MIME type.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "The name to set on the file."
+                },
+                {
+                  "disabled": false,
+                  "key": "mimeType",
+                  "value": "<string>",
+                  "description": "The MIME type of the file."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "468af49e-0f1a-4eea-9747-aed629d6606c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8de430c3-a36d-495b-96c2-aa106fa9b6a8",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0d66d02-0cef-4fcf-a2bc-50425bc1da4e",
+              "name": "Write access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mimeType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3140ad7f-f1f4-4258-8241-2b6efeecf7d0",
+          "name": "Change the contents of an existing file.",
+          "request": {
+            "name": "Change the contents of an existing file.",
+            "description": {
+              "content": "After calling this, send the chunks just like you would with a normal file upload.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "contents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "<integer>",
+                  "description": "(Required) Size in bytes of the new file."
+                },
+                {
+                  "disabled": false,
+                  "key": "reference",
+                  "value": "<string>",
+                  "description": "If included, this information is passed to the data.process event when the upload is complete."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetstoreId",
+                  "value": "<string>",
+                  "description": "Direct the upload to a specific assetstore (admin-only)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "868c799c-8165-4718-8641-d5759464fca2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efb014c7-5c9f-411f-9fbe-df45271f34ce",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "contents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "reference",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ae40bd9-1444-4db8-9b7b-3a767a533463",
+          "name": "Copy a file.",
+          "request": {
+            "name": "Copy a file.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "itemId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The ID of the item to copy the file to."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e7872427-5ab5-4ef2-a8fb-5cdc849a4410",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the item to copy the file to.",
+                        "type": "text/plain"
+                      },
+                      "key": "itemId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "96898aa7-81a6-4f12-8ce3-5ca565a760f0",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The ID of the item to copy the file to.",
+                        "type": "text/plain"
+                      },
+                      "key": "itemId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2312de4-b5ec-4ee7-a978-9de0f9cfe627",
+          "name": "Download a file.",
+          "request": {
+            "name": "Download a file.",
+            "description": {
+              "content": "This endpoint also accepts the HTTP \"Range\" header for partial file downloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Start downloading at this offset in bytes within the file."
+                },
+                {
+                  "disabled": false,
+                  "key": "endByte",
+                  "value": "<integer>",
+                  "description": "If you only wish to download part of the file, pass this as the index of the last byte to download. Unlike the HTTP Range header, the endByte parameter is non-inclusive, so you should set it to the index of the byte one past the final byte you wish to receive."
+                },
+                {
+                  "disabled": false,
+                  "key": "contentDisposition",
+                  "value": "attachment",
+                  "description": "Specify the Content-Disposition response header disposition-type value."
+                },
+                {
+                  "disabled": false,
+                  "key": "extraParameters",
+                  "value": "<string>",
+                  "description": "Arbitrary data to send along with the download request."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e29c3b3d-8f24-45fc-bc85-5fc2c16c6717",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "endByte",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "contentDisposition",
+                      "value": "attachment"
+                    },
+                    {
+                      "key": "extraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1578d57-ab24-4c6d-9293-17f5434a1a5b",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "endByte",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "contentDisposition",
+                      "value": "attachment"
+                    },
+                    {
+                      "key": "extraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d537ab8-077f-4013-82c5-ee1f7f0c313c",
+              "name": "Read access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "endByte",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "contentDisposition",
+                      "value": "attachment"
+                    },
+                    {
+                      "key": "extraParameters",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "069b5d33-4fd5-4d5a-8582-1b4f186ef419",
+          "name": "Download a file.",
+          "request": {
+            "name": "Download a file.",
+            "description": {
+              "content": "The name parameter doesn't alter the download.  Some download clients save files based on the last part of a path, and specifying the name satisfies those clients.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "download",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Start downloading at this offset in bytes within the file."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the file."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the file.  This is ignored."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77a918de-5bc2-4d0b-b2c0-3d347873d798",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the file.  This is ignored."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e0ccc88-5663-4a85-80b3-eca76f365f7a",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the file.  This is ignored."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9bd6cdd0-abfa-4b94-8f74-379f85fd6b6c",
+              "name": "Read access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "download",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the file.  This is ignored."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e05c4906-a108-435c-978e-a026d10a2501",
+          "name": "Manually compute the checksum values for a given file.",
+          "request": {
+            "name": "Manually compute the checksum values for a given file.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "hashsum"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Whether to track progress of the operation"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the file."
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0440378-0676-4fd8-bcd7-96787803adb4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6b4bcdfc-1478-47bf-b897-2272a5e2b27f",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4060f275-a70a-4b84-8317-b9667c2e5958",
+              "name": "Write access was denied on the file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11c2ac40-81e4-44be-964e-a8d51a5574c5",
+          "name": "Download the hashsum key file for a given file.",
+          "request": {
+            "name": "Download the hashsum key file for a given file.",
+            "description": {
+              "content": "This is meant to be used in conjunction with CMake's ExternalData module.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "hashsum_file",
+                ":algo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the file."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "algo",
+                  "description": "(Required) The hashsum algorithm."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "512578ac-4592-4c14-8004-ebc40802f3f5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum_file",
+                    ":algo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The hashsum algorithm."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4cb6783d-2844-4c5d-8908-29e29851b6fb",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum_file",
+                    ":algo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The hashsum algorithm."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "023eb718-838d-4db0-b073-0eed3d2272e2",
+              "name": "Read access was denied on the file.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "hashsum_file",
+                    ":algo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the file."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "algo",
+                      "description": "(Required) The hashsum algorithm."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67e21aa1-b15b-42e2-9fcc-8f1684d662e9",
+          "name": "Adjust the import path of a file.",
+          "request": {
+            "name": "Adjust the import path of a file.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "import",
+                "adjust_path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) The new import path of the file."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0361f3f-f2b8-4469-8673-8d04b4d9cfd9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "import",
+                    "adjust_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ce44659-ff95-44f4-b37f-849d2820bcdb",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "import",
+                    "adjust_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ea5d6de-aa1d-4126-9229-5be72ef2a583",
+              "name": "Write access was denied on the parent folder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "import",
+                    "adjust_path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e4d1c3f-650b-4310-aad5-8ddfd038aaf0",
+          "name": "Move a file to a different assetstore.",
+          "request": {
+            "name": "Move a file to a different assetstore.",
+            "description": {},
+            "url": {
+              "path": [
+                "file",
+                ":id",
+                "move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Controls whether progress notifications will be sent."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the document."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "assetstoreId",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) The destination assetstore."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4937a3b7-1ebb-47c8-8246-5dee391467a2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The destination assetstore.",
+                        "type": "text/plain"
+                      },
+                      "key": "assetstoreId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "584c64fe-a64f-4210-838a-cfb6d62a191f",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "file",
+                    ":id",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the document."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The destination assetstore.",
+                        "type": "text/plain"
+                      },
+                      "key": "assetstoreId",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f2f0a4c4-faf6-4add-bcca-f6d41757eb6e",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation file API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

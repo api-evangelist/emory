@@ -1,0 +1,122 @@
+{
+  "item": [
+    {
+      "id": "a055425e-0375-43be-b823-23fc8eab04f7",
+      "name": "worker",
+      "description": {
+        "content": "worker resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e800b35-786f-4e85-b5c4-87962696cd4a",
+          "name": "Get worker status and task information.",
+          "request": {
+            "name": "Get worker status and task information.",
+            "description": {
+              "content": "Return -1 if the broker is inaccessible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "worker",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75895821-43dd-46c2-bebf-da6a0b1c69d9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "worker",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0b925b1-16a4-4d4a-8480-7e46b6453030",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "worker",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8587a07d-c0c8-44b6-adaa-f154b59e2274",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation worker API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

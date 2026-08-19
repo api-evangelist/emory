@@ -1,0 +1,983 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "annotation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "List all annotations in this item."
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "List all annotations created by this user."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to perform a full text search for annotation names and descriptions."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Pass to lookup an annotation by exact name match."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Search for annotations."
+        },
+        {
+          "info": {
+            "name": "Create an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the associated item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an annotation."
+        },
+        {
+          "info": {
+            "name": "Get annotation counts for a list of items.  If using actual a database other than DocumentDB, this also indicates if items are referenced as annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/counts",
+            "params": [
+              {
+                "name": "items",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of item ids."
+              }
+            ]
+          },
+          "docs": "Get annotation counts for a list of items.  If using actual a database other than DocumentDB, this also indicates if items are referenced as annotations."
+        },
+        {
+          "info": {
+            "name": "Get the user-owned annotations from the items in a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to retrieve all annotations from subfolders"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get the user-owned annotations from the items in a folder"
+        },
+        {
+          "info": {
+            "name": "Delete all user-owned annotations from the items in a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to retrieve all annotations from subfolders"
+              }
+            ]
+          },
+          "docs": "Delete all user-owned annotations from the items in a folder"
+        },
+        {
+          "info": {
+            "name": "Set the access for all the user-owned annotations from the items in a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/folder/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder"
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The JSON-encoded access control list."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the annotation should be publicly visible."
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to retrieve all annotations from subfolders"
+              }
+            ]
+          },
+          "docs": "Set the access for all the user-owned annotations from the items in a folder"
+        },
+        {
+          "info": {
+            "name": "Check if the user can create annotations in a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/folder/:id/create",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder"
+              }
+            ]
+          },
+          "docs": "Check if the user can create annotations in a folder"
+        },
+        {
+          "info": {
+            "name": "Check if the user owns any annotations for the items in a folder",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/folder/:id/present",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder"
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to recursively check subfolders for annotations"
+              }
+            ]
+          },
+          "docs": "Check if the user owns any annotations for the items in a folder"
+        },
+        {
+          "info": {
+            "name": "Search for annotated images.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/images",
+            "params": [
+              {
+                "name": "creatorId",
+                "value": "",
+                "type": "query",
+                "description": "Limit to annotations created by this user"
+              },
+              {
+                "name": "imageName",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by image name (case-insensitive)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "By default, this endpoint will return a list of recently annotated images.  This list can be further filtered by passing the creatorId and/or imageName parameters.  The creatorId parameter will limit results to annotations created by the given user.  The imageName parameter will only include images whose name (or a token in the name) begins with the given string."
+        },
+        {
+          "info": {
+            "name": "Get all annotations for an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "This returns a list of annotation model records."
+        },
+        {
+          "info": {
+            "name": "Create multiple annotations on an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple annotations on an item."
+        },
+        {
+          "info": {
+            "name": "Delete all annotations for an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "This deletes all annotation model records."
+        },
+        {
+          "info": {
+            "name": "Get plottable data related to an item and its annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/item/:id/plot/data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "adjacentItems",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include adjacent item data."
+              },
+              {
+                "name": "keys",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of data keys to retrieve (not json)."
+              },
+              {
+                "name": "requiredKeys",
+                "value": "",
+                "type": "query",
+                "description": "A comma separated list of data keys that must be non null in all response rows (not json)."
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "An optional comma separated list that can contain folder, item, annotation, annotationelement, datafile."
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "An optional uuid to allow cancelling a previous request.  If specified and there are any outstanding requests with the same uuid, they may be cancelled to save resources."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "annotations",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "compute",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Get plottable data related to an item and its annotations."
+        },
+        {
+          "info": {
+            "name": "Get a list of plottable data related to an item and its annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/item/:id/plot/list",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "adjacentItems",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include adjacent item data."
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "An optional comma separated list that can contain folder, item, annotation, annotationelement, datafile."
+              },
+              {
+                "name": "uuid",
+                "value": "",
+                "type": "query",
+                "description": "An optional uuid to allow cancelling a previous request.  If specified and there are any outstanding requests with the same uuid, they may be cancelled to save resources."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "annotations",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Get a list of plottable data related to an item and its annotations."
+        },
+        {
+          "info": {
+            "name": "Report on old annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/old",
+            "params": [
+              {
+                "name": "age",
+                "value": "",
+                "type": "query",
+                "description": "The minimum age in days."
+              },
+              {
+                "name": "versions",
+                "value": "",
+                "type": "query",
+                "description": "Keep at least this many history entries for each annotation."
+              }
+            ]
+          },
+          "docs": "Report on old annotations."
+        },
+        {
+          "info": {
+            "name": "Delete old annotations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/old",
+            "params": [
+              {
+                "name": "age",
+                "value": "",
+                "type": "query",
+                "description": "The minimum age in days."
+              },
+              {
+                "name": "versions",
+                "value": "",
+                "type": "query",
+                "description": "Keep at least this many history entries for each annotation."
+              }
+            ]
+          },
+          "docs": "Delete old annotations."
+        },
+        {
+          "info": {
+            "name": "Get the official Annotation schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/schema"
+          },
+          "docs": "In addition to the schema, if IDs are specified on elements, all IDs must be unique."
+        },
+        {
+          "info": {
+            "name": "Get an annotation by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "left",
+                "value": "",
+                "type": "query",
+                "description": "The left column of the area to fetch."
+              },
+              {
+                "name": "right",
+                "value": "",
+                "type": "query",
+                "description": "The right column (exclusive) of the area to fetch."
+              },
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "The top row of the area to fetch."
+              },
+              {
+                "name": "bottom",
+                "value": "",
+                "type": "query",
+                "description": "The bottom row (exclusive) of the area to fetch."
+              },
+              {
+                "name": "low",
+                "value": "",
+                "type": "query",
+                "description": "The lowest z value of the area to fetch."
+              },
+              {
+                "name": "high",
+                "value": "",
+                "type": "query",
+                "description": "The highest z value (exclusive) of the area to fetch."
+              },
+              {
+                "name": "minimumSize",
+                "value": "",
+                "type": "query",
+                "description": "Only annotations larger than or equal to this size in pixels will be returned.  Size is determined by the length of the diagonal of the bounding box of an element.  This probably should be 1 at the maximum zoom, 2 at the next level down, 4 at the next, etc."
+              },
+              {
+                "name": "maxDetails",
+                "value": "",
+                "type": "query",
+                "description": "Limit the number of annotations returned based on complexity.  The complexity of an annotation is how many points are used to defined it.  This is applied in addition to the limit.  Using maxDetails helps ensure results will be able to be rendered."
+              },
+              {
+                "name": "minElements",
+                "value": "",
+                "type": "query",
+                "description": "If maxDetails is specified, always return at least this many elements, even if they are very detailed."
+              },
+              {
+                "name": "centroids",
+                "value": "",
+                "type": "query",
+                "description": "If true, only return the centroids of each element.  The results are returned as a packed binary array with a json wrapper."
+              },
+              {
+                "name": "bbox",
+                "value": "",
+                "type": "query",
+                "description": "If true, add _bbox records to each element.  These are computed when the annotation is stored and cannot be modified.  Cannot be used with the centroids option."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Use \"size\" or \"details\" as possible sort keys."
+        },
+        {
+          "info": {
+            "name": "Update an annotation or move it to a different item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to move the annotation to a new item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an annotation or move it to a different item."
+        },
+        {
+          "info": {
+            "name": "Patch an annotation or its elements.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an annotation or its elements."
+        },
+        {
+          "info": {
+            "name": "Delete an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              }
+            ]
+          },
+          "docs": "Delete an annotation."
+        },
+        {
+          "info": {
+            "name": "Get the access control list for an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              }
+            ]
+          },
+          "docs": "Get the access control list for an annotation."
+        },
+        {
+          "info": {
+            "name": "Update the access control list for an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The JSON-encoded access control list."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the annotation should be publicly visible."
+              }
+            ]
+          },
+          "docs": "Update the access control list for an annotation."
+        },
+        {
+          "info": {
+            "name": "Copy an annotation from one item to an other.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the destination item."
+              }
+            ]
+          },
+          "docs": "Copy an annotation from one item to an other."
+        },
+        {
+          "info": {
+            "name": "Get a list of an annotation's history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/history",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get a list of an annotation's history."
+        },
+        {
+          "info": {
+            "name": "Revert an annotation to a specific version.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/history/revert",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "The version of the annotation.  If not specified, if the annotation was deleted this undeletes it.  If it was not deleted, this reverts to the previous version."
+              }
+            ]
+          },
+          "docs": "This can be used to undelete an annotation by reverting to the most recent version."
+        },
+        {
+          "info": {
+            "name": "Get a specific version of an annotation's history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/history/:version",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "The version of the annotation."
+              }
+            ]
+          },
+          "docs": "Get a specific version of an annotation's history."
+        },
+        {
+          "info": {
+            "name": "Set metadata (annotation.attributes) fields on an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "allowNull",
+                "value": "",
+                "type": "query",
+                "description": "Whether \"null\" is allowed as a metadata value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata fields to null in order to delete them."
+        },
+        {
+          "info": {
+            "name": "Delete metadata (annotation.attributes) fields on an annotation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete metadata (annotation.attributes) fields on an annotation."
+        },
+        {
+          "info": {
+            "name": "Get an annotation by id in a specific format.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/annotation/:id/:format",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "The format of the annotation."
+              }
+            ]
+          },
+          "docs": "Use \"size\" or \"details\" as possible sort keys."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

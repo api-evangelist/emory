@@ -1,0 +1,2061 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation item API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "item",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List or search for items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to list all items in a folder."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to perform a full text search for items."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Pass to lookup an item by exact name match. Must pass folderId as well when using this."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "You must pass either a \"folderId\" or \"text\" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : \"Invalid search mode.\""
+        },
+        {
+          "info": {
+            "name": "Create a new item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the parent folder."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the item."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the item."
+              },
+              {
+                "name": "reuseExisting",
+                "value": "",
+                "type": "query",
+                "description": "Return existing item (by name) if it exists."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "metadata",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new item."
+        },
+        {
+          "info": {
+            "name": "List items that match a query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/query",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Find items that match this Mongo query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List items that match a query."
+        },
+        {
+          "info": {
+            "name": "Get test large image metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/test/tiles"
+          },
+          "docs": "Get test large image metadata."
+        },
+        {
+          "info": {
+            "name": "Get a test large image tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/test/tiles/zxy/:z/:x/:y",
+            "params": [
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "The layer number of the tile (0 is the most zoomed-out layer)."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "The X coordinate of the tile (0 is the left side)."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "The Y coordinate of the tile (0 is the top)."
+              }
+            ]
+          },
+          "docs": "Get a test large image tile."
+        },
+        {
+          "info": {
+            "name": "Get an item by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get an item by ID."
+        },
+        {
+          "info": {
+            "name": "Edit an item or move it to another folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the item."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the item."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to move the item to a new folder."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "metadata",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Edit an item or move it to another folder."
+        },
+        {
+          "info": {
+            "name": "Delete an item by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Delete an item by ID."
+        },
+        {
+          "info": {
+            "name": "Get the previous and next image in the same folder as the given item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/adjacent_images",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The current item ID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The (virtual) folder ID the image is located in"
+              }
+            ]
+          },
+          "docs": "Get the previous and next image in the same folder as the given item."
+        },
+        {
+          "info": {
+            "name": "Find Aperio annotation items associated with a slide image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/aperio",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the slide image item"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Filter by the given tag string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Find Aperio annotation items associated with a slide image."
+        },
+        {
+          "info": {
+            "name": "Import an item as an Aperio annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/aperio",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item containing the annotation file"
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the slide image"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "A searchable tag to store with the metadata"
+              }
+            ]
+          },
+          "docs": "Import an item as an Aperio annotation"
+        },
+        {
+          "info": {
+            "name": "Set the tag associated with the annotation file",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/aperio",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation file"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "A searchable tag to store with the metadata"
+              }
+            ]
+          },
+          "docs": "Set the tag associated with the annotation file"
+        },
+        {
+          "info": {
+            "name": "Remove Aperio specific metadata from an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/aperio",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the annotation item"
+              }
+            ]
+          },
+          "docs": "Remove Aperio specific metadata from an item"
+        },
+        {
+          "info": {
+            "name": "Copy an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the original item."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the parent folder."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the new item."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the new item."
+              },
+              {
+                "name": "copyAnnotations",
+                "value": "",
+                "type": "query",
+                "description": "Copy annotations when copying item (default true)"
+              }
+            ]
+          },
+          "docs": "If no folderId parameter is specified, creates a copy of the item in its current containing folder."
+        },
+        {
+          "info": {
+            "name": "Download the contents of an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Byte offset into the file."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "If unspecified, items with one file are downloaded as that file, and other items are downloaded as a zip archive.  If 'zip', a zip archive is always sent."
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value, only applied for single file items."
+              },
+              {
+                "name": "extraParameters",
+                "value": "",
+                "type": "query",
+                "description": "Arbitrary data to send along with the download request, only applied for single file items."
+              }
+            ]
+          },
+          "docs": "Download the contents of an item."
+        },
+        {
+          "info": {
+            "name": "Get the files within an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/files",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get the files within an item."
+        },
+        {
+          "info": {
+            "name": "Set metadata fields on an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "allowNull",
+                "value": "",
+                "type": "query",
+                "description": "Whether \"null\" is allowed as a metadata value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata fields to null in order to delete them."
+        },
+        {
+          "info": {
+            "name": "Delete metadata fields on an item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete metadata fields on an item."
+        },
+        {
+          "info": {
+            "name": "Get the next image in the same folder as the given item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/next_image",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The current image ID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The (virtual) folder ID the image is located in"
+              }
+            ]
+          },
+          "docs": "Get the next image in the same folder as the given item."
+        },
+        {
+          "info": {
+            "name": "Report the offset of an item in a list or search.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/position",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to list all items in a folder."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to perform a full text search for items."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Pass to lookup an item by exact name match. Must pass folderId as well when using this."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "You must pass either a \"folderId\" or \"text\" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : \"Invalid search mode.\""
+        },
+        {
+          "info": {
+            "name": "Get the previous image in the same folder as the given item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/previous_image",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The current item ID"
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The (virtual) folder ID the image is located in"
+              }
+            ]
+          },
+          "docs": "Get the previous image in the same folder as the given item."
+        },
+        {
+          "info": {
+            "name": "Get the path to the root of the item's hierarchy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:id/rootpath",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get the path to the root of the item's hierarchy."
+        },
+        {
+          "info": {
+            "name": "Get the value for a single internal metadata key on this item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/internal_metadata/:key",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The metadata key to retrieve."
+              }
+            ]
+          },
+          "docs": "Get the value for a single internal metadata key on this item."
+        },
+        {
+          "info": {
+            "name": "Overwrite the value for a single internal metadata key on this item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/internal_metadata/:key",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The metadata key which should have a new value.                 The default key, \"meta\" is equivalent to the external metadata.                 Editing the \"meta\" key is equivalent to using PUT /item/{id}/metadata."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Overwrite the value for a single internal metadata key on this item."
+        },
+        {
+          "info": {
+            "name": "Delete a single internal metadata key on this item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/internal_metadata/:key",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The metadata key to delete."
+              }
+            ]
+          },
+          "docs": "Delete a single internal metadata key on this item."
+        },
+        {
+          "info": {
+            "name": "Get large image metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              }
+            ]
+          },
+          "docs": "Get large image metadata."
+        },
+        {
+          "info": {
+            "name": "Create a large image for this item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The source item."
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "query",
+                "description": "The source file containing the image.  Required if there is more than one file in the item."
+              },
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "Always use a job to create the large image."
+              },
+              {
+                "name": "notify",
+                "value": "",
+                "type": "query",
+                "description": "If a job is required to create the large image, a nofication can be sent when it is complete."
+              },
+              {
+                "name": "localJob",
+                "value": "",
+                "type": "query",
+                "description": "If true, run as a local job; if false, run via the remote worker"
+              },
+              {
+                "name": "tileSize",
+                "value": "",
+                "type": "query",
+                "description": "Tile size"
+              },
+              {
+                "name": "compression",
+                "value": "",
+                "type": "query",
+                "description": "Internal compression format"
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "JPEG compression quality where 0 is small and 100 is highest quality"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Compression level for deflate (zip) or zstd."
+              },
+              {
+                "name": "predictor",
+                "value": "",
+                "type": "query",
+                "description": "Predictor for deflate (zip) or lzw."
+              },
+              {
+                "name": "psnr",
+                "value": "",
+                "type": "query",
+                "description": "JP2K compression target peak-signal-to-noise-ratio where 0 is lossless and otherwise higher numbers are higher quality"
+              },
+              {
+                "name": "cr",
+                "value": "",
+                "type": "query",
+                "description": "JP2K target compression ratio where 1 is lossless"
+              },
+              {
+                "name": "concurrent",
+                "value": "",
+                "type": "query",
+                "description": "Suggested number of maximum concurrent processes to use during conversion.  Values less than or equal to 0 use the number of logical cpus less that value.  Default is -2."
+              }
+            ]
+          },
+          "docs": "Create a large image for this item."
+        },
+        {
+          "info": {
+            "name": "Remove a large image from this item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              }
+            ]
+          },
+          "docs": "Remove a large image from this item."
+        },
+        {
+          "info": {
+            "name": "Get band information for a large image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/bands",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              }
+            ]
+          },
+          "docs": "Get band information for a large image item."
+        },
+        {
+          "info": {
+            "name": "Create a new large image item based on an existing item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/convert",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The source item."
+              },
+              {
+                "name": "fileId",
+                "value": "",
+                "type": "query",
+                "description": "The source file containing the image.  Required if there is more than one file in the item."
+              },
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The destination folder."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "A new name for the output item."
+              },
+              {
+                "name": "localJob",
+                "value": "",
+                "type": "query",
+                "description": "If true, run as a local job; if false, run via the remote worker"
+              },
+              {
+                "name": "tileSize",
+                "value": "",
+                "type": "query",
+                "description": "Tile size"
+              },
+              {
+                "name": "onlyFrame",
+                "value": "",
+                "type": "query",
+                "description": "Only convert a specific 0-based frame of a multiframe file.  If not specified, all frames are converted."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "File format"
+              },
+              {
+                "name": "compression",
+                "value": "",
+                "type": "query",
+                "description": "Internal compression format"
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "JPEG compression quality where 0 is small and 100 is highest quality"
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Compression level for deflate (zip) or zstd."
+              },
+              {
+                "name": "predictor",
+                "value": "",
+                "type": "query",
+                "description": "Predictor for deflate (zip) or lzw."
+              },
+              {
+                "name": "psnr",
+                "value": "",
+                "type": "query",
+                "description": "JP2K compression target peak-signal-to-noise-ratio where 0 is lossless and otherwise higher numbers are higher quality"
+              },
+              {
+                "name": "cr",
+                "value": "",
+                "type": "query",
+                "description": "JP2K target compression ratio where 1 is lossless"
+              },
+              {
+                "name": "concurrent",
+                "value": "",
+                "type": "query",
+                "description": "Suggested number of maximum concurrent processes to use during conversion.  Values less than or equal to 0 use the number of logical cpus less that value.  Default is -2."
+              }
+            ]
+          },
+          "docs": "This can be used to make an item that is a different internal format than the original item."
+        },
+        {
+          "info": {
+            "name": "Get DeepZoom compatible metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/dzi.dzi",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "overlap",
+                "value": "",
+                "type": "query",
+                "description": "Pixel overlap (default 0), must be non-negative."
+              },
+              {
+                "name": "tilesize",
+                "value": "",
+                "type": "query",
+                "description": "Tile size (default 256), must be a power of 2"
+              }
+            ]
+          },
+          "docs": "Get DeepZoom compatible metadata."
+        },
+        {
+          "info": {
+            "name": "Get a DeepZoom image tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/dzi_files/:level/:xandy",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "path",
+                "description": "The deepzoom layer number of the tile (8 is the most zoomed-out layer)."
+              },
+              {
+                "name": "xandy",
+                "value": "",
+                "type": "path",
+                "description": "The X and Y coordinate of the tile in the form (x)_(y).(extension) where (0_0 is the left top)."
+              }
+            ]
+          },
+          "docs": "Get a DeepZoom image tile."
+        },
+        {
+          "info": {
+            "name": "Get a large image tile with a frame number.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/fzxy/:frame/:z/:x/:y",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "path",
+                "description": "The frame number of the tile."
+              },
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "The layer number of the tile (0 is the most zoomed-out layer)."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "The X coordinate of the tile (0 is the left side)."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "The Y coordinate of the tile (0 is the top)."
+              },
+              {
+                "name": "redirect",
+                "value": "",
+                "type": "query",
+                "description": "If the tile exists as a complete file, allow an HTTP redirect instead of returning the data directly.  The redirect might not have the correct mime type.  \"exact\" must match the image encoding and quality parameters, \"encoding\" must match the image encoding but disregards quality, and \"any\" will redirect to any image if possible."
+              }
+            ]
+          },
+          "docs": "Get a large image tile with a frame number."
+        },
+        {
+          "info": {
+            "name": "Get a histogram for any region of a large image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/histogram",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the analyzed region in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The maximum height of the analyzed region in pixels."
+              },
+              {
+                "name": "resample",
+                "value": "",
+                "type": "query",
+                "description": "If false, an existing level of the image is used for the histogram.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)"
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              },
+              {
+                "name": "bins",
+                "value": "",
+                "type": "query",
+                "description": "The number of bins in the histogram."
+              },
+              {
+                "name": "rangeMin",
+                "value": "",
+                "type": "query",
+                "description": "The minimum value in the histogram.  Defaults to the minimum value in the image."
+              },
+              {
+                "name": "rangeMax",
+                "value": "",
+                "type": "query",
+                "description": "The maximum value in the histogram.  Defaults to the maximum value in the image."
+              },
+              {
+                "name": "roundRange",
+                "value": "",
+                "type": "query",
+                "description": "If true and neither a minimum or maximum is specified for the range, round the bin edges and adjust the number of bins for integer data with smaller ranges."
+              },
+              {
+                "name": "density",
+                "value": "",
+                "type": "query",
+                "description": "If true, scale the results by the number of samples."
+              },
+              {
+                "name": "cache",
+                "value": "",
+                "type": "query",
+                "description": "Report on or request caching the specified histogram for all frames.  Scheduling creates a local job."
+              }
+            ]
+          },
+          "docs": "This can take all of the parameters as the region endpoint, plus some histogram-specific parameters.  Only typically used parameters are listed.  The returned result is a list with one entry per channel (always one of L, LA, RGB, or RGBA colorspace).  Each entry has the histogram values, bin edges, minimum and maximum values for the channel, and number of samples (pixels) used in the computation."
+        },
+        {
+          "info": {
+            "name": "Get a list of additional images associated with a large image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/images",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              }
+            ]
+          },
+          "docs": "Get a list of additional images associated with a large image."
+        },
+        {
+          "info": {
+            "name": "Get an image associated with a large image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/images/:image",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "image",
+                "value": "",
+                "type": "path",
+                "description": "The key of the associated image."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the image in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The maximum height of the image in pixels."
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Image output encoding"
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value."
+              },
+              {
+                "name": "contentDispositionFilename",
+                "value": "",
+                "type": "query",
+                "description": "Specify the filename used in the Content-Disposition response header."
+              }
+            ]
+          },
+          "docs": "Because associated images may contain PHI, admin access to the item is required."
+        },
+        {
+          "info": {
+            "name": "Get metadata for an image associated with a large image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/images/:image/metadata",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "image",
+                "value": "",
+                "type": "path",
+                "description": "The key of the associated image."
+              }
+            ]
+          },
+          "docs": "Get metadata for an image associated with a large image."
+        },
+        {
+          "info": {
+            "name": "Get large image internal metadata.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/internal_metadata",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              }
+            ]
+          },
+          "docs": "Get large image internal metadata."
+        },
+        {
+          "info": {
+            "name": "Get a single pixel of a large image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/pixel",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "left",
+                "value": "",
+                "type": "query",
+                "description": "The left column (0-based) of the pixel."
+              },
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "The top row (0-based) of the pixel."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Units used for left and top.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1]."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              },
+              {
+                "name": "frameList",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of frame numbers to query. If provided, returns a list of pixel values for each frame."
+              }
+            ]
+          },
+          "docs": "When frameList is provided, returns a list of pixel dictionaries, one for each frame. Otherwise returns a single pixel dictionary."
+        },
+        {
+          "info": {
+            "name": "Get any region of a large image item, optionally scaling it.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/region",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "left",
+                "value": "",
+                "type": "query",
+                "description": "The left column (0-based) of the region to process.  Negative values are offsets from the right edge."
+              },
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "The top row (0-based) of the region to process.  Negative values are offsets from the bottom edge."
+              },
+              {
+                "name": "right",
+                "value": "",
+                "type": "query",
+                "description": "The right column (0-based from the left) of the region to process.  The region will not include this column.  Negative values are offsets from the right edge."
+              },
+              {
+                "name": "bottom",
+                "value": "",
+                "type": "query",
+                "description": "The bottom row (0-based from the top) of the region to process.  The region will not include this row.  Negative values are offsets from the bottom edge."
+              },
+              {
+                "name": "regionWidth",
+                "value": "",
+                "type": "query",
+                "description": "The width of the region to process."
+              },
+              {
+                "name": "regionHeight",
+                "value": "",
+                "type": "query",
+                "description": "The height of the region to process."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Units used for left, top, right, bottom, regionWidth, and regionHeight.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1]."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the output image in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The maximum height of the output image in pixels."
+              },
+              {
+                "name": "fill",
+                "value": "",
+                "type": "query",
+                "description": "A fill color.  If output dimensions are specified and fill is specified and not \"none\", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted."
+              },
+              {
+                "name": "magnification",
+                "value": "",
+                "type": "query",
+                "description": "Magnification of the output image.  If neither width for height is specified, the magnification, mm_x, and mm_y parameters are used to select the output size."
+              },
+              {
+                "name": "mm_x",
+                "value": "",
+                "type": "query",
+                "description": "The size of the output pixels in millimeters"
+              },
+              {
+                "name": "mm_y",
+                "value": "",
+                "type": "query",
+                "description": "The size of the output pixels in millimeters"
+              },
+              {
+                "name": "exact",
+                "value": "",
+                "type": "query",
+                "description": "If magnification, mm_x, or mm_y are specified, they must match an existing level of the image exactly."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol"
+              },
+              {
+                "name": "jpegQuality",
+                "value": "",
+                "type": "query",
+                "description": "Quality used for generating JPEG images"
+              },
+              {
+                "name": "jpegSubsampling",
+                "value": "",
+                "type": "query",
+                "description": "Chroma subsampling used for generating JPEG images.  0, 1, and 2 are full, half, and quarter resolution chroma respectively."
+              },
+              {
+                "name": "tiffCompression",
+                "value": "",
+                "type": "query",
+                "description": "Compression method when storing a TIFF image"
+              },
+              {
+                "name": "style",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded style string"
+              },
+              {
+                "name": "resample",
+                "value": "",
+                "type": "query",
+                "description": "If false, an existing level of the image is used for the region.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)"
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value."
+              },
+              {
+                "name": "contentDispositionFilename",
+                "value": "",
+                "type": "query",
+                "description": "Specify the filename used in the Content-Disposition response header."
+              }
+            ]
+          },
+          "docs": "If neither width nor height is specified, the full resolution region is returned.  If a width or height is specified, aspect ratio is always preserved (if both are given, the resulting image may be smaller in one of the two dimensions).  When scaling must be applied, the image is downsampled from a higher resolution layer, never upsampled."
+        },
+        {
+          "info": {
+            "name": "Get a thumbnail of a large image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/thumbnail",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the thumbnail in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The maximum height of the thumbnail in pixels."
+              },
+              {
+                "name": "fill",
+                "value": "",
+                "type": "query",
+                "description": "A fill color.  If width and height are both specified and fill is specified and not \"none\", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol"
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value."
+              },
+              {
+                "name": "contentDispositionFilename",
+                "value": "",
+                "type": "query",
+                "description": "Specify the filename used in the Content-Disposition response header."
+              }
+            ]
+          },
+          "docs": "Aspect ratio is always preserved.  If both width and height are specified, the resulting thumbnail may be smaller in one of the two dimensions.  If neither width nor height is given, a default size will be returned.  This creates a thumbnail from the lowest level of the source image, which means that asking for a large thumbnail will not be a high-quality image."
+        },
+        {
+          "info": {
+            "name": "List all thumbnail and data files associated with a large_image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/thumbnails",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "List all thumbnail and data files associated with a large_image item."
+        },
+        {
+          "info": {
+            "name": "Associate or replace a thumbnail or data file with a large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/thumbnails",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "A specific key to delete"
+              },
+              {
+                "name": "thumbnail",
+                "value": "",
+                "type": "query",
+                "description": "If a key is specified, true if the key is a thumbnail; false if the key is a data record"
+              },
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query",
+                "description": "The MIME type of the file."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate or replace a thumbnail or data file with a large_image items."
+        },
+        {
+          "info": {
+            "name": "Delete thumbnail and data files associated with a large_image item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/thumbnails",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "keep",
+                "value": "",
+                "type": "query",
+                "description": "Number of thumbnails to keep.  Ignored if a key is specified."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "A specific key to delete"
+              },
+              {
+                "name": "thumbnail",
+                "value": "",
+                "type": "query",
+                "description": "If a key is specified, true if the key is a thumbnail; false if the key is a data record"
+              }
+            ]
+          },
+          "docs": "Delete thumbnail and data files associated with a large_image item."
+        },
+        {
+          "info": {
+            "name": "Composite thumbnails of multiple frames into a single image.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/tile_frames",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "framesAcross",
+                "value": "",
+                "type": "query",
+                "description": "How many frames across"
+              },
+              {
+                "name": "frameList",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of frames"
+              },
+              {
+                "name": "cache",
+                "value": "",
+                "type": "query",
+                "description": "Cache the results for future use"
+              },
+              {
+                "name": "left",
+                "value": "",
+                "type": "query",
+                "description": "The left column (0-based) of the region to process.  Negative values are offsets from the right edge."
+              },
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "The top row (0-based) of the region to process.  Negative values are offsets from the bottom edge."
+              },
+              {
+                "name": "right",
+                "value": "",
+                "type": "query",
+                "description": "The right column (0-based from the left) of the region to process.  The region will not include this column.  Negative values are offsets from the right edge."
+              },
+              {
+                "name": "bottom",
+                "value": "",
+                "type": "query",
+                "description": "The bottom row (0-based from the top) of the region to process.  The region will not include this row.  Negative values are offsets from the bottom edge."
+              },
+              {
+                "name": "regionWidth",
+                "value": "",
+                "type": "query",
+                "description": "The width of the region to process."
+              },
+              {
+                "name": "regionHeight",
+                "value": "",
+                "type": "query",
+                "description": "The height of the region to process."
+              },
+              {
+                "name": "units",
+                "value": "",
+                "type": "query",
+                "description": "Units used for left, top, right, bottom, regionWidth, and regionHeight.  base_pixels are pixels at the maximum resolution, pixels and mm are at the specified magnfication, fraction is a scale of [0-1]."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "The maximum width of the output image in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "The maximum height of the output image in pixels."
+              },
+              {
+                "name": "fill",
+                "value": "",
+                "type": "query",
+                "description": "A fill color.  If output dimensions are specified and fill is specified and not \"none\", the output image is padded on either the sides or the top and bottom to the requested output size.  Most css colors are accepted."
+              },
+              {
+                "name": "magnification",
+                "value": "",
+                "type": "query",
+                "description": "Magnification of the output image.  If neither width for height is specified, the magnification, mm_x, and mm_y parameters are used to select the output size."
+              },
+              {
+                "name": "mm_x",
+                "value": "",
+                "type": "query",
+                "description": "The size of the output pixels in millimeters"
+              },
+              {
+                "name": "mm_y",
+                "value": "",
+                "type": "query",
+                "description": "The size of the output pixels in millimeters"
+              },
+              {
+                "name": "exact",
+                "value": "",
+                "type": "query",
+                "description": "If magnification, mm_x, or mm_y are specified, they must match an existing level of the image exactly."
+              },
+              {
+                "name": "frame",
+                "value": "",
+                "type": "query",
+                "description": "For multiframe images, the 0-based frame number.  This is ignored on non-multiframe images."
+              },
+              {
+                "name": "encoding",
+                "value": "",
+                "type": "query",
+                "description": "Output image encoding.  TILED generates a tiled tiff without the upper limit on image size the other options have.  For geospatial sources, TILED will also have appropriate tagging.  Pickle emits python pickle data with an optional specific protocol"
+              },
+              {
+                "name": "jpegQuality",
+                "value": "",
+                "type": "query",
+                "description": "Quality used for generating JPEG images"
+              },
+              {
+                "name": "jpegSubsampling",
+                "value": "",
+                "type": "query",
+                "description": "Chroma subsampling used for generating JPEG images.  0, 1, and 2 are full, half, and quarter resolution chroma respectively."
+              },
+              {
+                "name": "tiffCompression",
+                "value": "",
+                "type": "query",
+                "description": "Compression method when storing a TIFF image"
+              },
+              {
+                "name": "style",
+                "value": "",
+                "type": "query",
+                "description": "JSON-encoded style string"
+              },
+              {
+                "name": "resample",
+                "value": "",
+                "type": "query",
+                "description": "If false, an existing level of the image is used for the region.  If true, the internal values are interpolated to match the specified size as needed.  0-3 for a specific interpolation method (0-nearest, 1-lanczos, 2-bilinear, 3-bicubic)"
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value."
+              },
+              {
+                "name": "contentDispositionFilename",
+                "value": "",
+                "type": "query",
+                "description": "Specify the filename used in the Content-Disposition response header."
+              }
+            ]
+          },
+          "docs": "Composite thumbnails of multiple frames into a single image."
+        },
+        {
+          "info": {
+            "name": "Get parameters for using tile_frames as background sprite images.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/tile_frames/quad_info",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Optional format parameters, such as \"encoding=JPEG&jpegQuality=85&jpegSubsampling=1\".  If specified, these replace the defaults."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Addition query parameters that would be passed to tile endpoints, such as style."
+              },
+              {
+                "name": "frameBase",
+                "value": "",
+                "type": "query",
+                "description": "Starting frame number (default 0).  If c/z/t/xy then step through values from 0 to number of that axis - 1.  The axis specification in only useful for cache reporting or scheduling"
+              },
+              {
+                "name": "frameStride",
+                "value": "",
+                "type": "query",
+                "description": "Only use every frameStride frame of the image (default 1).  c/z/t/xy to use the length of that axis"
+              },
+              {
+                "name": "frameGroup",
+                "value": "",
+                "type": "query",
+                "description": "Group frames when using multiple textures to keep boundaries at a multiple of the group size number.  c/z/t/xy to use the length of that axis."
+              },
+              {
+                "name": "frameGroupFactor",
+                "value": "",
+                "type": "query",
+                "description": "Ignore grouping if the resultant images would be more than this factor smaller than without grouping (default 4)"
+              },
+              {
+                "name": "frameGroupStride",
+                "value": "",
+                "type": "query",
+                "description": "Reorder frames based on the to stride (default 1).  \"auto\" to use frameGroup / frameStride if that value is an integer."
+              },
+              {
+                "name": "maxTextureSize",
+                "value": "",
+                "type": "query",
+                "description": "Maximum texture size in either dimension.  This should be the smaller of a desired value and of the intended graphics environment texture buffer (default 16384)."
+              },
+              {
+                "name": "maxTextures",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of textures to use (default 1)."
+              },
+              {
+                "name": "maxTotalTexturePixels",
+                "value": "",
+                "type": "query",
+                "description": "Limit the total area of all combined textures (default 2**30)."
+              },
+              {
+                "name": "alignment",
+                "value": "",
+                "type": "query",
+                "description": "Individual frame alignment within a texture.  Used to avoid jpeg artifacts from crossing frames (default 16)."
+              },
+              {
+                "name": "maxFrameSize",
+                "value": "",
+                "type": "query",
+                "description": "If specified, frames will never be larger than this, even if the texture size allows it (default None)."
+              },
+              {
+                "name": "cache",
+                "value": "",
+                "type": "query",
+                "description": "Report on or request caching the resultant frames.  Scheduling creates a local job."
+              }
+            ]
+          },
+          "docs": "Get parameters for using tile_frames as background sprite images."
+        },
+        {
+          "info": {
+            "name": "Get a large image tile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/item/:itemId/tiles/zxy/:z/:x/:y",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "z",
+                "value": "",
+                "type": "path",
+                "description": "The layer number of the tile (0 is the most zoomed-out layer)."
+              },
+              {
+                "name": "x",
+                "value": "",
+                "type": "path",
+                "description": "The X coordinate of the tile (0 is the left side)."
+              },
+              {
+                "name": "y",
+                "value": "",
+                "type": "path",
+                "description": "The Y coordinate of the tile (0 is the top)."
+              },
+              {
+                "name": "redirect",
+                "value": "",
+                "type": "query",
+                "description": "If the tile exists as a complete file, allow an HTTP redirect instead of returning the data directly.  The redirect might not have the correct mime type.  \"exact\" must match the image encoding and quality parameters, \"encoding\" must match the image encoding but disregards quality, and \"any\" will redirect to any image if possible."
+              }
+            ]
+          },
+          "docs": "Get a large image tile."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

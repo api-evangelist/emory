@@ -1,0 +1,203 @@
+{
+  "item": [
+    {
+      "id": "04e451f7-077c-465d-b1ee-ac143e7119a1",
+      "name": "homepage",
+      "description": {
+        "content": "homepage resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32bbfdd2-bc65-476e-a260-af7799c1b29c",
+          "name": "Public url for getting the homepage properties.",
+          "request": {
+            "name": "Public url for getting the homepage properties.",
+            "description": {},
+            "url": {
+              "path": [
+                "homepage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cd8c3ec-8f0f-43cd-8eff-c8082e1de4a7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "homepage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c952a45-79d2-444d-8e91-bd7a10841c63",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "homepage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d16823eb-c5e8-4e9f-8fec-23801fc50474",
+          "name": "Return the folder IDs for uploaded asset content.",
+          "request": {
+            "name": "Return the folder IDs for uploaded asset content.",
+            "description": {},
+            "url": {
+              "path": [
+                "homepage",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dfa23e5-142a-4296-b30a-956568389f6c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "homepage",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "92ca95b8-6a42-4e08-940e-1edee728b2bc",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "homepage",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "da00dc75-68b0-42c8-b39a-cca265f1e6df",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation homepage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,3039 @@
+{
+  "item": [
+    {
+      "id": "9abaea61-186a-4547-b0e8-7948ceb78cd9",
+      "name": "resource",
+      "description": {
+        "content": "resource resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9fb6d9c-2415-45c7-a914-14412026cb80",
+          "name": "Delete a set of items, folders, or other resources.",
+          "request": {
+            "name": "Delete a set of items, folders, or other resources.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to delete. Each type is a list of ids.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Whether to record progress on this task."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "956f8290-d73a-4d45-a273-bfa29d2ddb74",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7525fea9-cab0-484e-bb07-32144d16b82c",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nNo resources specified.\n\nResource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "79f9e4b5-244b-4025-a045-f6bb803f8b20",
+              "name": "Admin access was denied for a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09afd904-4b0b-4c9c-89e0-412d630c3baf",
+          "name": "Copy a set of items and folders.",
+          "request": {
+            "name": "Copy a set of items and folders.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "copy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to copy. Each type is a list of ids.  Only folders and items may be specified.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentType",
+                  "value": "<string>",
+                  "description": "(Required) Parent type for the new parent of these resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "(Required) Parent ID for the new parent of these resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Whether to record progress on this task."
+                },
+                {
+                  "disabled": false,
+                  "key": "copyAnnotations",
+                  "value": "<boolean>",
+                  "description": "Copy annotations when copying resources (default true)"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b2ba470-48bd-472d-b7df-c8be26074bb7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    },
+                    {
+                      "key": "copyAnnotations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4faa22fb-1e12-4749-9d15-95665c02eff6",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nResource type not supported.\n\nNo resources specified.\n\nResource not found.\n\nID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "copy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    },
+                    {
+                      "key": "copyAnnotations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4324ef4-8303-4255-ac4b-8759504ae00e",
+          "name": "Download a set of items, folders, collections, and users as a zip archive.",
+          "request": {
+            "name": "Download a set of items, folders, collections, and users as a zip archive.",
+            "description": {
+              "content": "This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to download. Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMetadata",
+                  "value": "false",
+                  "description": "Include any metadata in JSON files in the archive."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c21898f-ec91-400c-9750-3ecc635bcec4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5cbdfe0-2b86-42c9-8b03-c10b45c3c6ec",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nNo resources specified.\n\nResource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e3a1c360-3273-42f0-ab58-61673d81f073",
+              "name": "Read access was denied for a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d719c59c-9589-4c55-872a-49b7f29d3a2d",
+          "name": "Download a set of items, folders, collections, and users as a zip archive.",
+          "request": {
+            "name": "Download a set of items, folders, collections, and users as a zip archive.",
+            "description": {
+              "content": "This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to download. Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMetadata",
+                  "value": "false",
+                  "description": "Include any metadata in JSON files in the archive."
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebbb50e5-aec2-480d-a0a5-8af5b7150fa7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3653317a-9812-4964-9a2b-86e5bc2618d0",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nNo resources specified.\n\nResource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c1fb5763-bcb5-4681-8ac1-c924d2db5de0",
+              "name": "Read access was denied for a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeMetadata",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a00d5dd-6d89-4bae-810e-3e742306cd88",
+          "name": "Look up a resource in the data hierarchy by path.",
+          "request": {
+            "name": "Look up a resource in the data hierarchy by path.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "lookup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b896f66-d2e9-4be9-b2c5-dfac3882b081",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6cfe218-aca4-450f-a549-12535a52e99e",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec0af28c-532e-4d2c-837f-8236957b4e03",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "lookup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82d85ebd-2a0e-43e5-b941-03611a6524f5",
+          "name": "Set metadata on multiple resources at once.",
+          "request": {
+            "name": "Set metadata on multiple resources at once.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to modify.  Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "allowNull",
+                  "value": "false",
+                  "description": "Whether \"null\" is allowed as a metadata value."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1bcdeeb7-3b86-476e-991b-aee83bf0b8d1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "allowNull",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d669c17f-2b5a-4d1a-a9e3-36c2a63160d4",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nNo resources specified.\n\nResource not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "allowNull",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c18ee9de-a01b-4fac-8565-61e1781686b8",
+              "name": "Write access was denied for a resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "allowNull",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c68fe9bf-be7f-49a0-ad2f-6f69af10ff42",
+          "name": "Move a set of items and folders.",
+          "request": {
+            "name": "Move a set of items and folders.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "move"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "resources",
+                  "value": "<string>",
+                  "description": "(Required) A JSON-encoded set of resources to move. Each type is a list of ids.  Only folders and items may be specified.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentType",
+                  "value": "<string>",
+                  "description": "(Required) Parent type for the new parent of these resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "(Required) Parent ID for the new parent of these resources."
+                },
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Whether to record progress on this task."
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c40f214a-a507-4f70-8fc4-2dd83038f764",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "839b3201-8f33-4c8a-ad89-b7ec8337fdbd",
+              "name": "Unsupported or unknown resource type.\n\nInvalid resources format.\n\nResource type not supported.\n\nNo resources specified.\n\nResource not found.\n\nID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "move"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "resources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a40eba8e-2d90-42e1-b07e-00310d3c1962",
+          "name": "Download a resource based on its path",
+          "request": {
+            "name": "Download a resource based on its path",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "path",
+                "download",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1e5b28e-85ba-4e34-88c2-b8fa1a013016",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "download",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4eab4ee8-db3e-4c25-b06d-acf9c43ac259",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "download",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28a74120-e081-4c90-9dd7-d448bbb6b47b",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "download",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0db9cf86-79c9-4a3c-8da1-8f6eace71fa0",
+          "name": "Redirect to a model endpoint based on a resource path",
+          "request": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "description": {
+              "content": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "path",
+                "redirect",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1aec5404-1e88-4f74-af7e-4f8a763dd0f1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ddcd16f-6c67-48b9-9726-8c69e2d7f6a1",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "250921bb-4b0b-40e5-b570-01c3677554c7",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "892d5587-3bae-4442-a7de-fe0ef4587da5",
+          "name": "Redirect to a model endpoint based on a resource path",
+          "request": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "description": {
+              "content": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "path",
+                "redirect",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "265f63a3-9ab6-406b-9a19-fa676e89b879",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1e29f01-75e3-4456-98bf-dc77c91eac94",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90e35f27-3c3d-48f6-afb4-46a1cf7fa092",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea571ecb-389d-4027-80cd-e47f6d511c8c",
+          "name": "Redirect to a model endpoint based on a resource path",
+          "request": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "description": {
+              "content": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "path",
+                "redirect",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0cacc35-9701-4ecb-844c-704ae9f4db9a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cdd2669e-f6d8-4d00-92f3-ce57940af6f3",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4392935-57ff-4383-937a-b11ca156d490",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9ecdd60-3181-4599-90a4-64340b34cbd1",
+          "name": "Redirect to a model endpoint based on a resource path",
+          "request": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "description": {
+              "content": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resource",
+                "path",
+                "redirect",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6973a0b4-8d5f-4e5f-9112-2f07adba0cc4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a4000a6-7f95-4728-b9d6-c69efc7c916d",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d5bd0072-474a-475c-9611-ecf181920009",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "path",
+                    "redirect",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "476ecd79-c69c-43f3-bf8c-406ea7a6ba13",
+          "name": "Get resource paths for multiple resources at once.",
+          "request": {
+            "name": "Get resource paths for multiple resources at once.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "paths"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "514b4c86-c3bf-4cac-b9e1-c7c49551f5bd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "paths"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e56352c3-4b2d-4561-9b5c-e95c2d0eba76",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "paths"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d2182ea-4f5e-4765-945f-183ce7a13f92",
+          "name": "Search for resources in the system.",
+          "request": {
+            "name": "Search for resources in the system.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "text",
+                  "description": "The search mode. Can always use either a text search or a prefix-based search."
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "(Required) A JSON list of resource types to search for, e.g. [\"user\", \"folder\", \"item\"]."
+                },
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "0",
+                  "description": "Minimum required access level."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8e23eaf-64dd-4643-a104-f0dbd3703f08",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "text"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e63f62e7-e454-4a7b-8e9f-5dc003de1616",
+              "name": "Invalid type list format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "text"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "level",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23ff0f26-b82c-4ad5-b841-9930587aa3d6",
+          "name": "Get any resource by ID.",
+          "request": {
+            "name": "Get any resource by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) The type of the resource (item, file, etc.)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the resource."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a64ddf70-c0f0-4d0b-a228-b0e06100c8ef",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e982c33a-a143-42aa-b2d0-fcde2c4c2b91",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "60cae138-2c87-4f71-a2b1-b33c9285d750",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9908f15f-8b4f-46fe-9b60-aeeaacf10726",
+          "name": "Get all of the items that are children of a resource.",
+          "request": {
+            "name": "Get all of the items that are children of a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                ":id",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) The type of the resource (folder, collection, or user)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "_id",
+                  "description": "Field to sort the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdir",
+                  "value": "1",
+                  "description": "Sort order: 1 for ascending, -1 for descending."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the resource."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca6e9c28-7ad9-40ac-9958-4aeb9096c4dc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "_id"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8a2ad61e-58fd-455b-9bf6-d4a25d021e42",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "_id"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "afec2932-9fe2-41ed-abbb-5d2397dec8a3",
+              "name": "Access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "_id"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "232f7463-ea51-4959-b008-d2a594966b65",
+          "name": "Get path of a resource.",
+          "request": {
+            "name": "Get path of a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                ":id",
+                "path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) The type of the resource (item, file, etc.)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the resource."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21b4a2ad-f52a-46d6-835c-04b048ef9c2e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef8b2b90-be7e-4ded-82af-0ce4c00a759f",
+              "name": "ID was invalid.\n\nInvalid resource type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2f26388-8e66-44ca-ad7d-2f939670196d",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6021ad6a-c572-4803-a386-5fad81a36a62",
+          "name": "Set the created or updated timestamp for a resource.",
+          "request": {
+            "name": "Set the created or updated timestamp for a resource.",
+            "description": {},
+            "url": {
+              "path": [
+                "resource",
+                ":id",
+                "timestamp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) The type of the resource (item, file, etc.)."
+                },
+                {
+                  "disabled": false,
+                  "key": "created",
+                  "value": "<string>",
+                  "description": "The new created timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated",
+                  "value": "<string>",
+                  "description": "The new updated timestamp."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the resource."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75ca5de4-f16b-400d-bf82-a86fe6443023",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "timestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2ce0a4a-d17f-45c7-b89e-a79cb2cd4747",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "timestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dcfef676-9fa3-4387-b4aa-9088416a8885",
+              "name": "Access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resource",
+                    ":id",
+                    "timestamp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the resource."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0364e729-5c0b-49ff-9729-7fe4038e3888",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation resource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

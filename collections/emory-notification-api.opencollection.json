@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation notification API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "notification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List notification events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/notification",
+            "params": [
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter out events before this date."
+              }
+            ]
+          },
+          "docs": "This endpoint can be used for manual long-polling when SSE support is disabled or otherwise unavailable. The events are always returned in chronological order."
+        },
+        {
+          "info": {
+            "name": "Stream notifications for a given user via the SSE protocol.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/notification/stream",
+            "params": [
+              {
+                "name": "timeout",
+                "value": "",
+                "type": "query",
+                "description": "The duration without a notification before the stream is closed."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Filter out events before this time stamp."
+              }
+            ]
+          },
+          "docs": "This uses long-polling to keep the connection open for several minutes at a time (or longer) and should be requested with an EventSource object or other SSE-capable client. <p>Notifications are returned within a few seconds of when they occur.  When no notification occurs for the timeout duration, the stream is closed. <p>This connection can stay open indefinitely long."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

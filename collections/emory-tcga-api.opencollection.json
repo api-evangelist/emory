@@ -1,0 +1,943 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation tcga API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tcga",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the TCGA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga"
+          },
+          "docs": "Get the TCGA collection"
+        },
+        {
+          "info": {
+            "name": "Set the TCGA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga",
+            "params": [
+              {
+                "name": "collectionId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the collection"
+              }
+            ]
+          },
+          "docs": "Set the TCGA collection"
+        },
+        {
+          "info": {
+            "name": "Remove the TCGA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga"
+          },
+          "docs": "Remove the TCGA collection"
+        },
+        {
+          "info": {
+            "name": "Import an item as an Aperio annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/aperio",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the item or root to import"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Import annotations with this tag"
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Perform a recursive search for annotations"
+              }
+            ]
+          },
+          "docs": "Import an item as an Aperio annotation"
+        },
+        {
+          "info": {
+            "name": "List cases in the TCGA dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case",
+            "params": [
+              {
+                "name": "cohort",
+                "value": "",
+                "type": "query",
+                "description": "The id of the cohort document"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List cases in the TCGA dataset"
+        },
+        {
+          "info": {
+            "name": "Import a folder as a TCGA case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the folder to import"
+              }
+            ]
+          },
+          "docs": "Import a folder as a TCGA case"
+        },
+        {
+          "info": {
+            "name": "Get a case document from a label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/label/:label",
+            "params": [
+              {
+                "name": "label",
+                "value": "",
+                "type": "path",
+                "description": "The label of the case"
+              }
+            ]
+          },
+          "docs": "Get a case document from a label"
+        },
+        {
+          "info": {
+            "name": "Search for cases by clinical data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/search",
+            "params": [
+              {
+                "name": "table",
+                "value": "",
+                "type": "query",
+                "description": "A table to search"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "A key that should be present"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The value associated with the given key"
+              },
+              {
+                "name": "substring",
+                "value": "",
+                "type": "query",
+                "description": "Find values containing this substring"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Only one of \"value\" or \"substring\" may be provided."
+        },
+        {
+          "info": {
+            "name": "Get a case document from an id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              }
+            ]
+          },
+          "docs": "Get a case document from an id"
+        },
+        {
+          "info": {
+            "name": "Remove a case document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              }
+            ]
+          },
+          "docs": "Remove a case document"
+        },
+        {
+          "info": {
+            "name": "List images under a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/images",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List images under a case"
+        },
+        {
+          "info": {
+            "name": "List tables present inside case metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/metadata/tables",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              }
+            ]
+          },
+          "docs": "List tables present inside case metadata"
+        },
+        {
+          "info": {
+            "name": "Get case metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/metadata/:table",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path",
+                "description": "The table name to get"
+              }
+            ]
+          },
+          "docs": "Get case metadata"
+        },
+        {
+          "info": {
+            "name": "Create or replace case metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/metadata/:table",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path",
+                "description": "The table to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or replace case metadata"
+        },
+        {
+          "info": {
+            "name": "Update case metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/metadata/:table",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path",
+                "description": "The table to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata fields to null to delete them."
+        },
+        {
+          "info": {
+            "name": "Delete case metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/case/:id/metadata/:table",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the case"
+              },
+              {
+                "name": "table",
+                "value": "",
+                "type": "path",
+                "description": "The table to remove"
+              }
+            ]
+          },
+          "docs": "Delete case metadata"
+        },
+        {
+          "info": {
+            "name": "List cohorts in the TCGA dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List cohorts in the TCGA dataset"
+        },
+        {
+          "info": {
+            "name": "Import a folder as a TCGA cohort type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the folder to import"
+              }
+            ]
+          },
+          "docs": "Import a folder as a TCGA cohort type"
+        },
+        {
+          "info": {
+            "name": "Get a cohort document from an id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the cohort"
+              }
+            ]
+          },
+          "docs": "Get a cohort document from an id"
+        },
+        {
+          "info": {
+            "name": "Remove a cohort type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the cohort"
+              }
+            ]
+          },
+          "docs": "Remove a cohort type"
+        },
+        {
+          "info": {
+            "name": "List slide images in a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort/:id/images",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the cohort"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List slide images in a cohort"
+        },
+        {
+          "info": {
+            "name": "List slides in a cohort",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/cohort/:id/slides",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the cohort"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List slides in a cohort"
+        },
+        {
+          "info": {
+            "name": "Find images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/image",
+            "params": [
+              {
+                "name": "slide",
+                "value": "",
+                "type": "query",
+                "description": "The id of slide document"
+              },
+              {
+                "name": "caseName",
+                "value": "",
+                "type": "query",
+                "description": "The name of the case"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Find images"
+        },
+        {
+          "info": {
+            "name": "Import an item as a TCGA slide image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/image",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the item to import"
+              }
+            ]
+          },
+          "docs": "Import an item as a TCGA slide image"
+        },
+        {
+          "info": {
+            "name": "Get an image document by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/image/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the image"
+              }
+            ]
+          },
+          "docs": "Get an image document by id"
+        },
+        {
+          "info": {
+            "name": "Remove an image",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/image/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the image"
+              }
+            ]
+          },
+          "docs": "Remove an image"
+        },
+        {
+          "info": {
+            "name": "Recursively import the TCGA collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/import"
+          },
+          "docs": "This will run as a local job that will execute asynchronously."
+        },
+        {
+          "info": {
+            "name": "Find pathologies for a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/pathology",
+            "params": [
+              {
+                "name": "case",
+                "value": "",
+                "type": "query",
+                "description": "The id of a case document"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Find pathologies for a case"
+        },
+        {
+          "info": {
+            "name": "Import an item as a TCGA pathology",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/pathology",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The id of the item to import"
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Perform a recursive search for pathologies"
+              }
+            ]
+          },
+          "docs": "Import an item as a TCGA pathology"
+        },
+        {
+          "info": {
+            "name": "Get a pathology document by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/pathology/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the pathology"
+              }
+            ]
+          },
+          "docs": "Get a pathology document by id"
+        },
+        {
+          "info": {
+            "name": "Remove a pathology",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/pathology/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the pathology"
+              }
+            ]
+          },
+          "docs": "Remove a pathology"
+        },
+        {
+          "info": {
+            "name": "Find slides for a case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/slide",
+            "params": [
+              {
+                "name": "case",
+                "value": "",
+                "type": "query",
+                "description": "The id of case document"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Find slides for a case"
+        },
+        {
+          "info": {
+            "name": "Import a folder as a TCGA slide",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/slide",
+            "params": [
+              {
+                "name": "folderId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the folder to import"
+              }
+            ]
+          },
+          "docs": "Import a folder as a TCGA slide"
+        },
+        {
+          "info": {
+            "name": "Get a slide document by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/slide/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the slide"
+              }
+            ]
+          },
+          "docs": "Get a slide document by id"
+        },
+        {
+          "info": {
+            "name": "Remove a slide",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/tcga/slide/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the slide"
+              }
+            ]
+          },
+          "docs": "Remove a slide"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

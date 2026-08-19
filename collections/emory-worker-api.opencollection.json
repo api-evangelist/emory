@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation worker API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "worker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get worker status and task information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/worker/status"
+          },
+          "docs": "Return -1 if the broker is inaccessible."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,380 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation collection API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "collection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List or search for collections.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to perform a text search for collections."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List or search for collections."
+        },
+        {
+          "info": {
+            "name": "Create a new collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/collection",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the collection. Must be unique."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Collection description."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the collection should be publicly visible."
+              }
+            ]
+          },
+          "docs": "Create a new collection."
+        },
+        {
+          "info": {
+            "name": "Get detailed information of accessible collections.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/details"
+          },
+          "docs": "Get detailed information of accessible collections."
+        },
+        {
+          "info": {
+            "name": "Get a collection by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get a collection by ID."
+        },
+        {
+          "info": {
+            "name": "Edit a collection by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Unique name for the collection."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Collection description."
+              }
+            ]
+          },
+          "docs": "Edit a collection by ID."
+        },
+        {
+          "info": {
+            "name": "Delete a collection by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Delete a collection by ID."
+        },
+        {
+          "info": {
+            "name": "Get the access control list for a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get the access control list for a collection."
+        },
+        {
+          "info": {
+            "name": "Set the access control list for a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The access control list as JSON."
+              },
+              {
+                "name": "publicFlags",
+                "value": "",
+                "type": "query",
+                "description": "List of public access flags to set on the collection."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the collection should be publicly visible."
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether the policies should be applied to all folders under this collection as well."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "If recurse is set to True, this controls whether progress notifications will be sent."
+              }
+            ]
+          },
+          "docs": "Set the access control list for a collection."
+        },
+        {
+          "info": {
+            "name": "Get detailed information about a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get detailed information about a collection."
+        },
+        {
+          "info": {
+            "name": "Download an entire collection as a zip archive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "mimeFilter",
+                "value": "",
+                "type": "query",
+                "description": "JSON list of MIME types to include."
+              }
+            ]
+          },
+          "docs": "Download an entire collection as a zip archive."
+        },
+        {
+          "info": {
+            "name": "Set metadata fields on a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "allowNull",
+                "value": "",
+                "type": "query",
+                "description": "Whether \"null\" is allowed as a metadata value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata fields to null in order to delete them."
+        },
+        {
+          "info": {
+            "name": "Delete metadata fields on a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete metadata fields on a collection."
+        },
+        {
+          "info": {
+            "name": "Get quota and assetstore policies for the collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/quota",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The collection ID"
+              }
+            ]
+          },
+          "docs": "Get quota and assetstore policies for the collection."
+        },
+        {
+          "info": {
+            "name": "Set quota and assetstore policies for the collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/collection/:id/quota",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The collection ID"
+              },
+              {
+                "name": "policy",
+                "value": "",
+                "type": "query",
+                "description": "A JSON object containing the policies. This is a dictionary of keys and values. Any key that is not specified does not change."
+              }
+            ]
+          },
+          "docs": "Set quota and assetstore policies for the collection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

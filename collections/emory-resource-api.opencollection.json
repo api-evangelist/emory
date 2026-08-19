@@ -1,0 +1,516 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation resource API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "resource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete a set of items, folders, or other resources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/resource",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to delete. Each type is a list of ids.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              }
+            ]
+          },
+          "docs": "Delete a set of items, folders, or other resources."
+        },
+        {
+          "info": {
+            "name": "Copy a set of items and folders.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/copy",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to copy. Each type is a list of ids.  Only folders and items may be specified.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Parent type for the new parent of these resources."
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent ID for the new parent of these resources."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              },
+              {
+                "name": "copyAnnotations",
+                "value": "",
+                "type": "query",
+                "description": "Copy annotations when copying resources (default true)"
+              }
+            ]
+          },
+          "docs": "Copy a set of items and folders."
+        },
+        {
+          "info": {
+            "name": "Download a set of items, folders, collections, and users as a zip archive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/download",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to download. Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "includeMetadata",
+                "value": "",
+                "type": "query",
+                "description": "Include any metadata in JSON files in the archive."
+              }
+            ]
+          },
+          "docs": "This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors."
+        },
+        {
+          "info": {
+            "name": "Download a set of items, folders, collections, and users as a zip archive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/download",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to download. Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "includeMetadata",
+                "value": "",
+                "type": "query",
+                "description": "Include any metadata in JSON files in the archive."
+              }
+            ]
+          },
+          "docs": "This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors."
+        },
+        {
+          "info": {
+            "name": "Look up a resource in the data hierarchy by path.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/lookup",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "Look up a resource in the data hierarchy by path."
+        },
+        {
+          "info": {
+            "name": "Set metadata on multiple resources at once.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/metadata",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to modify.  Each type is a list of ids. For example: {\"item\": [(item id 1), (item id 2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "allowNull",
+                "value": "",
+                "type": "query",
+                "description": "Whether \"null\" is allowed as a metadata value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata on multiple resources at once."
+        },
+        {
+          "info": {
+            "name": "Move a set of items and folders.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/move",
+            "params": [
+              {
+                "name": "resources",
+                "value": "",
+                "type": "query",
+                "description": "A JSON-encoded set of resources to move. Each type is a list of ids.  Only folders and items may be specified.  For example: {\"item\": [(item id 1), (item id2)], \"folder\": [(folder id 1)]}."
+              },
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Parent type for the new parent of these resources."
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent ID for the new parent of these resources."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              }
+            ]
+          },
+          "docs": "Move a set of items and folders."
+        },
+        {
+          "info": {
+            "name": "Download a resource based on its path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/path/download/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "Download a resource based on its path"
+        },
+        {
+          "info": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/path/redirect/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used."
+        },
+        {
+          "info": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/path/redirect/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used."
+        },
+        {
+          "info": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/path/redirect/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used."
+        },
+        {
+          "info": {
+            "name": "Redirect to a model endpoint based on a resource path",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/path/redirect/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used."
+        },
+        {
+          "info": {
+            "name": "Get resource paths for multiple resources at once.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/paths",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get resource paths for multiple resources at once."
+        },
+        {
+          "info": {
+            "name": "Search for resources in the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The search query."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "The search mode. Can always use either a text search or a prefix-based search."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "A JSON list of resource types to search for, e.g. [\"user\", \"folder\", \"item\"]."
+              },
+              {
+                "name": "level",
+                "value": "",
+                "type": "query",
+                "description": "Minimum required access level."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              }
+            ]
+          },
+          "docs": "Search for resources in the system."
+        },
+        {
+          "info": {
+            "name": "Get any resource by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the resource (item, file, etc.)."
+              }
+            ]
+          },
+          "docs": "Get any resource by ID."
+        },
+        {
+          "info": {
+            "name": "Get all of the items that are children of a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/:id/items",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the resource (folder, collection, or user)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get all of the items that are children of a resource."
+        },
+        {
+          "info": {
+            "name": "Get path of a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/:id/path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the resource (item, file, etc.)."
+              }
+            ]
+          },
+          "docs": "Get path of a resource."
+        },
+        {
+          "info": {
+            "name": "Set the created or updated timestamp for a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/resource/:id/timestamp",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the resource (item, file, etc.)."
+              },
+              {
+                "name": "created",
+                "value": "",
+                "type": "query",
+                "description": "The new created timestamp."
+              },
+              {
+                "name": "updated",
+                "value": "",
+                "type": "query",
+                "description": "The new updated timestamp."
+              }
+            ]
+          },
+          "docs": "Set the created or updated timestamp for a resource."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

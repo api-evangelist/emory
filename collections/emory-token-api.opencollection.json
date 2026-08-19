@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation token API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the current session information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/token/current"
+          },
+          "docs": "Retrieve the current session information."
+        },
+        {
+          "info": {
+            "name": "List all token scopes available in the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/token/scopes"
+          },
+          "docs": "List all token scopes available in the system."
+        },
+        {
+          "info": {
+            "name": "Get an anonymous session token for the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/token/session"
+          },
+          "docs": "If you are logged in, this will return a token associated with that login."
+        },
+        {
+          "info": {
+            "name": "Remove a session from the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/token/session"
+          },
+          "docs": "Attempts to delete your authentication cookie."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

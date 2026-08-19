@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation histomicsui API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "histomicsui",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all metadata for a resource and all folders and items that are children of a resource.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/histomicsui/child_metadata/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the resource."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of the resource"
+              }
+            ]
+          },
+          "docs": "Get all metadata for a resource and all folders and items that are children of a resource."
+        },
+        {
+          "info": {
+            "name": "Move an item to the quarantine folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/histomicsui/quarantine/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Move an item to the quarantine folder."
+        },
+        {
+          "info": {
+            "name": "Restore a quarantined item to its original folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/histomicsui/quarantine/:id/restore",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Restore a quarantined item to its original folder."
+        },
+        {
+          "info": {
+            "name": "Get a list of items with a specific metadata value.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/histomicsui/query_metadata",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The metadata key"
+              },
+              {
+                "name": "value",
+                "value": "",
+                "type": "query",
+                "description": "The (json encoded) metadata value"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get a list of items with a specific metadata value."
+        },
+        {
+          "info": {
+            "name": "Get public settings for HistomicsUI.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/histomicsui/settings"
+          },
+          "docs": "Get public settings for HistomicsUI."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

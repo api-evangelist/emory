@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation dicomweb_assetstore API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "dicomweb_assetstore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import references to DICOM objects from a DICOMweb server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/dicomweb_assetstore/:id/import",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the assetstore representing the DICOMweb server."
+              },
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the parent folder, collection, or user in the Girder data hierarchy under which to import the files."
+              },
+              {
+                "name": "destinationType",
+                "value": "",
+                "type": "query",
+                "description": "The type of the parent object to import into."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of studies to import."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "Any search parameters to filter the studies query."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this operation."
+              }
+            ]
+          },
+          "docs": "Import references to DICOM objects from a DICOMweb server"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

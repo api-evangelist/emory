@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation api_key API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "api_key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API keys for a given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/api_key",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the user whose keys to list."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Only site administrators may list keys for other users. If no userId parameter is passed, lists keys for the current user."
+        },
+        {
+          "info": {
+            "name": "Create a new API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/api_key",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the API key."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "JSON list of scopes for this key."
+              },
+              {
+                "name": "tokenDuration",
+                "value": "",
+                "type": "query",
+                "description": "Max number of days tokens created with this key will last."
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Whether the key is currently active."
+              },
+              {
+                "name": "targetUserId",
+                "value": "",
+                "type": "query",
+                "description": "Id of user to apply the key to"
+              }
+            ]
+          },
+          "docs": "Create a new API key."
+        },
+        {
+          "info": {
+            "name": "Create a token from an API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/api_key/token",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "The API key."
+              },
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query",
+                "description": "Number of days that the token should last."
+              }
+            ]
+          },
+          "docs": "Create a token from an API key."
+        },
+        {
+          "info": {
+            "name": "Update an API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/api_key/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the API key."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the key."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "JSON list of scopes for this key."
+              },
+              {
+                "name": "tokenDuration",
+                "value": "",
+                "type": "query",
+                "description": "Max number of days tokens created with this key will last."
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query",
+                "description": "Whether the key is currently active."
+              }
+            ]
+          },
+          "docs": "Update an API key."
+        },
+        {
+          "info": {
+            "name": "Delete an API key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/api_key/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the API key to delete."
+              }
+            ]
+          },
+          "docs": "Delete an API key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

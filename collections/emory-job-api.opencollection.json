@@ -1,0 +1,391 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation job API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List jobs for a given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the user whose jobs will be listed. If not passed or empty, will use the currently logged in user. If set to \"None\", will list all jobs that do not have an owning user."
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Id of the parent job."
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Filter for type"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter for status"
+              },
+              {
+                "name": "handlers",
+                "value": "",
+                "type": "query",
+                "description": "Filter for handler"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List jobs for a given user."
+        },
+        {
+          "info": {
+            "name": "Create a job model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/job",
+            "params": [
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Title of the job."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the job."
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "ID of the parent job."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the job is publicly visible."
+              },
+              {
+                "name": "handler",
+                "value": "",
+                "type": "query",
+                "description": "Job handler string."
+              },
+              {
+                "name": "args",
+                "value": "",
+                "type": "query",
+                "description": "Job arguments"
+              },
+              {
+                "name": "kwargs",
+                "value": "",
+                "type": "query",
+                "description": "Job keyword arguments"
+              },
+              {
+                "name": "otherFields",
+                "value": "",
+                "type": "query",
+                "description": "Other fields specific to the job handler"
+              }
+            ]
+          },
+          "docs": "Create a job model"
+        },
+        {
+          "info": {
+            "name": "List all jobs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job/all",
+            "params": [
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "Filter for type"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter for status"
+              },
+              {
+                "name": "handlers",
+                "value": "",
+                "type": "query",
+                "description": "Filter for handler"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List all jobs."
+        },
+        {
+          "info": {
+            "name": "Report on old jobs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job/old",
+            "params": [
+              {
+                "name": "age",
+                "value": "",
+                "type": "query",
+                "description": "The minimum age in days."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of statuses to include.  Blank for all."
+              }
+            ]
+          },
+          "docs": "Report on old jobs."
+        },
+        {
+          "info": {
+            "name": "Delete old jobs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/job/old",
+            "params": [
+              {
+                "name": "age",
+                "value": "",
+                "type": "query",
+                "description": "The minimum age in days."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of statuses to include.  Blank for all."
+              }
+            ]
+          },
+          "docs": "Delete old jobs."
+        },
+        {
+          "info": {
+            "name": "Get types and statuses of jobs of current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job/typeandstatus"
+          },
+          "docs": "Get types and statuses of jobs of current user"
+        },
+        {
+          "info": {
+            "name": "Get types and statuses of all jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job/typeandstatus/all"
+          },
+          "docs": "Get types and statuses of all jobs"
+        },
+        {
+          "info": {
+            "name": "Get a job by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job."
+              }
+            ]
+          },
+          "docs": "Get a job by ID."
+        },
+        {
+          "info": {
+            "name": "Update an existing job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job."
+              },
+              {
+                "name": "log",
+                "value": "",
+                "type": "query",
+                "description": "A message to add to the job's log field. If you want to overwrite any existing log content, pass another parameter \"overwrite=true\"."
+              },
+              {
+                "name": "overwrite",
+                "value": "",
+                "type": "query",
+                "description": "If passing a log parameter, you may set this to \"true\" if you wish to overwrite the log field rather than append to it."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Update the status of the job. See the JobStatus enumeration in the constants module in this plugin for the numerical values of each status."
+              },
+              {
+                "name": "progressTotal",
+                "value": "",
+                "type": "query",
+                "description": "Maximum progress value, set <= 0 to indicate indeterminate progress for this job."
+              },
+              {
+                "name": "progressCurrent",
+                "value": "",
+                "type": "query",
+                "description": "Current progress value."
+              },
+              {
+                "name": "progressMessage",
+                "value": "",
+                "type": "query",
+                "description": "Current progress message."
+              },
+              {
+                "name": "notify",
+                "value": "",
+                "type": "query",
+                "description": "If this update should trigger a notification, set this field to true."
+              }
+            ]
+          },
+          "docs": "In most cases, regular users should not call this endpoint. It will typically be used by a batch processing system to send updates regarding the execution of the job. If using a non-user-associated token for authorization, the token must be granted the \"jobs.job_<id>\" scope, where <id> is the ID of the job being updated."
+        },
+        {
+          "info": {
+            "name": "Delete an existing job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/job/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job."
+              }
+            ]
+          },
+          "docs": "Delete an existing job."
+        },
+        {
+          "info": {
+            "name": "Cancel a job by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/job/:id/cancel",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job."
+              }
+            ]
+          },
+          "docs": "Cancel a job by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

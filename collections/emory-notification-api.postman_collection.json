@@ -1,0 +1,369 @@
+{
+  "item": [
+    {
+      "id": "d2de9374-a795-46d6-95d8-29fa5127ed42",
+      "name": "notification",
+      "description": {
+        "content": "notification resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6bd023fe-5d64-43f0-a183-3bc2869a68ba",
+          "name": "List notification events",
+          "request": {
+            "name": "List notification events",
+            "description": {
+              "content": "This endpoint can be used for manual long-polling when SSE support is disabled or otherwise unavailable. The events are always returned in chronological order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Filter out events before this date."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b6aac80-5b62-4560-a102-4c8108c7048c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a82fed7-6b66-4260-9fc1-5fe2f0defbfc",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36083caa-cf7d-4b40-a124-396629ef93f9",
+              "name": "You are not logged in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2a5406e-441d-4b77-8590-37bec19998f4",
+          "name": "Stream notifications for a given user via the SSE protocol.",
+          "request": {
+            "name": "Stream notifications for a given user via the SSE protocol.",
+            "description": {
+              "content": "This uses long-polling to keep the connection open for several minutes at a time (or longer) and should be requested with an EventSource object or other SSE-capable client. <p>Notifications are returned within a few seconds of when they occur.  When no notification occurs for the timeout duration, the stream is closed. <p>This connection can stay open indefinitely long.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "notification",
+                "stream"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "300",
+                  "description": "The duration without a notification before the stream is closed."
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<integer>",
+                  "description": "Filter out events before this time stamp."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4182b14f-7777-41cf-be5d-bde243914e9c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "300"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c043b335-84e9-48b1-bd83-c48b66433d65",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "300"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d94092f7-e75a-4900-bef7-36bbe1a749c8",
+              "name": "You are not logged in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "300"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "426bb9ed-bacb-4a5c-8573-b5a6cd4cb73e",
+              "name": "The notification stream is not enabled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "notification",
+                    "stream"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "timeout",
+                      "value": "300"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "56789022-006d-4b8f-8515-cd270a7388e9",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation notification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

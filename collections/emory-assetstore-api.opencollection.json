@@ -1,0 +1,623 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation assetstore API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "assetstore",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List assetstores.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List assetstores."
+        },
+        {
+          "info": {
+            "name": "Create a new assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Unique name for the assetstore."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the assetstore."
+              },
+              {
+                "name": "root",
+                "value": "",
+                "type": "query",
+                "description": "Root path on disk (for filesystem type)."
+              },
+              {
+                "name": "perms",
+                "value": "",
+                "type": "query",
+                "description": "File creation permissions (for filesystem type)."
+              },
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database name (for GridFS type)"
+              },
+              {
+                "name": "mongohost",
+                "value": "",
+                "type": "query",
+                "description": "Mongo host URI (for GridFS type)"
+              },
+              {
+                "name": "replicaset",
+                "value": "",
+                "type": "query",
+                "description": "Replica set name (for GridFS type)"
+              },
+              {
+                "name": "bucket",
+                "value": "",
+                "type": "query",
+                "description": "The S3 bucket to store data in (for S3 type)."
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Optional path prefix within the bucket under which files will be stored (for S3 type)."
+              },
+              {
+                "name": "accessKeyId",
+                "value": "",
+                "type": "query",
+                "description": "The AWS access key ID to use for authentication (for S3 type)."
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "The AWS secret key to use for authentication (for S3 type)."
+              },
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "The S3 service host (for S3 type).  Default is s3.amazonaws.com.  This can be used to specify a protocol and port as well using the form [http[s]://](host domain)[:(port)]. Do not include the bucket name here."
+              },
+              {
+                "name": "readOnly",
+                "value": "",
+                "type": "query",
+                "description": "If this assetstore is read-only, set this to true."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "The AWS region to which the S3 bucket belongs."
+              },
+              {
+                "name": "inferCredentials",
+                "value": "",
+                "type": "query",
+                "description": "The credentials for connecting to S3 will be inferred by Boto rather than explicitly passed. Inferring credentials will ignore accessKeyId and secret."
+              },
+              {
+                "name": "serverSideEncryption",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use S3 SSE to encrypt the objects uploaded to this bucket (for S3 type)."
+              },
+              {
+                "name": "allowS3AcceleratedTransfer",
+                "value": "",
+                "type": "query",
+                "description": "Whether to allow clients to requests a data transfer using S3 transfer acceleration."
+              },
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The base URL for the DICOMweb server (for DICOMweb)"
+              },
+              {
+                "name": "qido_prefix",
+                "value": "",
+                "type": "query",
+                "description": "The QIDO URL prefix for the server, if needed (for DICOMweb)"
+              },
+              {
+                "name": "wado_prefix",
+                "value": "",
+                "type": "query",
+                "description": "The WADO URL prefix for the server, if needed (for DICOMweb)"
+              },
+              {
+                "name": "auth_type",
+                "value": "",
+                "type": "query",
+                "description": "The authentication type required for the server, if needed (for DICOMweb)"
+              },
+              {
+                "name": "auth_token",
+                "value": "",
+                "type": "query",
+                "description": "Token for authentication if needed (for DICOMweb)"
+              }
+            ]
+          },
+          "docs": "You must be an administrator to call this."
+        },
+        {
+          "info": {
+            "name": "List all past imports for all assetstores.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/all_imports",
+            "params": [
+              {
+                "name": "unique",
+                "value": "",
+                "type": "query",
+                "description": "If true, only show unique imports"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List all past imports for all assetstores."
+        },
+        {
+          "info": {
+            "name": "Get import for record from ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/import/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of an import"
+              }
+            ]
+          },
+          "docs": "Get import for record from ID."
+        },
+        {
+          "info": {
+            "name": "Get information about an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get information about an assetstore."
+        },
+        {
+          "info": {
+            "name": "Update an existing assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Unique name for the assetstore."
+              },
+              {
+                "name": "root",
+                "value": "",
+                "type": "query",
+                "description": "Root path on disk (for Filesystem type)"
+              },
+              {
+                "name": "perms",
+                "value": "",
+                "type": "query",
+                "description": "File creation permissions (for Filesystem type)"
+              },
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database name (for GridFS type)"
+              },
+              {
+                "name": "mongohost",
+                "value": "",
+                "type": "query",
+                "description": "Mongo host URI (for GridFS type)"
+              },
+              {
+                "name": "replicaset",
+                "value": "",
+                "type": "query",
+                "description": "Replica set name (for GridFS type)"
+              },
+              {
+                "name": "bucket",
+                "value": "",
+                "type": "query",
+                "description": "The S3 bucket to store data in (for S3 type)."
+              },
+              {
+                "name": "prefix",
+                "value": "",
+                "type": "query",
+                "description": "Optional path prefix within the bucket under which files will be stored (for S3 type)."
+              },
+              {
+                "name": "accessKeyId",
+                "value": "",
+                "type": "query",
+                "description": "The AWS access key ID to use for authentication (for S3 type)."
+              },
+              {
+                "name": "secret",
+                "value": "",
+                "type": "query",
+                "description": "The AWS secret key to use for authentication (for S3 type)."
+              },
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "The S3 service host (for S3 type).  Default is s3.amazonaws.com.  This can be used to specify a protocol and port as well using the form [http[s]://](host domain)[:(port)]. Do not include the bucket name here."
+              },
+              {
+                "name": "readOnly",
+                "value": "",
+                "type": "query",
+                "description": "If this assetstore is read-only, set this to true."
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "The AWS region to which the S3 bucket belongs."
+              },
+              {
+                "name": "current",
+                "value": "",
+                "type": "query",
+                "description": "Whether this is the current assetstore"
+              },
+              {
+                "name": "inferCredentials",
+                "value": "",
+                "type": "query",
+                "description": "The credentials for connecting to S3 will be inferred by Boto rather than explicitly passed. Inferring credentials will ignore accessKeyId and secret."
+              },
+              {
+                "name": "serverSideEncryption",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use S3 SSE to encrypt the objects uploaded to this bucket (for S3 type)."
+              },
+              {
+                "name": "allowS3AcceleratedTransfer",
+                "value": "",
+                "type": "query",
+                "description": "Whether to allow clients to requests a data transfer using S3 transfer acceleration."
+              }
+            ]
+          },
+          "docs": "Update an existing assetstore."
+        },
+        {
+          "info": {
+            "name": "Delete an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "This will fail if there are any files in the assetstore."
+        },
+        {
+          "info": {
+            "name": "Get a list of files controlled by an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id/files",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "Get a list of files controlled by an assetstore."
+        },
+        {
+          "info": {
+            "name": "Import existing data into an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id/import",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "importPath",
+                "value": "",
+                "type": "query",
+                "description": "Root path within the underlying storage system to import."
+              },
+              {
+                "name": "destinationId",
+                "value": "",
+                "type": "query",
+                "description": "ID of a folder, collection, or user in Girder under which the data will be imported."
+              },
+              {
+                "name": "destinationType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the destination resource."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on the import."
+              },
+              {
+                "name": "leafFoldersAsItems",
+                "value": "",
+                "type": "query",
+                "description": "Whether folders containing only files should be imported as items."
+              },
+              {
+                "name": "fileIncludeRegex",
+                "value": "",
+                "type": "query",
+                "description": "If set, only filenames matching this regular expression will be imported."
+              },
+              {
+                "name": "fileExcludeRegex",
+                "value": "",
+                "type": "query",
+                "description": "If set, only filenames that do not match this regular expression will be imported. If a file matches both the include and exclude regex, it will be excluded."
+              },
+              {
+                "name": "excludeExisting",
+                "value": "",
+                "type": "query",
+                "description": "If true, then a file with an import path that is already in the system is not imported, even if it is not in the destination hierarchy."
+              }
+            ]
+          },
+          "docs": "This does not move or copy the existing data, it just creates references to it in the Girder data hierarchy. Deleting those references will not delete the underlying data. This operation is currently only supported for S3 assetstores."
+        },
+        {
+          "info": {
+            "name": "Import a single path into an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id/import/single_path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The new import path of the file."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name to use for the file."
+              },
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query",
+                "description": "The mimetyoe of the file."
+              }
+            ]
+          },
+          "docs": "Import a single path into an assetstore."
+        },
+        {
+          "info": {
+            "name": "List all imports for a given assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/assetstore/:id/imports",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "An assetstore ID"
+              },
+              {
+                "name": "unique",
+                "value": "",
+                "type": "query",
+                "description": "If true, only show unique imports"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List all imports for a given assetstore."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

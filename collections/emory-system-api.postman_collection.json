@@ -1,0 +1,2391 @@
+{
+  "item": [
+    {
+      "id": "05bab950-4d9f-47ac-b3ef-1a5915a48359",
+      "name": "system",
+      "description": {
+        "content": "system resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1839d8a8-8f38-4f8b-82ff-35e9bd7ab869",
+          "name": "List all access flags available in the system.",
+          "request": {
+            "name": "List all access flags available in the system.",
+            "description": {},
+            "url": {
+              "path": [
+                "system",
+                "access_flag"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1af38ed-126d-46a9-9fdb-eb08d0784fdc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "access_flag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9fe426bd-b656-49a9-aead-a8d55800e6dc",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "access_flag"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3297f6d5-8782-487d-ac6f-d88845c2943b",
+          "name": "Report the current system status.",
+          "request": {
+            "name": "Report the current system status.",
+            "description": {
+              "content": "Must be a system administrator to call this with any mode other than basic.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "basic",
+                  "description": "Select details to return. \"quick\" are the details that can be answered without much load on the system. \"slow\" also includes some resource-intensive queries."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1f80efb-9279-4abf-96e7-4edcfc8178e3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "basic"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8792356a-4455-41da-a6b1-efb181644360",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "basic"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "187d55c9-24fb-453d-8ba9-bbcd5b1edf95",
+          "name": "Perform a variety of system checks to verify that all is well.",
+          "request": {
+            "name": "Perform a variety of system checks to verify that all is well.",
+            "description": {
+              "content": "Must be a system administrator to call this.  This verifies and corrects some issues, such as incorrect folder sizes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "progress",
+                  "value": "false",
+                  "description": "Whether to record progress on this task."
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "debcea94-78aa-491b-becb-112f2a939d33",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "249c4be0-efd8-4962-939f-89c23b8e3edc",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "progress",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "142c8d2a-d803-42cb-a11c-26a289adf402",
+          "name": "Get the value of a system configuration option.",
+          "request": {
+            "name": "Get the value of a system configuration option.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "section",
+                  "value": "<string>",
+                  "description": "(Required) The section identifying the configuration option."
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) The key identifying the configuration option."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "335e6d3f-9200-4055-9729-796415ea2935",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "section",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d424aea-e189-44b8-9e41-f457bef28712",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "section",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "82b67678-e169-4935-b500-80c45da4d0f4",
+              "name": "No such option with the given section/key exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "section",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccb0d7d4-4745-4e99-bcdc-71231712e851",
+          "name": "Test connection status to a LDAP server.",
+          "request": {
+            "name": "Test connection status to a LDAP server.",
+            "description": {
+              "content": "You must be an administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "ldap_server",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uri",
+                  "value": "<string>",
+                  "description": "(Required) The URI of the server."
+                },
+                {
+                  "disabled": false,
+                  "key": "bindName",
+                  "value": "<string>",
+                  "description": "(Required) The LDAP identity to bind with."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "(Required) Password to bind with."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4acc0bd-d498-444b-8313-75a57fb791bd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "ldap_server",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bindName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fb220097-d4ee-4cf8-b8c0-3a64385e95fe",
+              "name": "You are not an administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "ldap_server",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bindName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "956202df-8858-4f28-93b6-f1cfdb567d54",
+          "name": "Show the most recent contents of the server logs.",
+          "request": {
+            "name": "Show the most recent contents of the server logs.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "bytes",
+                  "value": "4096",
+                  "description": "Controls how many bytes (from the end of the log) to show. Pass 0 to show the whole log."
+                },
+                {
+                  "disabled": false,
+                  "key": "log",
+                  "value": "error",
+                  "description": "Which log to tail."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c169195-8cf4-4d67-87d2-609c0274d9c4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bytes",
+                      "value": "4096"
+                    },
+                    {
+                      "key": "log",
+                      "value": "error"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35e437c1-4707-4841-8cf7-586afb1aa1d3",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "bytes",
+                      "value": "4096"
+                    },
+                    {
+                      "key": "log",
+                      "value": "error"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1531c96-bd2b-4b46-b014-b4f6d41202d8",
+          "name": "Get the current log level.",
+          "request": {
+            "name": "Get the current log level.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "log",
+                "level"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9975e539-cf26-429d-9301-45f9e42d6ccd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log",
+                    "level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "479f6bfd-74c6-43ad-896d-50b77f0f1f9f",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log",
+                    "level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fd8bd2a-b41c-4573-8f06-091e6d3662e7",
+          "name": "Set the current log level.",
+          "request": {
+            "name": "Set the current log level.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "log",
+                "level"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "level",
+                  "value": "INFO",
+                  "description": "(Required) The new level to set."
+                }
+              ],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbea6e63-d526-421b-80fc-0e206574832f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log",
+                    "level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "INFO"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "29e9b0b5-829b-4f71-8331-9ec4716bc7f1",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "log",
+                    "level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "INFO"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1725882-db2a-4031-8b05-b2f269c2790e",
+          "name": "Get the lists of all available and all loaded plugins.",
+          "request": {
+            "name": "Get the lists of all available and all loaded plugins.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "plugins"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf63830b-a8ef-4a62-a0be-4884c241587c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c107346-f4e9-4ce3-be48-701bad237fd8",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "plugins"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33a60b43-53cb-4726-9c56-8dfb6dba36af",
+          "name": "Restart the Girder REST server.",
+          "request": {
+            "name": "Restart the Girder REST server.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "restart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d8b71b6-6640-4f8a-bb5e-fde57d3f3c41",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f6cc97e7-841a-4305-b5b7-b2986dfd89e2",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fad8bbee-ad81-49a0-a92e-8804ea57c0af",
+          "name": "Unset the value for a system setting.",
+          "request": {
+            "name": "Unset the value for a system setting.",
+            "description": {
+              "content": "Must be a system administrator to call this. This is used to explicitly restore a setting to its default value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "setting"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "(Required) The key identifying the setting to unset."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76202f4f-c1f0-4a4b-8ad3-a914700c22a6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "315f52b0-21d7-4a81-869e-c8e21c2f07e8",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90732fb3-dc9a-4a8e-a6b9-ac6ac9156397",
+          "name": "Get the value of a system setting, or a list of them.",
+          "request": {
+            "name": "Get the value of a system setting, or a list of them.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "setting"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "The key identifying this setting."
+                },
+                {
+                  "disabled": false,
+                  "key": "list",
+                  "value": "<string>",
+                  "description": "A JSON list of keys representing a set of settings to return."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e62e273f-9048-47c3-b6f2-94385db4a7fc",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30b9dd12-df9c-4f28-b80a-cb89ba3edf76",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c4213e0-c697-4196-ac6a-71c1a49784bc",
+          "name": "Set the value for a system setting, or a list of them.",
+          "request": {
+            "name": "Set the value for a system setting, or a list of them.",
+            "description": {
+              "content": "Must be a system administrator to call this. If the value passed is a valid JSON object, it will be parsed and stored as an object.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "setting"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "key",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The key identifying this setting."
+                },
+                {
+                  "key": "value",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "The value for this setting."
+                },
+                {
+                  "key": "list",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "A JSON list of objects with key and value representing a list of settings to set."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db8a4ec7-7be0-4a8c-aa5e-e9d6037772b9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The key identifying this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The value for this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A JSON list of objects with key and value representing a list of settings to set.",
+                        "type": "text/plain"
+                      },
+                      "key": "list",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06acb73d-4439-403b-9059-16a578e5d2e9",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The key identifying this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The value for this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A JSON list of objects with key and value representing a list of settings to set.",
+                        "type": "text/plain"
+                      },
+                      "key": "list",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5c0a38e-acf2-432a-96d0-8cf730519ca8",
+              "name": "Failed to set system setting.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The key identifying this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "key",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The value for this setting.",
+                        "type": "text/plain"
+                      },
+                      "key": "value",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "A JSON list of objects with key and value representing a list of settings to set.",
+                        "type": "text/plain"
+                      },
+                      "key": "list",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e72064ec-622f-4cf9-b878-7de98c70f4d1",
+          "name": "Get access of content creation policy.",
+          "request": {
+            "name": "Get access of content creation policy.",
+            "description": {
+              "content": "Get result in the same structure as the access endpoints of collection, file, and group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "setting",
+                "collection_creation_policy",
+                "access"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec2815c2-249e-4a95-b77f-f55901483e97",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting",
+                    "collection_creation_policy",
+                    "access"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "20ccde52-f4f6-4a4a-91c7-126ec5cd3b3c",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting",
+                    "collection_creation_policy",
+                    "access"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35aaa409-0e28-4a6f-8a36-dd97de755df2",
+          "name": "Get the value of a system setting, or a list of them.",
+          "request": {
+            "name": "Get the value of a system setting, or a list of them.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "setting",
+                "default"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "The key identifying this setting."
+                },
+                {
+                  "disabled": false,
+                  "key": "list",
+                  "value": "<string>",
+                  "description": "A JSON list of keys representing a set of settings to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "default",
+                  "value": "<string>",
+                  "description": "If \"none\", return a null value if a setting is currently the default value. If \"default\", return the default value of the setting(s)."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4c1122e3-28bc-47d2-af41-e8785ab252a3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "default",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5648be47-8d93-4de0-88a9-a529819abdd0",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "setting",
+                    "default"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "list",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "default",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee698b79-779f-444e-b1da-dceaf993f99b",
+          "name": "Discard uploads that have not been finished.",
+          "request": {
+            "name": "Discard uploads that have not been finished.",
+            "description": {
+              "content": "Must be a system administrator to call this. This frees resources that were allocated for the uploads and clears the uploads from database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "uploads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "description": "Clear only a specific upload."
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "Restrict clearing uploads to those started by a specific user."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "Restrict clearing uploads to those within a specific folder or item."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetstoreId",
+                  "value": "<string>",
+                  "description": "Restrict clearing uploads within a specific assetstore."
+                },
+                {
+                  "disabled": false,
+                  "key": "minimumAge",
+                  "value": "<float>",
+                  "description": "Restrict clearing uploads to those that are at least this many days old."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUntracked",
+                  "value": "true",
+                  "description": "Some assetstores can have partial uploads that are no longer in the Girder database.  If this is True, remove all of them (only filtered by assetstoreId)."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9dd4e59f-584e-414c-9e87-586b6d45cd25",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "uploads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumAge",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "includeUntracked",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "683040ff-cac1-4cc1-94b6-536ffc2dcab6",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "uploads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumAge",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "includeUntracked",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9133a151-b345-4703-b521-3dfb0675dce2",
+              "name": "Failed to delete upload",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "uploads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumAge",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "includeUntracked",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1545a569-da56-4209-b57a-24bd11934aa6",
+          "name": "Get a list of uploads that have not been finished.",
+          "request": {
+            "name": "Get a list of uploads that have not been finished.",
+            "description": {
+              "content": "Must be a system administrator to call this.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "system",
+                "uploads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uploadId",
+                  "value": "<string>",
+                  "description": "List only a specific upload."
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "Restrict listing uploads to those started by a specific user."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "Restrict listing uploads to those within a specific folder or item."
+                },
+                {
+                  "disabled": false,
+                  "key": "assetstoreId",
+                  "value": "<string>",
+                  "description": "Restrict listing uploads within a specific assetstore."
+                },
+                {
+                  "disabled": false,
+                  "key": "minimumAge",
+                  "value": "<float>",
+                  "description": "Restrict listing uploads to those that are at least this many days old."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeUntracked",
+                  "value": "true",
+                  "description": "Some assetstores can have partial uploads that are no longer in the Girder database.  If this is True, include all of them (only filtered by assetstoreId) in the result list."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "updated",
+                  "description": "Field to sort the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdir",
+                  "value": "1",
+                  "description": "Sort order: 1 for ascending, -1 for descending."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "351d874d-a762-40a5-a0b4-c7b5a5af1f21",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "uploads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumAge",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "includeUntracked",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "updated"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47a7095f-4644-4aec-b861-b7a3780d4337",
+              "name": "You are not a system administrator.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "uploads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uploadId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetstoreId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minimumAge",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "includeUntracked",
+                      "value": "true"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "updated"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e02b1eb3-fdac-432d-9764-c700064c45f3",
+          "name": "Get the version information for this server.",
+          "request": {
+            "name": "Get the version information for this server.",
+            "description": {},
+            "url": {
+              "path": [
+                "system",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14ace335-cad6-480a-8b7a-b7eb7ec6d97e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90b7d498-f516-4511-8e72-be00c93f7492",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "system",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "610f39ae-6266-455f-a6d8-de8ea1c1db1e",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation system API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

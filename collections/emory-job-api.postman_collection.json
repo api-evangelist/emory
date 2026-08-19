@@ -1,0 +1,1778 @@
+{
+  "item": [
+    {
+      "id": "4072e639-65c0-4a5c-b231-00524c10eb44",
+      "name": "job",
+      "description": {
+        "content": "job resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a6e3537-bfa1-4526-b69a-5d9ee271589d",
+          "name": "List jobs for a given user.",
+          "request": {
+            "name": "List jobs for a given user.",
+            "description": {},
+            "url": {
+              "path": [
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<string>",
+                  "description": "The ID of the user whose jobs will be listed. If not passed or empty, will use the currently logged in user. If set to \"None\", will list all jobs that do not have an owning user."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "Id of the parent job."
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "Filter for type"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter for status"
+                },
+                {
+                  "disabled": false,
+                  "key": "handlers",
+                  "value": "<string>",
+                  "description": "Filter for handler"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created",
+                  "description": "Field to sort the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdir",
+                  "value": "-1",
+                  "description": "Sort order: 1 for ascending, -1 for descending."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "571ab02d-8382-4d92-9fa9-46a017f66ced",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handlers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "-1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "485e49b9-8a1d-4fe3-a939-6aa348e05282",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "userId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handlers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "-1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ece6d5b-aedf-439a-af83-8c3436fc395b",
+          "name": "Create a job model",
+          "request": {
+            "name": "Create a job model",
+            "description": {},
+            "url": {
+              "path": [
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "(Required) Title of the job."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "(Required) Type of the job."
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "ID of the parent job."
+                },
+                {
+                  "disabled": false,
+                  "key": "public",
+                  "value": "false",
+                  "description": "Whether the job is publicly visible."
+                },
+                {
+                  "disabled": false,
+                  "key": "handler",
+                  "value": "<string>",
+                  "description": "Job handler string."
+                },
+                {
+                  "disabled": false,
+                  "key": "args",
+                  "value": "<string>",
+                  "description": "Job arguments"
+                },
+                {
+                  "disabled": false,
+                  "key": "kwargs",
+                  "value": "<string>",
+                  "description": "Job keyword arguments"
+                },
+                {
+                  "disabled": false,
+                  "key": "otherFields",
+                  "value": "<string>",
+                  "description": "Other fields specific to the job handler"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "241f5ecb-8550-4ce9-9bbd-94dee8985ff3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "public",
+                      "value": "false"
+                    },
+                    {
+                      "key": "handler",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "args",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kwargs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "otherFields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d319767-9b28-4023-9e24-799d8ab299d3",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "public",
+                      "value": "false"
+                    },
+                    {
+                      "key": "handler",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "args",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "kwargs",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "otherFields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a20cf489-f461-4905-bab9-dd48e96835fd",
+          "name": "List all jobs.",
+          "request": {
+            "name": "List all jobs.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "<string>",
+                  "description": "Filter for type"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter for status"
+                },
+                {
+                  "disabled": false,
+                  "key": "handlers",
+                  "value": "<string>",
+                  "description": "Filter for handler"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Result set size limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset into result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "created",
+                  "description": "Field to sort the result set by."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortdir",
+                  "value": "-1",
+                  "description": "Sort order: 1 for ascending, -1 for descending."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8406e6bc-da6b-4235-8d50-e236d33fdc2b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handlers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "-1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "804bcb97-dfb9-4edc-827c-fc6c8867a64f",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "handlers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "created"
+                    },
+                    {
+                      "key": "sortdir",
+                      "value": "-1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0cc3a01-f74a-483c-9608-05fbaad4f7d3",
+          "name": "Delete old jobs.",
+          "request": {
+            "name": "Delete old jobs.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                "old"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "age",
+                  "value": "1",
+                  "description": "The minimum age in days."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "0,1,2",
+                  "description": "A comma-separated list of statuses to include.  Blank for all."
+                }
+              ],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55fff2f5-a233-4651-8e70-fb844ca9bee5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "age",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "0,1,2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3378cf2f-f0ca-4c94-ac15-bead22a1b07d",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "age",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "0,1,2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a55f4f3a-fdab-4f53-8570-8c5194cf3688",
+          "name": "Report on old jobs.",
+          "request": {
+            "name": "Report on old jobs.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                "old"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "age",
+                  "value": "1",
+                  "description": "The minimum age in days."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "0,1,2",
+                  "description": "A comma-separated list of statuses to include.  Blank for all."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d5f65db-35d2-4645-a912-d167c20199c4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "age",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "0,1,2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efef3a8c-6cb5-415f-8e04-0607b13c502c",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "old"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "age",
+                      "value": "1"
+                    },
+                    {
+                      "key": "status",
+                      "value": "0,1,2"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2119eb7-26ba-40c3-b2fe-2b0615f257fd",
+          "name": "Get types and statuses of jobs of current user",
+          "request": {
+            "name": "Get types and statuses of jobs of current user",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                "typeandstatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04d17154-d6c0-40f2-bd73-b49a3b9f5943",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "typeandstatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7341ea6-6fa6-4cc3-a506-e929062cb48e",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "typeandstatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42a7b11d-a7bb-43e3-9ebc-f5e2926fa1ee",
+          "name": "Get types and statuses of all jobs",
+          "request": {
+            "name": "Get types and statuses of all jobs",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                "typeandstatus",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4c8593c-8e2a-4e62-a228-6ea54fd0cc17",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "typeandstatus",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a453812-38fa-41c4-b44c-4a1b5e20b76a",
+              "name": "Admin access was denied for the job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    "typeandstatus",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "000e74c9-4373-449d-b681-86dad768e6c7",
+          "name": "Delete an existing job.",
+          "request": {
+            "name": "Delete an existing job.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the job."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16518293-8c60-4bee-ad16-7b3fb67cd210",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba36ca85-f153-4ce2-bb4d-a19d37bcbfbc",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e95811e0-066a-4c99-b8d9-61501c725aa8",
+              "name": "Admin access was denied for the job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d2e978a-bc0d-47eb-82ba-8ec020114f46",
+          "name": "Get a job by ID.",
+          "request": {
+            "name": "Get a job by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the job."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0fc275d-def2-4587-a389-12b88c2d5c43",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e03f9a71-77bd-4bf4-89ff-15a5811872cd",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76262cfd-ce8e-469d-87e7-8992e45bfd36",
+              "name": "Read access was denied for the job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "566dae5b-0701-4bf8-ab62-4e57e01a402a",
+          "name": "Update an existing job.",
+          "request": {
+            "name": "Update an existing job.",
+            "description": {
+              "content": "In most cases, regular users should not call this endpoint. It will typically be used by a batch processing system to send updates regarding the execution of the job. If using a non-user-associated token for authorization, the token must be granted the \"jobs.job_<id>\" scope, where <id> is the ID of the job being updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "job",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "log",
+                  "value": "<string>",
+                  "description": "A message to add to the job's log field. If you want to overwrite any existing log content, pass another parameter \"overwrite=true\"."
+                },
+                {
+                  "disabled": false,
+                  "key": "overwrite",
+                  "value": "false",
+                  "description": "If passing a log parameter, you may set this to \"true\" if you wish to overwrite the log field rather than append to it."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Update the status of the job. See the JobStatus enumeration in the constants module in this plugin for the numerical values of each status."
+                },
+                {
+                  "disabled": false,
+                  "key": "progressTotal",
+                  "value": "<float>",
+                  "description": "Maximum progress value, set <= 0 to indicate indeterminate progress for this job."
+                },
+                {
+                  "disabled": false,
+                  "key": "progressCurrent",
+                  "value": "<float>",
+                  "description": "Current progress value."
+                },
+                {
+                  "disabled": false,
+                  "key": "progressMessage",
+                  "value": "<string>",
+                  "description": "Current progress message."
+                },
+                {
+                  "disabled": false,
+                  "key": "notify",
+                  "value": "true",
+                  "description": "If this update should trigger a notification, set this field to true."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the job."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e451768-5645-440c-91fd-3e2a901e5238",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "log",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progressTotal",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressCurrent",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressMessage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "notify",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "620a25a6-767e-42b8-b6cd-444162a0887f",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "log",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progressTotal",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressCurrent",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressMessage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "notify",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8a757a1-f78c-4df8-a4f6-b042c5b05031",
+              "name": "Write access was denied for the job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "log",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "overwrite",
+                      "value": "false"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "progressTotal",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressCurrent",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "progressMessage",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "notify",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4c229ae-4916-4468-a886-861f064fb376",
+          "name": "Cancel a job by ID.",
+          "request": {
+            "name": "Cancel a job by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "job",
+                ":id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the job."
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07873214-ddce-4cbb-9650-a7559f1c331c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f6ab6a9-72f1-4075-abe9-62e1008b8da6",
+              "name": "ID was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09dc03d4-195a-41c8-a5b8-1f6345d7ddf6",
+              "name": "Write access was denied for the job.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "job",
+                    ":id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the job."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "06133305-13ce-418a-8edb-7070df7d5b49",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation job API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

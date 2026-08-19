@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation files API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List subitems or download a resource based on its path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/files"
+          },
+          "docs": "List subitems or download a resource based on its path"
+        },
+        {
+          "info": {
+            "name": "List subitems or download a resource based on its path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/files/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path",
+                "description": "The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+              }
+            ]
+          },
+          "docs": "List subitems or download a resource based on its path"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

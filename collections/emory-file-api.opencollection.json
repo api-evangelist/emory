@@ -1,0 +1,593 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation file API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "file",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start a new upload or create an empty or link file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file",
+            "params": [
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type being uploaded into."
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the parent."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the file being created."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Size in bytes of the file."
+              },
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query",
+                "description": "The MIME type of the file."
+              },
+              {
+                "name": "linkUrl",
+                "value": "",
+                "type": "query",
+                "description": "If this is a link file, pass its URL instead of size and mimeType using this parameter."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "If included, this information is passed to the data.process event when the upload is complete."
+              },
+              {
+                "name": "assetstoreId",
+                "value": "",
+                "type": "query",
+                "description": "Direct the upload to a specific assetstore (admin-only)."
+              },
+              {
+                "name": "uploadExtraParameters",
+                "value": "",
+                "type": "query",
+                "description": "Arbitrary data to send along with the upload request."
+              }
+            ]
+          },
+          "docs": "Use POST /file/chunk to send the contents of the file.  The data for the first chunk of the file can be included with this query by sending it as the body of the request using an appropriate content-type and with the other parameters as part of the query string.  If the entire file is uploaded via this call, the resulting file is returned."
+        },
+        {
+          "info": {
+            "name": "Upload a chunk of a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file/chunk",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset of the chunk in the file."
+              },
+              {
+                "name": "uploadExtraParameters",
+                "value": "",
+                "type": "query",
+                "description": "Arbitrary data to send along with the upload request."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "uploadId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "The data for the chunk should be sent as the body of the request using an appropriate content-type and with the other parameters as part of the query string."
+        },
+        {
+          "info": {
+            "name": "Finalize an upload explicitly if necessary.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file/completion",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "uploadId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This is only required in certain non-standard upload behaviors. Clients should know which behavior models require the finalize step to be called in their behavior handlers."
+        },
+        {
+          "info": {
+            "name": "Return a list of files matching a hashsum.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/hashsum/:algo/:hash",
+            "params": [
+              {
+                "name": "algo",
+                "value": "",
+                "type": "path",
+                "description": "The type of the given hashsum (case insensitive)."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "The hexadecimal hashsum of the file to download (case insensitive)."
+              }
+            ]
+          },
+          "docs": "Return a list of files matching a hashsum."
+        },
+        {
+          "info": {
+            "name": "Download a file by its hashsum.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/hashsum/:algo/:hash/download",
+            "params": [
+              {
+                "name": "algo",
+                "value": "",
+                "type": "path",
+                "description": "The type of the given hashsum (case insensitive)."
+              },
+              {
+                "name": "hash",
+                "value": "",
+                "type": "path",
+                "description": "The hexadecimal hashsum of the file to download (case insensitive)."
+              }
+            ]
+          },
+          "docs": "Download a file by its hashsum."
+        },
+        {
+          "info": {
+            "name": "Request required offset before resuming an upload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/offset",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "uploadId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Request required offset before resuming an upload."
+        },
+        {
+          "info": {
+            "name": "List files that match a query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/query",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Find files that match this Mongo query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List files that match a query."
+        },
+        {
+          "info": {
+            "name": "Cancel a partially completed upload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/file/upload/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Cancel a partially completed upload."
+        },
+        {
+          "info": {
+            "name": "Get a file's information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get a file's information."
+        },
+        {
+          "info": {
+            "name": "Change file metadata such as name or MIME type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "The name to set on the file."
+              },
+              {
+                "name": "mimeType",
+                "value": "",
+                "type": "query",
+                "description": "The MIME type of the file."
+              }
+            ]
+          },
+          "docs": "Change file metadata such as name or MIME type."
+        },
+        {
+          "info": {
+            "name": "Delete a file by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Delete a file by ID."
+        },
+        {
+          "info": {
+            "name": "Change the contents of an existing file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/contents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Size in bytes of the new file."
+              },
+              {
+                "name": "reference",
+                "value": "",
+                "type": "query",
+                "description": "If included, this information is passed to the data.process event when the upload is complete."
+              },
+              {
+                "name": "assetstoreId",
+                "value": "",
+                "type": "query",
+                "description": "Direct the upload to a specific assetstore (admin-only)."
+              }
+            ]
+          },
+          "docs": "After calling this, send the chunks just like you would with a normal file upload."
+        },
+        {
+          "info": {
+            "name": "Copy a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "itemId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Copy a file."
+        },
+        {
+          "info": {
+            "name": "Download a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Start downloading at this offset in bytes within the file."
+              },
+              {
+                "name": "endByte",
+                "value": "",
+                "type": "query",
+                "description": "If you only wish to download part of the file, pass this as the index of the last byte to download. Unlike the HTTP Range header, the endByte parameter is non-inclusive, so you should set it to the index of the byte one past the final byte you wish to receive."
+              },
+              {
+                "name": "contentDisposition",
+                "value": "",
+                "type": "query",
+                "description": "Specify the Content-Disposition response header disposition-type value."
+              },
+              {
+                "name": "extraParameters",
+                "value": "",
+                "type": "query",
+                "description": "Arbitrary data to send along with the download request."
+              }
+            ]
+          },
+          "docs": "This endpoint also accepts the HTTP \"Range\" header for partial file downloads."
+        },
+        {
+          "info": {
+            "name": "Download a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/download/:name",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the file."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the file.  This is ignored."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Start downloading at this offset in bytes within the file."
+              }
+            ]
+          },
+          "docs": "The name parameter doesn't alter the download.  Some download clients save files based on the last part of a path, and specifying the name satisfies those clients."
+        },
+        {
+          "info": {
+            "name": "Manually compute the checksum values for a given file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/hashsum",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the file."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to track progress of the operation"
+              }
+            ]
+          },
+          "docs": "Manually compute the checksum values for a given file."
+        },
+        {
+          "info": {
+            "name": "Download the hashsum key file for a given file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/hashsum_file/:algo",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the file."
+              },
+              {
+                "name": "algo",
+                "value": "",
+                "type": "path",
+                "description": "The hashsum algorithm."
+              }
+            ]
+          },
+          "docs": "This is meant to be used in conjunction with CMake's ExternalData module."
+        },
+        {
+          "info": {
+            "name": "Adjust the import path of a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/import/adjust_path",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The new import path of the file."
+              }
+            ]
+          },
+          "docs": "Adjust the import path of a file."
+        },
+        {
+          "info": {
+            "name": "Move a file to a different assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/file/:id/move",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Controls whether progress notifications will be sent."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "assetstoreId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Move a file to a different assetstore."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

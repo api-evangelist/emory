@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation homepage API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "homepage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Public url for getting the homepage properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/homepage"
+          },
+          "docs": "Public url for getting the homepage properties."
+        },
+        {
+          "info": {
+            "name": "Return the folder IDs for uploaded asset content.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/homepage/assets"
+          },
+          "docs": "Return the folder IDs for uploaded asset content."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

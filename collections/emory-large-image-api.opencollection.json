@@ -1,0 +1,304 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation large_image API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "large_image",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Count the number of cached associated image files for large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/associated_images",
+            "params": [
+              {
+                "name": "imageKey",
+                "value": "",
+                "type": "query",
+                "description": "If specific, only include images with the specified key"
+              }
+            ]
+          },
+          "docs": "The imageKey can also be \"tileFrames\"."
+        },
+        {
+          "info": {
+            "name": "Delete cached associated image files from large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/associated_images",
+            "params": [
+              {
+                "name": "imageKey",
+                "value": "",
+                "type": "query",
+                "description": "If specific, only include images with the specified key"
+              }
+            ]
+          },
+          "docs": "Delete cached associated image files from large_image items."
+        },
+        {
+          "info": {
+            "name": "Get information on caches.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/cache"
+          },
+          "docs": "Get information on caches."
+        },
+        {
+          "info": {
+            "name": "Clear tile source caches to release resources and file handles.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/cache/clear"
+          },
+          "docs": "Clear tile source caches to release resources and file handles."
+        },
+        {
+          "info": {
+            "name": "Reformat a Girder config file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/config/format",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reformat a Girder config file"
+        },
+        {
+          "info": {
+            "name": "Replace the existing Girder config file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/config/replace",
+            "params": [
+              {
+                "name": "restart",
+                "value": "",
+                "type": "query",
+                "description": "Whether to restart the server after updating the config file"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the existing Girder config file"
+        },
+        {
+          "info": {
+            "name": "Validate a Girder config file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/config/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of errors found."
+        },
+        {
+          "info": {
+            "name": "Create large images for all items within a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/folder/:id/tiles",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder."
+              },
+              {
+                "name": "createJobs",
+                "value": "",
+                "type": "query",
+                "description": "If true, a job will be used to create the image when needed; if always, a job will always be used; if false, a job will never be used, creating a version of the image in a preferred format."
+              },
+              {
+                "name": "localJobs",
+                "value": "",
+                "type": "query",
+                "description": "If true, run each creation job locally; if false, run via the remote worker."
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "If true, items in child folders will also be checked."
+              },
+              {
+                "name": "cancelJobs",
+                "value": "",
+                "type": "query",
+                "description": "If true, unfinished large image job(s) associated with items in the folder will be canceled, then a new large image created; if false, items with an unfinished large image will be skipped."
+              },
+              {
+                "name": "redoExisting",
+                "value": "",
+                "type": "query",
+                "description": "If true, existing large images should be removed and recreated. Otherwise they will be skipped."
+              }
+            ]
+          },
+          "docs": "Does not work for new items with multiple files."
+        },
+        {
+          "info": {
+            "name": "Count the number of cached histograms for large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/histograms"
+          },
+          "docs": "Count the number of cached histograms for large_image items."
+        },
+        {
+          "info": {
+            "name": "Delete cached histograms from large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/histograms"
+          },
+          "docs": "Delete cached histograms from large_image items."
+        },
+        {
+          "info": {
+            "name": "Get public settings for large image display.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/settings"
+          },
+          "docs": "Get public settings for large image display."
+        },
+        {
+          "info": {
+            "name": "List all Girder tile sources with associated extensions, mime types, and versions.  Lower values indicate a higher priority for an extension or mime type with that source.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/sources"
+          },
+          "docs": "List all Girder tile sources with associated extensions, mime types, and versions.  Lower values indicate a higher priority for an extension or mime type with that source."
+        },
+        {
+          "info": {
+            "name": "Count the number of cached thumbnail files for large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/thumbnails",
+            "params": [
+              {
+                "name": "spec",
+                "value": "",
+                "type": "query",
+                "description": "A JSON list of thumbnail specifications to count.  If empty, all cached thumbnails are counted.  The specifications typically include width, height, encoding, and encoding options."
+              }
+            ]
+          },
+          "docs": "Count the number of cached thumbnail files for large_image items."
+        },
+        {
+          "info": {
+            "name": "Create cached thumbnail files from large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/thumbnails",
+            "params": [
+              {
+                "name": "spec",
+                "value": "",
+                "type": "query",
+                "description": "A JSON list of thumbnail specifications to create.  The specifications typically include width, height, encoding, and encoding options."
+              },
+              {
+                "name": "logInterval",
+                "value": "",
+                "type": "query",
+                "description": "The number of seconds between log messages.  This also determines how often the creation job is checked if it has been canceled or deleted.  A value of 0 will log after each thumbnail is checked or created."
+              },
+              {
+                "name": "concurrent",
+                "value": "",
+                "type": "query",
+                "description": "The number of concurrent threads to use when making thumbnails.  0 or unspecified to base this on the number of reported cpus."
+              }
+            ]
+          },
+          "docs": "This creates a local job that processes all large_image items.  A common spec for the Girder API is: [{\"width\": 160, \"height\": 100}, {\"width\": 160, \"height\": 100, \"imageKey\": \"macro\"}, {\"width\": 160, \"height\": 100, \"imageKey\": \"label\"}]"
+        },
+        {
+          "info": {
+            "name": "Delete cached thumbnail files from large_image items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/thumbnails",
+            "params": [
+              {
+                "name": "spec",
+                "value": "",
+                "type": "query",
+                "description": "A JSON list of thumbnail specifications to delete.  If empty, all cached thumbnails are deleted.  The specifications typically include width, height, encoding, and encoding options."
+              }
+            ]
+          },
+          "docs": "Delete cached thumbnail files from large_image items."
+        },
+        {
+          "info": {
+            "name": "Remove large images from items where the large image job incomplete.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/large_image/tiles/incomplete"
+          },
+          "docs": "This is used to clean up all large image conversion jobs that have failed to complete.  If a job is in progress, it will be cancelled.  The return value is the number of items that were adjusted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

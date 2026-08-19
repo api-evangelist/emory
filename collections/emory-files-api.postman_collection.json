@@ -1,0 +1,265 @@
+{
+  "item": [
+    {
+      "id": "49a3b699-a83a-4508-8f1b-b1df4c014cfa",
+      "name": "files",
+      "description": {
+        "content": "files resource",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a596ee54-3233-4020-b575-4992dc7b16f5",
+          "name": "List subitems or download a resource based on its path",
+          "request": {
+            "name": "List subitems or download a resource based on its path",
+            "description": {},
+            "url": {
+              "path": [
+                "files"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a41f4fef-d6a9-4f81-919a-bc494288e8a7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dccd6c7f-be83-43b9-9829-7cfb216f7e9d",
+              "name": "A parameter was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09835a71-9765-4088-aed9-1f11a09bdc81",
+          "name": "List subitems or download a resource based on its path",
+          "request": {
+            "name": "List subitems or download a resource based on its path",
+            "description": {},
+            "url": {
+              "path": [
+                "files",
+                ":path"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "path",
+                  "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7f1b982-ac28-4302-8661-559ebe11c754",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a333058-580e-4db4-a951-b82249f07f40",
+              "name": "Path is invalid.\n\nPath refers to a resource that does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7bf1e2c6-7f4b-47c1-9855-cb966ea870db",
+              "name": "Read access was denied for the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    ":path"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "path",
+                      "description": "(Required) The path of the resource.  The path must be an absolute Unix path starting with either \"/user/[user name]\", for a user's resources or \"/collection/[collection name]\", for resources under a collection."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://computablebrain.emory.edu/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9c17de14-7263-41a7-ba8f-489ca16a71d3",
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.",
+      "type": "text/plain"
+    }
+  }
+}

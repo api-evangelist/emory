@@ -1,0 +1,521 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation user API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List or search for users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass this to perform a full text search for items."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List or search for users."
+        },
+        {
+          "info": {
+            "name": "Create a new user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/user",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "login",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "firstName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "lastName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "admin",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new user."
+        },
+        {
+          "info": {
+            "name": "Log in to the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/authentication",
+            "headers": [
+              {
+                "name": "Girder-OTP",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Pass your username and password using HTTP Basic Auth. Sends a cookie that should be passed back in future requests."
+        },
+        {
+          "info": {
+            "name": "Log out of the system.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/user/authentication"
+          },
+          "docs": "Attempts to delete your authentication cookie."
+        },
+        {
+          "info": {
+            "name": "Get detailed information of accessible users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/details"
+          },
+          "docs": "Get detailed information of accessible users."
+        },
+        {
+          "info": {
+            "name": "Retrieve the currently logged-in user information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/me"
+          },
+          "docs": "Retrieve the currently logged-in user information."
+        },
+        {
+          "info": {
+            "name": "Change your password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/password",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "old",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "new",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Change your password."
+        },
+        {
+          "info": {
+            "name": "Create a temporary access token for a user.  The user's password is not changed.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/password/temporary",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Your email address."
+              }
+            ]
+          },
+          "docs": "Create a temporary access token for a user.  The user's password is not changed."
+        },
+        {
+          "info": {
+            "name": "Check if a specified token is a temporary access token for the specified user.  If the token is valid, returns information on the token and user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/password/temporary/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user ID to check."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "token",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Check if a specified token is a temporary access token for the specified user.  If the token is valid, returns information on the token and user."
+        },
+        {
+          "info": {
+            "name": "Send verification email.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/user/verification",
+            "params": [
+              {
+                "name": "login",
+                "value": "",
+                "type": "query",
+                "description": "Your login or email address."
+              }
+            ]
+          },
+          "docs": "Send verification email."
+        },
+        {
+          "info": {
+            "name": "Get a user by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get a user by ID."
+        },
+        {
+          "info": {
+            "name": "Update a user's information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "firstName",
+                "value": "",
+                "type": "query",
+                "description": "First name of the user."
+              },
+              {
+                "name": "lastName",
+                "value": "",
+                "type": "query",
+                "description": "Last name of the user."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "The email of the user."
+              },
+              {
+                "name": "admin",
+                "value": "",
+                "type": "query",
+                "description": "Is the user a site admin (admin access required)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The account status (admin access required)"
+              }
+            ]
+          },
+          "docs": "Update a user's information."
+        },
+        {
+          "info": {
+            "name": "Delete a user by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Delete a user by ID."
+        },
+        {
+          "info": {
+            "name": "Get detailed information about a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get detailed information about a user."
+        },
+        {
+          "info": {
+            "name": "Initiate the enablement of one-time passwords for this user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/otp",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Initiate the enablement of one-time passwords for this user."
+        },
+        {
+          "info": {
+            "name": "Finalize the enablement of one-time passwords for this user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/otp",
+            "headers": [
+              {
+                "name": "Girder-OTP",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Finalize the enablement of one-time passwords for this user."
+        },
+        {
+          "info": {
+            "name": "Disable one-time passwords for this user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/otp",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Disable one-time passwords for this user."
+        },
+        {
+          "info": {
+            "name": "Change a user's password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/password",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "password",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Only administrators may use this endpoint."
+        },
+        {
+          "info": {
+            "name": "Get quota and assetstore policies for the user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/quota",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user ID"
+              }
+            ]
+          },
+          "docs": "Get quota and assetstore policies for the user."
+        },
+        {
+          "info": {
+            "name": "Set quota and assetstore policies for the user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/quota",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user ID"
+              },
+              {
+                "name": "policy",
+                "value": "",
+                "type": "query",
+                "description": "A JSON object containing the policies.  This is a dictionary of keys and values.  Any key that is not specified does not change."
+              }
+            ]
+          },
+          "docs": "Set quota and assetstore policies for the user."
+        },
+        {
+          "info": {
+            "name": "Verify an email address using a token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/user/:id/verification",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The user ID to check."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "token",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Verify an email address using a token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

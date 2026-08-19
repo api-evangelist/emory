@@ -1,0 +1,739 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Girder REST API (Emory Digital Slide Archive) annotation folder API",
+    "version": "3.2.14"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "folder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for folders by certain properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder",
+            "params": [
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the folder's parent"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the folder's parent."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass to perform a text search."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Pass to lookup a folder by exact name match. Must pass parentType and parentId as well when using this."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "You must pass either a \"folderId\" or \"text\" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : \"Invalid search mode.\""
+        },
+        {
+          "info": {
+            "name": "Create a new folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/folder",
+            "params": [
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the folder's parent"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the folder's parent."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the folder."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the folder."
+              },
+              {
+                "name": "reuseExisting",
+                "value": "",
+                "type": "query",
+                "description": "Return existing folder if it exists rather than creating a new one."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the folder should be publicly visible. By default, inherits the value from parent folder, or in the case of user or collection parentType, defaults to False."
+              },
+              {
+                "name": "isVirtual",
+                "value": "",
+                "type": "query",
+                "description": "Whether this is a virtual folder."
+              },
+              {
+                "name": "virtualItemsQuery",
+                "value": "",
+                "type": "query",
+                "description": "Query to use to do virtual item lookup, as JSON."
+              },
+              {
+                "name": "virtualItemsSort",
+                "value": "",
+                "type": "query",
+                "description": "Sort to use during virtual item lookup, as JSON."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "metadata",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Create a new folder."
+        },
+        {
+          "info": {
+            "name": "List folders that match a query.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/query",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Find folders that match this Mongo query."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Result set size limit."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset into result set."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "List folders that match a query."
+        },
+        {
+          "info": {
+            "name": "Get a folder by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get a folder by ID."
+        },
+        {
+          "info": {
+            "name": "Update a folder or move it into a new parent.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name of the folder."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the folder."
+              },
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the folder's parent"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent ID for the new parent of this folder."
+              },
+              {
+                "name": "isVirtual",
+                "value": "",
+                "type": "query",
+                "description": "Whether this is a virtual folder."
+              },
+              {
+                "name": "virtualItemsQuery",
+                "value": "",
+                "type": "query",
+                "description": "Query to use to do virtual item lookup, as JSON."
+              },
+              {
+                "name": "virtualItemsSort",
+                "value": "",
+                "type": "query",
+                "description": "Sort to use during virtual item lookup, as JSON."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "metadata",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Update a folder or move it into a new parent."
+        },
+        {
+          "info": {
+            "name": "Delete a folder by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              }
+            ]
+          },
+          "docs": "Delete a folder by ID."
+        },
+        {
+          "info": {
+            "name": "Get the access control list for a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get the access control list for a folder."
+        },
+        {
+          "info": {
+            "name": "Update the access control list for a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/access",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "access",
+                "value": "",
+                "type": "query",
+                "description": "The JSON-encoded access control list."
+              },
+              {
+                "name": "publicFlags",
+                "value": "",
+                "type": "query",
+                "description": "JSON list of public access flags."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the folder should be publicly visible."
+              },
+              {
+                "name": "recurse",
+                "value": "",
+                "type": "query",
+                "description": "Whether the policies should be applied to all subfolders under this folder as well."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "If recurse is set to True, this controls whether progress notifications will be sent."
+              }
+            ]
+          },
+          "docs": "Update the access control list for a folder."
+        },
+        {
+          "info": {
+            "name": "Remove all contents from a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/contents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the folder to clean."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              }
+            ]
+          },
+          "docs": "Cleans out all the items and subfolders from under a folder, but does not remove the folder itself."
+        },
+        {
+          "info": {
+            "name": "Copy a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/copy",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the original folder."
+              },
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the new folder's parent"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the parent document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Name for the new folder."
+              },
+              {
+                "name": "description",
+                "value": "",
+                "type": "query",
+                "description": "Description for the new folder."
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query",
+                "description": "Whether the folder should be publicly visible. By default, inherits the value from parent folder, or in the case of user or collection parentType, defaults to False. If 'original', use the value of the original folder."
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on this task."
+              },
+              {
+                "name": "copyAnnotations",
+                "value": "",
+                "type": "query",
+                "description": "Copy annotations when copying folder (default true)"
+              }
+            ]
+          },
+          "docs": "Copy a folder."
+        },
+        {
+          "info": {
+            "name": "Get detailed information about a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/details",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get detailed information about a folder."
+        },
+        {
+          "info": {
+            "name": "Download an entire folder as a zip archive.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/download",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "mimeFilter",
+                "value": "",
+                "type": "query",
+                "description": "JSON list of MIME types to include."
+              }
+            ]
+          },
+          "docs": "Download an entire folder as a zip archive."
+        },
+        {
+          "info": {
+            "name": "Set metadata fields on an folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "allowNull",
+                "value": "",
+                "type": "query",
+                "description": "Whether \"null\" is allowed as a metadata value."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set metadata fields to null in order to delete them."
+        },
+        {
+          "info": {
+            "name": "Delete metadata fields on a folder.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete metadata fields on a folder."
+        },
+        {
+          "info": {
+            "name": "Move folder contents to an assetstore.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/move",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Source folder ID"
+              },
+              {
+                "name": "ignoreImported",
+                "value": "",
+                "type": "query",
+                "description": "Ignore files that have been directly imported"
+              },
+              {
+                "name": "progress",
+                "value": "",
+                "type": "query",
+                "description": "Whether to record progress on the move."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "assetstoreId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Move folder contents to an assetstore."
+        },
+        {
+          "info": {
+            "name": "Report the offset of a folder in a list or search.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/position",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "parentType",
+                "value": "",
+                "type": "query",
+                "description": "Type of the folder's parent"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the folder's parent."
+              },
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Pass to perform a text search."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Pass to lookup a folder by exact name match. Must pass parentType and parentId as well when using this."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort the result set by."
+              },
+              {
+                "name": "sortdir",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: 1 for ascending, -1 for descending."
+              }
+            ]
+          },
+          "docs": "You must pass either a \"folderId\" or \"text\" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : \"Invalid search mode.\""
+        },
+        {
+          "info": {
+            "name": "Get the path to the root of the folder's hierarchy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/rootpath",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              }
+            ]
+          },
+          "docs": "Get the path to the root of the folder's hierarchy."
+        },
+        {
+          "info": {
+            "name": "Get a config file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/yaml_config/:name",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the file."
+              }
+            ]
+          },
+          "docs": "This walks up the chain of parent folders until the file is found.  If not found, the .config folder in the parent collection or user is checked.\n\nAny yaml file can be returned.  If the top-level is a dictionary and contains keys \"access\" or \"groups\" where those are dictionaries, the returned value will be modified based on the current user.  The \"groups\" dictionary contains keys that are group names and values that update the main dictionary.  All groups that the user is a member of are merged "
+        },
+        {
+          "info": {
+            "name": "Get a config file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://computablebrain.emory.edu/api/v1/folder/:id/yaml_config/:name",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the document."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the file."
+              },
+              {
+                "name": "user_context",
+                "value": "",
+                "type": "query",
+                "description": "Whether these settings should only apply to the current user."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This replaces or creates an item in the specified folder with the specified name containing a single file also of the specified name.  The file is added to the default assetstore, and any existing file may be permanently deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
