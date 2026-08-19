@@ -41,7 +41,7 @@ tags:
   - Atlanta
 created: '2026-06-03'
 modified: '2026-06-03'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: emory:canvas-lms
   name: Emory Canvas LMS REST API
