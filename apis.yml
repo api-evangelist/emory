@@ -86,6 +86,12 @@ apis:
   humanURL: https://github.com/emory-libraries
   tags:
   - Libraries
+  - Open-Source
+  - Digital Repository
+  - Hyrax
+  - Samvera
+  tags_raw:
+  - Libraries
   - Open Source
   - Digital Repository
   - Hyrax
@@ -101,6 +107,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Annotation
+  tags_raw:
   - annotation
   properties:
   - type: OpenAPI
@@ -125,6 +133,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - APIKeys
+  tags_raw:
   - api_key
   properties:
   - type: OpenAPI
@@ -173,6 +183,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Collection
+  tags_raw:
   - collection
   properties:
   - type: OpenAPI
@@ -196,7 +208,8 @@ apis:
   description: dicomweb_assetstore resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - dicomweb_assetstore
   properties:
   - type: OpenAPI
@@ -221,6 +234,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - File
+  tags_raw:
   - file
   properties:
   - type: OpenAPI
@@ -245,6 +260,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - File
+  tags_raw:
   - files
   properties:
   - type: OpenAPI
@@ -269,6 +286,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Folder
+  tags_raw:
   - folder
   properties:
   - type: OpenAPI
@@ -293,6 +312,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Group
+  tags_raw:
   - group
   properties:
   - type: OpenAPI
@@ -341,6 +362,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Homepage
+  tags_raw:
   - homepage
   properties:
   - type: OpenAPI
@@ -365,6 +388,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Item
+  tags_raw:
   - item
   properties:
   - type: OpenAPI
@@ -389,6 +414,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Job
+  tags_raw:
   - job
   properties:
   - type: OpenAPI
@@ -412,7 +439,8 @@ apis:
   description: large_image resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - large_image
   properties:
   - type: OpenAPI
@@ -437,6 +465,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Notification
+  tags_raw:
   - notification
   properties:
   - type: OpenAPI
@@ -461,6 +491,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Resource
+  tags_raw:
   - resource
   properties:
   - type: OpenAPI
@@ -484,7 +516,8 @@ apis:
   description: slicer_cli_web resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
-  tags:
+  tags: []
+  tags_raw:
   - slicer_cli_web
   properties:
   - type: OpenAPI
@@ -509,6 +542,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - System
+  tags_raw:
   - system
   properties:
   - type: OpenAPI
@@ -533,6 +568,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - TCGA
+  tags_raw:
   - tcga
   properties:
   - type: OpenAPI
@@ -557,6 +594,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Token
+  tags_raw:
   - token
   properties:
   - type: OpenAPI
@@ -581,6 +620,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - User
+  tags_raw:
   - user
   properties:
   - type: OpenAPI
@@ -605,6 +646,8 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
+  - Worker
+  tags_raw:
   - worker
   properties:
   - type: OpenAPI
