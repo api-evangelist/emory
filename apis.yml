@@ -120,7 +120,7 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
-  - Annotation
+  - annotation
   tags_raw:
   - annotation
   properties:
@@ -145,8 +145,7 @@ apis:
   description: api_key resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
-  tags:
-  - APIKeys
+  tags: []
   tags_raw:
   - api_key
   properties:
@@ -581,7 +580,7 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
-  - TCGA
+  - tcga
   tags_raw:
   - tcga
   properties:
@@ -659,7 +658,7 @@ apis:
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
   tags:
-  - Worker
+  - worker
   tags_raw:
   - worker
   properties:
