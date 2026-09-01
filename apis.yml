@@ -2,18 +2,24 @@
 aid: emory
 name: Emory University
 description: >-
-  Emory University is a private research university in Atlanta, Georgia, United
-  States, ranked #196 in the QS World University Rankings 2025. Its public
-  developer and API footprint is modest and largely tied to the libraries and
-  research-computing units rather than a central developer portal. The most
-  visible programmatic surfaces are the Emory Libraries open-source GitHub
-  organization (digital-repository software built on the Samvera/Hyrax stack),
-  a public Digital Slide Archive REST API operated by Emory's biomedical
-  imaging group, federated Shibboleth/SAML identity, and the Instructure
-  Canvas LMS REST API exposed at the institution's Canvas instance. Most
-  institutional systems (OPUS student information, Course Atlas) are gated,
-  browser-based applications without documented public APIs.
+  Emory University is a private research university in Atlanta, Georgia, and a member of the
+  Association of American Universities. Its programmable footprint is small, federated across
+  units, and — as of the 2026-09-01 re-profile — partly retired. Emory operates no central
+  developer portal and no public course, campus or open-data API. The surfaces it genuinely runs
+  itself are: a Shibboleth/SAML identity provider at login.emory.edu, registered in InCommon and
+  reachable through eduGAIN, which is the strongest machine-readable thing the institution
+  publishes; two Emory Libraries applications built on the division's own open-source Rails code
+  (a Blacklight JSON:API search endpoint at digital.library.emory.edu and a Samvera Hyrax
+  repository at open.library.emory.edu that exposes a ResourceSync capability list); and a large
+  public GitHub organization, emory-libraries, holding the Hyrax/Samvera software those systems
+  run on. The Girder-based Digital Slide Archive REST API at computablebrain.emory.edu was
+  Emory-operated and is the source of the 22 OpenAPI contracts held here, but the host now serves
+  a stock nginx page and refuses TLS; those contracts are kept as a retired, correctly attributed
+  Emory surface. Everything else that looks like an Emory API is a tenancy: Canvas on Instructure,
+  library discovery on Ex Libris Primo, and the Course Atlas catalog on CourseLeaf.
 type: Index
+x-type: university
+x-category: Private Research University
 deliveryModel:
   model: unknown
   open_source: unknown
@@ -45,15 +51,23 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/emory.png
 url: https://raw.githubusercontent.com/api-evangelist/emory/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
+  - Private Research University
+  - Association of American Universities
+  - United States
+  - Georgia
+  - Atlanta
   - Research
   - Libraries
-  - United States
-  - Atlanta
+  - Research Repository
+  - Library Catalog
+  - Course Catalog
+  - Identity Federation
+  - Digital Pathology
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
 - aid: emory:canvas-lms
@@ -63,10 +77,18 @@ apis:
     LMS REST API. Access requires an Emory Canvas account and developer keys / API access tokens; the
     reference documentation is mirrored at the institution's Canvas host.
   humanURL: https://canvas.emory.edu/doc/api/
+  x-operator: tenant
+  x-operator-basis: >-
+    CNAME tenancy — canvas.emory.edu resolves CNAME to emory-vanity.instructure.com
+    (instructure.com). The hostname is on Emory's registrable domain, so a host-based verdict
+    reads it as institution-operated; the platform, the contract and the engineering are
+    Instructure's. Emory's tenancy is the real institutional fact and is what is recorded here.
+  x-operator-vendor: Instructure (Canvas LMS)
   tags:
   - Education
   - LMS
   - REST
+  - Tenant
   properties:
   - type: Documentation
     url: https://canvas.emory.edu/doc/api/
@@ -80,6 +102,11 @@ apis:
     itself is gated to Emory credential holders.
   humanURL: https://login.emory.edu/
   baseURL: https://login.emory.edu/idp/shibboleth
+  x-operator: institution
+  x-operator-basis: >-
+    Self-hosted on Emory's own registrable domain. Probed 2026-09-01: HTTP 200 returning a SAML 2.0
+    EntityDescriptor with entityID https://login.emory.edu/idp/shibboleth and
+    <shibmd:Scope>emory.edu</shibmd:Scope>. This is Emory's own engineering, not a vendor's.
   tags:
   - Identity
   - Authentication
@@ -97,6 +124,12 @@ apis:
     curation app, dlp-lux discovery layer, and a Samvera/Hyrax fork. These Ruby on Rails / Hyrax applications
     underpin the OpenEmory and Digital Library Program repositories and their associated repository APIs.
   humanURL: https://github.com/emory-libraries
+  x-operator: institution
+  x-operator-basis: >-
+    Code host, judged by what it says about itself rather than where it is hosted: the
+    emory-libraries organization is authored and maintained by Emory Libraries' Library
+    Technology and Digital Strategies division, and its applications are what
+    digital.library.emory.edu and open.library.emory.edu actually run.
   tags:
   - Libraries
   - Open-Source
@@ -119,6 +152,16 @@ apis:
   description: annotation resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Annotation
   tags_raw:
@@ -126,8 +169,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-annotation-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -145,6 +186,16 @@ apis:
   description: api_key resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - APIKeys
   tags_raw:
@@ -152,8 +203,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-api-key-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -171,13 +220,21 @@ apis:
   description: assetstore resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - assetstore
   properties:
   - type: OpenAPI
     url: openapi/emory-assetstore-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -195,6 +252,16 @@ apis:
   description: collection resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Collection
   tags_raw:
@@ -202,8 +269,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-collection-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -221,14 +286,22 @@ apis:
   description: dicomweb_assetstore resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags: []
   tags_raw:
   - dicomweb_assetstore
   properties:
   - type: OpenAPI
     url: openapi/emory-dicomweb-assetstore-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -246,6 +319,16 @@ apis:
   description: file resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - File
   tags_raw:
@@ -253,8 +336,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-file-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -272,6 +353,16 @@ apis:
   description: files resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - File
   tags_raw:
@@ -279,8 +370,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-files-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -298,6 +387,16 @@ apis:
   description: folder resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Folder
   tags_raw:
@@ -305,8 +404,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-folder-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -324,6 +421,16 @@ apis:
   description: group resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Group
   tags_raw:
@@ -331,8 +438,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-group-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -350,13 +455,21 @@ apis:
   description: histomicsui resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - histomicsui
   properties:
   - type: OpenAPI
     url: openapi/emory-histomicsui-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -374,6 +487,16 @@ apis:
   description: homepage resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Homepage
   tags_raw:
@@ -381,8 +504,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-homepage-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -400,6 +521,16 @@ apis:
   description: item resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Item
   tags_raw:
@@ -407,8 +538,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-item-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -426,6 +555,16 @@ apis:
   description: job resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Job
   tags_raw:
@@ -433,8 +572,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-job-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -452,14 +589,22 @@ apis:
   description: large_image resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags: []
   tags_raw:
   - large_image
   properties:
   - type: OpenAPI
     url: openapi/emory-large-image-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -477,6 +622,16 @@ apis:
   description: notification resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Notification
   tags_raw:
@@ -484,8 +639,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-notification-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -503,6 +656,16 @@ apis:
   description: resource resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Resource
   tags_raw:
@@ -510,8 +673,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-resource-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -529,14 +690,22 @@ apis:
   description: slicer_cli_web resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags: []
   tags_raw:
   - slicer_cli_web
   properties:
   - type: OpenAPI
     url: openapi/emory-slicer-cli-web-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -554,6 +723,16 @@ apis:
   description: system resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - System
   tags_raw:
@@ -561,8 +740,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-system-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -580,6 +757,16 @@ apis:
   description: tcga resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - TCGA
   tags_raw:
@@ -587,8 +774,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-tcga-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -606,6 +791,16 @@ apis:
   description: token resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Token
   tags_raw:
@@ -613,8 +808,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-token-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -632,6 +825,16 @@ apis:
   description: user resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - User
   tags_raw:
@@ -639,8 +842,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-user-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -658,6 +859,16 @@ apis:
   description: worker resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
+  x-operator: institution
+  x-operator-basis: >-
+    Host computablebrain.emory.edu is under Emory's own registrable domain (emory.edu) with an
+    A record in Emory-owned space and no CNAME; the source contract self-identifies as the Emory
+    Digital Slide Archive. Girder/HistomicsUI is open-source Kitware software, but the deployment
+    and the endpoint were Emory's.
+  x-status: retired
+  x-status-basis: >-
+    Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
+    See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
   - Worker
   tags_raw:
@@ -665,8 +876,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/emory-worker-api-openapi.yml
-  - type: Documentation
-    url: https://computablebrain.emory.edu/api/v1
   - type: JSONSchema
     url: json-schema/emory-item-schema.json
   - type: JSONStructure
@@ -679,6 +888,149 @@ apis:
     url: vocabulary/emory-vocabulary.yml
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
+- aid: emory:dlp-lux-search
+  name: Emory Digital Library Program Search API (Blacklight JSON:API)
+  description: >-
+    The Emory Libraries Digital Library Program discovery layer (dlp-lux) exposes its Blacklight
+    search index as a JSON:API document at /catalog.json. Query, paginate and read digital
+    collection records — title, creator, dates, rights — without a key. This is Emory Libraries'
+    own Rails/Blacklight code running on Emory infrastructure, and it is the one live, unauthenticated,
+    machine-readable data API the institution currently operates.
+  humanURL: https://digital.library.emory.edu/
+  baseURL: https://digital.library.emory.edu/catalog.json
+  x-operator: institution
+  x-operator-basis: >-
+    Host is on Emory's registrable domain (CNAME to an Emory-named AWS load balancer,
+    dlp-prod-nb-*.elb.us-east-1.amazonaws.com — infrastructure, not a SaaS tenancy). The
+    application is Emory Libraries' own open-source code in github.com/emory-libraries.
+    Probed 2026-09-01: HTTP 200, application/json, JSON:API envelope, 267 results for q=test.
+  tags:
+  - Libraries
+  - Digital Repository
+  - Search
+  - Blacklight
+  - JSON:API
+  properties:
+  - type: Documentation
+    url: https://digital.library.emory.edu/
+  - type: SourceCode
+    url: https://github.com/emory-libraries
+- aid: emory:openemory-resourcesync
+  name: OpenEmory Repository (Samvera Hyrax / ResourceSync)
+  description: >-
+    OpenEmory is Emory's open-access institutional repository, running Samvera Hyrax 5.2.0 on
+    Emory infrastructure. It publishes a ResourceSync source description at
+    /.well-known/resourcesync and a capability list naming its resourcelist and changelist, which
+    is the machine-readable harvesting surface the repository offers. No OAI-PMH responder was
+    found on any of the usual verbs.
+  humanURL: https://open.library.emory.edu/
+  baseURL: https://open.library.emory.edu/.well-known/resourcesync
+  x-operator: institution
+  x-operator-basis: >-
+    Host is on Emory's registrable domain (CNAME to an Emory-named AWS load balancer,
+    openemory-prod-ndb-*.elb.us-east-1.amazonaws.com). Hyrax is Samvera community software, but
+    the deployment is Emory's and the generator string names Emory Libraries' own overrides
+    ("[Hyrax-override-v5.2.0]"). Probed 2026-09-01: HTTP 200, application/xml.
+  tags:
+  - Libraries
+  - Digital Repository
+  - Open Access
+  - ResourceSync
+  - Hyrax
+  properties:
+  - type: Documentation
+    url: https://open.library.emory.edu/
+  - type: SourceCode
+    url: https://github.com/emory-libraries
+- aid: emory:incommon-federation
+  name: Emory in the InCommon Identity Federation
+  description: >-
+    Emory's Shibboleth identity provider is registered in the InCommon federation and is therefore
+    resolvable through the InCommon Metadata Query service and, by InCommon's eduGAIN interfederation,
+    internationally. The federation is shared by definition; the IdP behind Emory's entityID is
+    Emory's own.
+  humanURL: https://incommon.org/federation/
+  baseURL: https://mdq.incommon.org/entities/https%3A%2F%2Flogin.emory.edu%2Fidp%2Fshibboleth
+  x-operator: federation
+  x-operator-basis: >-
+    Identity-federation metadata carrying Emory's OWN IdP. Probed 2026-09-01: HTTP 200,
+    Content-Type application/samlmetadata+xml for entityID https://login.emory.edu/idp/shibboleth.
+    Recorded as a membership; the federation's own contract is not saved here.
+  x-entity-id: https://login.emory.edu/idp/shibboleth
+  tags:
+  - Identity Federation
+  - InCommon
+  - eduGAIN
+  - SAML
+  - Shibboleth
+  properties:
+  - type: Documentation
+    url: https://mdq.incommon.org/entities/https%3A%2F%2Flogin.emory.edu%2Fidp%2Fshibboleth
+- aid: emory:ror-registration
+  name: Emory University in the Research Organization Registry (ROR)
+  description: >-
+    Emory University is registered in ROR, the open registry of research organization identifiers,
+    under ROR ID 03czfpz43. The registry is shared because every research organization is in it —
+    that is a fact about Emory, not a misattribution — and the registry's own contract belongs to ROR.
+  humanURL: https://ror.org/03czfpz43
+  baseURL: https://api.ror.org/v2/organizations/03czfpz43
+  x-operator: registry
+  x-operator-basis: >-
+    Identifier registry Emory is REGISTERED IN. Confirmed 2026-09-01 via
+    api.ror.org/v2/organizations?query=Emory%20University — ror_display name "Emory University",
+    id https://ror.org/03czfpz43. Membership recorded; ROR's contract is not saved under Emory.
+  x-registrant-id: https://ror.org/03czfpz43
+  tags:
+  - Identifiers
+  - Research
+  - ROR
+  - Registry
+  properties:
+  - type: Documentation
+    url: https://ror.org/03czfpz43
+- aid: emory:primo-discovery
+  name: Emory Libraries Discovery (Ex Libris Primo VE)
+  description: >-
+    Library discovery and catalog search for Emory Libraries runs on Ex Libris Primo VE. The Emory
+    entry point search.library.emory.edu redirects to the vendor's hosted view. The collections and
+    holdings are Emory's; the discovery platform and any API over it are Ex Libris'.
+  humanURL: https://search.library.emory.edu/
+  x-operator: tenant
+  x-operator-basis: >-
+    Probed 2026-09-01: https://search.library.emory.edu/ redirects (HTTP 200 final) to
+    https://emory.primo.exlibrisgroup.com/nde/home?vid=01GALI_EMORY:EMORY — an Ex Libris-hosted
+    Primo VE view keyed to Emory's GALILEO consortium view id. No Emory-authored contract exists
+    for this surface and the vendor's generic contract is deliberately not saved here.
+  x-operator-vendor: Ex Libris (Clarivate) — Primo VE
+  x-tenant-id: 01GALI_EMORY:EMORY
+  tags:
+  - Libraries
+  - Library Catalog
+  - Discovery
+  - Tenant
+  properties:
+  - type: Documentation
+    url: https://search.library.emory.edu/
+- aid: emory:course-atlas
+  name: Emory Course Atlas (CourseLeaf)
+  description: >-
+    Course Atlas is Emory's published course catalog and class schedule. It is a CourseLeaf (Leepfrog
+    Technologies) tenancy on an Emory hostname. The catalog content is Emory's; the application and
+    any API over it are the vendor's, and no public API is documented for it.
+  humanURL: https://atlas.emory.edu/
+  x-operator: tenant
+  x-operator-basis: >-
+    CNAME tenancy — atlas.emory.edu resolves CNAME to emory-fs.courseleaf.com. On a host-based
+    verdict this reads as institution-operated; it is a CourseLeaf deployment. Probed 2026-09-01:
+    HTTP 200. Recorded as a tenancy, not credited to Emory as engineering.
+  x-operator-vendor: Leepfrog Technologies (CourseLeaf)
+  tags:
+  - Course Catalog
+  - Registrar
+  - Tenant
+  properties:
+  - type: Documentation
+    url: https://atlas.emory.edu/
 common:
   - type: IssueTracker
     url: https://github.com/emory-libraries/dlp-curate/issues
@@ -710,6 +1062,84 @@ common:
     url: finops/emory-finops.yml
   - type: Review
     url: review.yml
+  - type: ResearchRepository
+    url: https://open.library.emory.edu/
+  - type: LibraryCatalog
+    url: https://search.library.emory.edu/
+  - type: CourseCatalog
+    url: https://atlas.emory.edu/
+  - type: IdentityFederation
+    url: https://login.emory.edu/idp/shibboleth
+  - type: OpenData
+    url: https://digital.library.emory.edu/catalog.json
+  - type: Conformance
+    url: conformance/emory-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/emory-digital-slide-archive-lifecycle.yml
+  - type: Blog
+    url: https://emory-libraries.github.io/
+  - type: Support
+    url: https://it.emory.edu/support/index.html
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Emory operates a small but real set of institution-run surfaces and they are all recorded:
+    a self-hosted Shibboleth/SAML IdP registered in InCommon (the strongest thing it publishes),
+    a live Blacklight JSON:API search endpoint at digital.library.emory.edu, a Samvera Hyrax
+    repository publishing a ResourceSync capability list at open.library.emory.edu, and the
+    emory-libraries GitHub organization holding the code both run on. The 22 Girder / Digital
+    Slide Archive contracts in this repo were genuinely Emory-operated and are correctly
+    attributed, but the host was retired between the 2026-06-03 profile and this one — TLS
+    refused, stock nginx page on port 80 — so they are marked x-status: retired and their dead
+    documentation pointers were removed. Four surfaces that a hostname-based verdict would have
+    credited to Emory are tenancies and are recorded as such rather than deleted: Canvas
+    (CNAME to emory-vanity.instructure.com), Course Atlas (CNAME to emory-fs.courseleaf.com),
+    library discovery (redirect to emory.primo.exlibrisgroup.com), and ROR/InCommon which are a
+    registry membership and a federation registration. There is no central developer portal, no
+    api.emory.edu, no data.emory.edu, no OAI-PMH responder, no llms.txt and no security.txt; that
+    absence is a measurement, not a gap in this pass.
+  generated: '2026-09-01'
+  method: probed
+  evidence:
+  - url: https://login.emory.edu/idp/shibboleth
+    status: 200
+  - url: https://mdq.incommon.org/entities/https%3A%2F%2Flogin.emory.edu%2Fidp%2Fshibboleth
+    status: 200
+  - url: https://digital.library.emory.edu/catalog.json?q=test
+    status: 200
+  - url: https://open.library.emory.edu/.well-known/resourcesync
+    status: 200
+  - url: https://open.library.emory.edu/capabilitylist?locale=en
+    status: 200
+  - url: https://canvas.emory.edu/doc/api/
+    status: 200
+  - url: https://atlas.emory.edu/
+    status: 200
+  - url: https://search.library.emory.edu/
+    status: 200
+  - url: https://api.ror.org/v2/organizations?query=Emory%20University
+    status: 200
+  - url: https://computablebrain.emory.edu/api/v1/describe
+    status: 0
+  - url: http://computablebrain.emory.edu/api/v1/describe
+    status: 404
+  - url: https://open.library.emory.edu/catalog/oai?verb=Identify
+    status: 200
+  - url: https://digital.library.emory.edu/catalog/oai?verb=Identify
+    status: 404
+  - url: https://api.datacite.org/providers?query=emory
+    status: 200
+  - url: https://api.crossref.org/members?query=emory
+    status: 200
+  - url: https://www.emory.edu/llms.txt
+    status: 404
+  - url: https://www.emory.edu/.well-known/security.txt
+    status: 404
+  - url: https://data.emory.edu/
+    status: 0
+  - url: https://api.emory.edu/
+    status: 0
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
