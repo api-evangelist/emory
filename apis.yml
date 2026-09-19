@@ -90,6 +90,11 @@ apis:
   - Education
   - LMS
   - REST
+  - Tenants
+  tags_raw:
+  - Education
+  - LMS
+  - REST
   - Tenant
   properties:
   - type: Documentation
@@ -804,7 +809,7 @@ apis:
     Probed 2026-09-01 — TLS refused on 443, stock nginx welcome page on 80, 404 at /api/v1.
     See lifecycle/emory-digital-slide-archive-lifecycle.yml.
   tags:
-  - Token
+  - Tokens
   tags_raw:
   - token
   properties:
@@ -1009,6 +1014,11 @@ apis:
   - Libraries
   - Library Catalog
   - Discovery
+  - Tenants
+  tags_raw:
+  - Libraries
+  - Library Catalog
+  - Discovery
   - Tenant
   properties:
   - type: Documentation
@@ -1027,6 +1037,10 @@ apis:
     HTTP 200. Recorded as a tenancy, not credited to Emory as engineering.
   x-operator-vendor: Leepfrog Technologies (CourseLeaf)
   tags:
+  - Course Catalog
+  - Registrar
+  - Tenants
+  tags_raw:
   - Course Catalog
   - Registrar
   - Tenant
