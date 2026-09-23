@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation tcga API
+  title: Girder REST API (Emory Digital Slide Archive) Tcga API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:

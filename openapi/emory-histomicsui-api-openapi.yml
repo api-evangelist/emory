@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation histomicsui API
+  title: Girder REST API (Emory Digital Slide Archive) Histomicsui…
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -39,7 +39,7 @@ paths:
           description: ID was invalid.
         '403':
           description: Access was denied for the resource.
-      summary: Get all metadata for a resource and all folders and items that are children of a resource.
+      summary: Get all metadata for a resource and all folders and items that are children of…
       tags:
       - histomicsui
   /histomicsui/quarantine/{id}:
@@ -63,7 +63,7 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item
-      summary: Move an item to the quarantine folder.
+      summary: Move an item to the quarantine folder
       tags:
       - histomicsui
   /histomicsui/quarantine/{id}/restore:
@@ -87,7 +87,7 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item
-      summary: Restore a quarantined item to its original folder.
+      summary: Restore a quarantined item to its original folder
       tags:
       - histomicsui
   /histomicsui/query_metadata:
@@ -148,7 +148,7 @@ paths:
 
 
             Invalid value provided.'
-      summary: Get a list of items with a specific metadata value.
+      summary: Get a list of items with a specific metadata value
       tags:
       - histomicsui
   /histomicsui/settings:
@@ -159,7 +159,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get public settings for HistomicsUI.
+      summary: Get public settings for HistomicsUI
       tags:
       - histomicsui
       parameters: []

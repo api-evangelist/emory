@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation user API
+  title: Girder REST API (Emory Digital Slide Archive) User API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: user resource
-  name: user
+  name: User
 paths:
   /user:
     get:
@@ -67,9 +67,9 @@ paths:
                 type: array
         '400':
           description: A parameter was invalid.
-      summary: List or search for users.
+      summary: List or search for users
       tags:
-      - user
+      - User
     post:
       operationId: user_createUser_post_user
       parameters: []
@@ -82,9 +82,9 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: A parameter was invalid, or the specified login or email already exists in the system.
-      summary: Create a new user.
+      summary: Create a new user
       tags:
-      - user
+      - User
       requestBody:
         content:
           multipart/form-data:
@@ -130,9 +130,9 @@ paths:
                 $ref: '#/components/schemas/Token'
         '400':
           description: A parameter was invalid.
-      summary: Log out of the system.
+      summary: Log out of the system
       tags:
-      - user
+      - User
       parameters: []
     get:
       description: Pass your username and password using HTTP Basic Auth. Sends a cookie that should be passed back in future requests.
@@ -151,9 +151,9 @@ paths:
           description: Missing Authorization header.
         '403':
           description: Invalid login or password.
-      summary: Log in to the system.
+      summary: Log in to the system
       tags:
-      - user
+      - User
   /user/details:
     get:
       operationId: user_getUsersDetails_details
@@ -162,9 +162,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get detailed information of accessible users.
+      summary: Get detailed information of accessible users
       tags:
-      - user
+      - User
       parameters: []
   /user/me:
     get:
@@ -178,9 +178,9 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: A parameter was invalid.
-      summary: Retrieve the currently logged-in user information.
+      summary: Retrieve the currently logged-in user information
       tags:
-      - user
+      - User
       parameters: []
   /user/password:
     put:
@@ -196,9 +196,9 @@ paths:
 
 
             Your old password is incorrect.'
-      summary: Change your password.
+      summary: Change your password
       tags:
-      - user
+      - User
       requestBody:
         content:
           multipart/form-data:
@@ -231,9 +231,9 @@ paths:
           description: Success
         '400':
           description: That email does not exist in the system.
-      summary: Create a temporary access token for a user.  The user's password is not changed.
+      summary: Create a temporary access token for a user. The user's password is not changed
       tags:
-      - user
+      - User
   /user/password/temporary/{id}:
     get:
       operationId: user_checkTemporaryPassword_password_temporary_id
@@ -249,9 +249,9 @@ paths:
           description: Success
         '401':
           description: The token does not grant temporary access to the specified user.
-      summary: Check if a specified token is a temporary access token for the specified user.  If the token is valid, returns information on the token and user.
+      summary: Check if a specified token is a temporary access token for the specified user.
       tags:
-      - user
+      - User
       requestBody:
         content:
           multipart/form-data:
@@ -278,9 +278,9 @@ paths:
           description: Success
         '401':
           description: That login is not registered.
-      summary: Send verification email.
+      summary: Send verification email
       tags:
-      - user
+      - User
   /user/{id}:
     delete:
       operationId: user_deleteUser_delete_id
@@ -298,9 +298,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You do not have permission to delete this user.
-      summary: Delete a user by ID.
+      summary: Delete a user by ID
       tags:
-      - user
+      - User
     get:
       operationId: user_getUser_id
       parameters:
@@ -321,9 +321,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You do not have permission to see this user.
-      summary: Get a user by ID.
+      summary: Get a user by ID
       tags:
-      - user
+      - User
     put:
       operationId: user_updateUser_put_id
       parameters:
@@ -377,9 +377,9 @@ paths:
 
 
             Must be an admin to create an admin.'
-      summary: Update a user's information.
+      summary: Update a user's information
       tags:
-      - user
+      - User
   /user/{id}/details:
     get:
       operationId: user_getUserDetails_id_details
@@ -397,9 +397,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the user.
-      summary: Get detailed information about a user.
+      summary: Get detailed information about a user
       tags:
-      - user
+      - User
   /user/{id}/otp:
     delete:
       operationId: user_removeOtp_delete_id_otp
@@ -417,9 +417,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Admin access was denied on the user.
-      summary: Disable one-time passwords for this user.
+      summary: Disable one-time passwords for this user
       tags:
-      - user
+      - User
     post:
       operationId: user_initializeOtp_post_id_otp
       parameters:
@@ -436,9 +436,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Admin access was denied on the user.
-      summary: Initiate the enablement of one-time passwords for this user.
+      summary: Initiate the enablement of one-time passwords for this user
       tags:
-      - user
+      - User
     put:
       operationId: user_finalizeOtp_put_id_otp
       parameters:
@@ -461,9 +461,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Admin access was denied on the user.
-      summary: Finalize the enablement of one-time passwords for this user.
+      summary: Finalize the enablement of one-time passwords for this user
       tags:
-      - user
+      - User
   /user/{id}/password:
     put:
       description: Only administrators may use this endpoint.
@@ -482,9 +482,9 @@ paths:
           description: The new password is invalid.
         '403':
           description: You are not an administrator.
-      summary: Change a user's password.
+      summary: Change a user's password
       tags:
-      - user
+      - User
       requestBody:
         content:
           multipart/form-data:
@@ -512,9 +512,9 @@ paths:
           description: Success
         '400':
           description: ID was invalid.
-      summary: Get quota and assetstore policies for the user.
+      summary: Get quota and assetstore policies for the user
       tags:
-      - user
+      - User
     put:
       operationId: user_setUserQuota_put_id_quota
       parameters:
@@ -537,9 +537,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read permission denied on the user.
-      summary: Set quota and assetstore policies for the user.
+      summary: Set quota and assetstore policies for the user
       tags:
-      - user
+      - User
   /user/{id}/verification:
     put:
       operationId: user_verifyEmail_put_id_verification
@@ -555,9 +555,9 @@ paths:
           description: Success
         '401':
           description: The token is invalid or expired.
-      summary: Verify an email address using a token.
+      summary: Verify an email address using a token
       tags:
-      - user
+      - User
       requestBody:
         content:
           multipart/form-data:

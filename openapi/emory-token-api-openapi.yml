@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation token API
+  title: Girder REST API (Emory Digital Slide Archive) Token API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: token resource
-  name: token
+  name: Token
 paths:
   /token/current:
     get:
@@ -24,9 +24,9 @@ paths:
                 $ref: '#/components/schemas/Token'
         '400':
           description: A parameter was invalid.
-      summary: Retrieve the current session information.
+      summary: Retrieve the current session information
       tags:
-      - token
+      - Token
       parameters: []
   /token/scopes:
     get:
@@ -36,9 +36,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all token scopes available in the system.
+      summary: List all token scopes available in the system
       tags:
-      - token
+      - Token
       parameters: []
   /token/session:
     delete:
@@ -53,9 +53,9 @@ paths:
                 $ref: '#/components/schemas/Token'
         '400':
           description: A parameter was invalid.
-      summary: Remove a session from the system.
+      summary: Remove a session from the system
       tags:
-      - token
+      - Token
       parameters: []
     get:
       description: If you are logged in, this will return a token associated with that login.
@@ -69,9 +69,9 @@ paths:
                 $ref: '#/components/schemas/Token'
         '400':
           description: A parameter was invalid.
-      summary: Get an anonymous session token for the system.
+      summary: Get an anonymous session token for the system
       tags:
-      - token
+      - Token
       parameters: []
 components:
   schemas:

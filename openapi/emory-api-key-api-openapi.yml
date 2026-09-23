@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation api_key API
+  title: Girder REST API (Emory Digital Slide Archive) API Key API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: api_key resource
-  name: api_key
+  name: API Key
 paths:
   /api_key:
     get:
@@ -62,9 +62,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List API keys for a given user.
+      summary: List API keys for a given user
       tags:
-      - api_key
+      - API Key
     post:
       operationId: api_key_createKey_post_api_key
       parameters:
@@ -105,9 +105,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Create a new API key.
+      summary: Create a new API key
       tags:
-      - api_key
+      - API Key
   /api_key/token:
     post:
       operationId: api_key_createToken_post_token
@@ -130,9 +130,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Create a token from an API key.
+      summary: Create a token from an API key
       tags:
-      - api_key
+      - API Key
   /api_key/{id}:
     delete:
       operationId: api_key_deleteKey_delete_id
@@ -148,9 +148,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete an API key.
+      summary: Delete an API key
       tags:
-      - api_key
+      - API Key
     put:
       operationId: api_key_updateKey_put_id
       parameters:
@@ -190,9 +190,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Update an API key.
+      summary: Update an API key
       tags:
-      - api_key
+      - API Key
 components:
   securitySchemes:
     Girder-Token:

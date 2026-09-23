@@ -1,0 +1,67 @@
+---
+aid: emory
+name: Emory University — domain standard conformance
+generated: '2026-09-01'
+method: probed
+source: https://login.emory.edu/idp/shibboleth
+description: >-
+  Education-regime domain standards Emory University demonstrably conforms to, each recorded
+  against the exact document and location the evidence was read from. Reward-only: a standard
+  absent from this file was probed and not evidenced, not merely unchecked.
+regime: education
+standards:
+  - standard: shibboleth
+    status: conformant
+    surface: Emory Identity Provider (login.emory.edu)
+    evidence_url: https://login.emory.edu/idp/shibboleth
+    evidence_location: >-
+      Root EntityDescriptor declares the Shibboleth metadata extension namespace
+      xmlns:shibmd="urn:mace:shibboleth:metadata:1.0" and carries
+      <shibmd:Scope regexp="false">emory.edu</shibmd:Scope>; IDPSSODescriptor
+      protocolSupportEnumeration includes urn:mace:shibboleth:1.0, and NameIDFormat
+      includes urn:mace:shibboleth:1.0:nameIdentifier.
+    probed: '2026-09-01'
+    http_status: 200
+    method: probed
+  - standard: saml
+    status: conformant
+    surface: Emory Identity Provider (login.emory.edu)
+    evidence_url: https://login.emory.edu/idp/shibboleth
+    evidence_location: >-
+      Document is a SAML 2.0 metadata EntityDescriptor
+      (xmlns="urn:oasis:names:tc:SAML:2.0:metadata") with entityID
+      https://login.emory.edu/idp/shibboleth; IDPSSODescriptor advertises
+      urn:oasis:names:tc:SAML:1.1:protocol and urn:oasis:names:tc:SAML:2.0:protocol
+      and exposes SingleSignOnService bindings.
+    probed: '2026-09-01'
+    http_status: 200
+    method: probed
+  - standard: saml
+    status: conformant
+    surface: InCommon federation registration
+    evidence_url: https://mdq.incommon.org/entities/https%3A%2F%2Flogin.emory.edu%2Fidp%2Fshibboleth
+    evidence_location: >-
+      InCommon Metadata Query service returns HTTP 200 with
+      Content-Type: application/samlmetadata+xml for Emory's entityID, confirming the IdP is
+      registered in the InCommon federation (and therefore reachable via eduGAIN).
+    probed: '2026-09-01'
+    http_status: 200
+    method: probed
+probed_and_not_evidenced:
+  - standard: oai-pmh
+    detail: >-
+      No OAI-PMH responder found. open.library.emory.edu returns the Hyrax HTML shell (HTTP 200,
+      text/html) for ?verb=Identify at /oai, /catalog/oai, /oai_pmh and /oai/request — a soft-404,
+      not a repository response. digital.library.emory.edu returns HTTP 404 for the same paths.
+  - standard: datacite
+    detail: >-
+      api.datacite.org/providers?query=emory and /clients?query=emory both return total 0 —
+      no DataCite member or repository client is registered under the Emory name.
+  - standard: crossref
+    detail: >-
+      api.crossref.org/members?query=emory returns total-results 0 — no Crossref member record.
+  - standards: [scim, lti, oneroster, ed-fi, caliper, qti, orcid]
+    detail: >-
+      Not evidenced on any Emory-operated contract. LTI and Caliper are properties of the
+      Instructure Canvas platform Emory is a tenant of, not of an Emory-authored contract, and
+      are deliberately not claimed here.

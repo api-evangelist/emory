@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation API
+  title: Girder REST API (Emory Digital Slide Archive) Annotation API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: annotation resource
-  name: annotation
+  name: Annotation
 paths:
   /annotation:
     get:
@@ -85,9 +85,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the parent item.
-      summary: Search for annotations.
+      summary: Search for annotations
       tags:
-      - annotation
+      - Annotation
     post:
       operationId: annotation_createAnnotation_post_annotation
       parameters:
@@ -114,9 +114,9 @@ paths:
             Validation Error: JSON doesn''t follow schema.'
         '403':
           description: Read access was denied for the item.
-      summary: Create an annotation.
+      summary: Create an annotation
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -139,9 +139,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get annotation counts for a list of items.  If using actual a database other than DocumentDB, this also indicates if items are referenced as annotations.
+      summary: Get annotation counts for a list of items.
       tags:
-      - annotation
+      - Annotation
   /annotation/folder/{id}:
     delete:
       operationId: annotation_deleteFolderAnnotations_delete_folder_id
@@ -166,7 +166,7 @@ paths:
           description: ID was invalid.
       summary: Delete all user-owned annotations from the items in a folder
       tags:
-      - annotation
+      - Annotation
     get:
       operationId: annotation_returnFolderAnnotations_folder_id
       parameters:
@@ -224,7 +224,7 @@ paths:
           description: A parameter was invalid.
       summary: Get the user-owned annotations from the items in a folder
       tags:
-      - annotation
+      - Annotation
   /annotation/folder/{id}/access:
     put:
       operationId: annotation_setFolderAnnotationAccess_put_folder_id_access
@@ -261,7 +261,7 @@ paths:
           description: ID was invalid.
       summary: Set the access for all the user-owned annotations from the items in a folder
       tags:
-      - annotation
+      - Annotation
   /annotation/folder/{id}/create:
     get:
       operationId: annotation_canCreateFolderAnnotations_folder_id_create
@@ -279,7 +279,7 @@ paths:
           description: ID was invalid.
       summary: Check if the user can create annotations in a folder
       tags:
-      - annotation
+      - Annotation
   /annotation/folder/{id}/present:
     get:
       operationId: annotation_existFolderAnnotations_folder_id_present
@@ -304,10 +304,10 @@ paths:
           description: A parameter was invalid.
       summary: Check if the user owns any annotations for the items in a folder
       tags:
-      - annotation
+      - Annotation
   /annotation/images:
     get:
-      description: By default, this endpoint will return a list of recently annotated images.  This list can be further filtered by passing the creatorId and/or imageName parameters.  The creatorId parameter will limit results to annotations created by the given user.  The imageName parameter will only include images whose name (or a token in the name) begins with the given string.
+      description: By default, this endpoint will return a list of recently annotated images. This list can be further filtered by passing the creatorId and/or imageName parameters. The creatorId parameter will limit results to annotations created by the given user. The imageName parameter will only include images whose name (or a token in the name) begins with the given string.
       operationId: annotation_findAnnotatedImages_images
       parameters:
       - name: creatorId
@@ -361,9 +361,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Search for annotated images.
+      summary: Search for annotated images
       tags:
-      - annotation
+      - Annotation
   /annotation/item/{id}:
     delete:
       description: This deletes all annotation model records.
@@ -382,9 +382,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item.
-      summary: Delete all annotations for an item.
+      summary: Delete all annotations for an item
       tags:
-      - annotation
+      - Annotation
     get:
       description: This returns a list of annotation model records.
       operationId: annotation_getItemAnnotations_item_id
@@ -402,9 +402,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get all annotations for an item.
+      summary: Get all annotations for an item
       tags:
-      - annotation
+      - Annotation
     post:
       operationId: annotation_createItemAnnotations_post_item_id
       parameters:
@@ -427,9 +427,9 @@ paths:
             Validation Error: JSON doesn''t follow schema.'
         '403':
           description: Write access was denied for the item.
-      summary: Create multiple annotations on an item.
+      summary: Create multiple annotations on an item
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -489,9 +489,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get plottable data related to an item and its annotations.
+      summary: Get plottable data related to an item and its annotations
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           multipart/form-data:
@@ -544,9 +544,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a list of plottable data related to an item and its annotations.
+      summary: Get a list of plottable data related to an item and its annotations
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           multipart/form-data:
@@ -581,9 +581,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete old annotations.
+      summary: Delete old annotations
       tags:
-      - annotation
+      - Annotation
     get:
       operationId: annotation_getOldAnnotations_old
       parameters:
@@ -608,9 +608,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Report on old annotations.
+      summary: Report on old annotations
       tags:
-      - annotation
+      - Annotation
   /annotation/schema:
     get:
       description: In addition to the schema, if IDs are specified on elements, all IDs must be unique.
@@ -622,7 +622,7 @@ paths:
           description: A parameter was invalid.
       summary: Get the official Annotation schema
       tags:
-      - annotation
+      - Annotation
       parameters: []
   /annotation/{id}:
     delete:
@@ -641,9 +641,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the annotation.
-      summary: Delete an annotation.
+      summary: Delete an annotation
       tags:
-      - annotation
+      - Annotation
     get:
       description: Use "size" or "details" as possible sort keys.
       operationId: annotation_getAnnotation_id
@@ -769,9 +769,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the annotation.
-      summary: Get an annotation by id.
+      summary: Get an annotation by id
       tags:
-      - annotation
+      - Annotation
     patch:
       operationId: annotation_patchAnnotation_patch_id
       parameters:
@@ -793,9 +793,9 @@ paths:
             Validation Error: JSON doesn''t follow schema.'
         '403':
           description: Write access was denied for the item.
-      summary: Patch an annotation or its elements.
+      summary: Patch an annotation or its elements
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -828,9 +828,9 @@ paths:
             Validation Error: JSON doesn''t follow schema.'
         '403':
           description: Write access was denied for the item.
-      summary: Update an annotation or move it to a different item.
+      summary: Update an annotation or move it to a different item
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -854,9 +854,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the annotation.
-      summary: Get the access control list for an annotation.
+      summary: Get the access control list for an annotation
       tags:
-      - annotation
+      - Annotation
     put:
       operationId: annotation_updateAnnotationAccess_put_id_access
       parameters:
@@ -885,9 +885,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the annotation.
-      summary: Update the access control list for an annotation.
+      summary: Update the access control list for an annotation
       tags:
-      - annotation
+      - Annotation
   /annotation/{id}/copy:
     post:
       operationId: annotation_copyAnnotation_post_id_copy
@@ -911,9 +911,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item.
-      summary: Copy an annotation from one item to an other.
+      summary: Copy an annotation from one item to an other
       tags:
-      - annotation
+      - Annotation
   /annotation/{id}/history:
     get:
       operationId: annotation_getAnnotationHistoryList_id_history
@@ -963,9 +963,9 @@ paths:
           description: Success
         '403':
           description: Read access was denied for the annotation.
-      summary: Get a list of an annotation's history.
+      summary: Get a list of an annotation's history
       tags:
-      - annotation
+      - Annotation
   /annotation/{id}/history/revert:
     put:
       description: This can be used to undelete an annotation by reverting to the most recent version.
@@ -991,9 +991,9 @@ paths:
           description: Annotation history version not found.
         '403':
           description: Read access was denied for the annotation.
-      summary: Revert an annotation to a specific version.
+      summary: Revert an annotation to a specific version
       tags:
-      - annotation
+      - Annotation
   /annotation/{id}/history/{version}:
     get:
       operationId: annotation_getAnnotationHistory_id_history_version
@@ -1018,9 +1018,9 @@ paths:
           description: Annotation history version not found.
         '403':
           description: Read access was denied for the annotation.
-      summary: Get a specific version of an annotation's history.
+      summary: Get a specific version of an annotation's history
       tags:
-      - annotation
+      - Annotation
   /annotation/{id}/metadata:
     delete:
       operationId: annotation_deleteMetadata_delete_id_metadata
@@ -1048,9 +1048,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the annotation.
-      summary: Delete metadata (annotation.attributes) fields on an annotation.
+      summary: Delete metadata (annotation.attributes) fields on an annotation
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -1092,9 +1092,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the annotation.
-      summary: Set metadata (annotation.attributes) fields on an annotation.
+      summary: Set metadata (annotation.attributes) fields on an annotation
       tags:
-      - annotation
+      - Annotation
       requestBody:
         content:
           application/json:
@@ -1128,17 +1128,17 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the annotation.
-      summary: Get an annotation by id in a specific format.
+      summary: Get an annotation by id in a specific format
       tags:
-      - annotation
+      - Annotation
 components:
   schemas:
+    Item:
+      type: object
     Annotation:
       type: object
     string:
       type: string
-    Item:
-      type: object
   securitySchemes:
     Girder-Token:
       in: header

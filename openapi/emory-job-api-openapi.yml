@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation job API
+  title: Girder REST API (Emory Digital Slide Archive) Job API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: job resource
-  name: job
+  name: Job
 paths:
   /job:
     get:
@@ -85,9 +85,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List jobs for a given user.
+      summary: List jobs for a given user
       tags:
-      - job
+      - Job
     post:
       operationId: job_createJob_post_job
       parameters:
@@ -147,7 +147,7 @@ paths:
           description: A parameter was invalid.
       summary: Create a job model
       tags:
-      - job
+      - Job
   /job/all:
     get:
       operationId: job_listAllJobs_all
@@ -209,9 +209,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all jobs.
+      summary: List all jobs
       tags:
-      - job
+      - Job
   /job/old:
     delete:
       operationId: job_deleteOldJobs_delete_old
@@ -236,9 +236,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete old jobs.
+      summary: Delete old jobs
       tags:
-      - job
+      - Job
     get:
       operationId: job_getOldJobs_old
       parameters:
@@ -262,9 +262,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Report on old jobs.
+      summary: Report on old jobs
       tags:
-      - job
+      - Job
   /job/typeandstatus:
     get:
       operationId: job_jobsTypesAndStatuses_typeandstatus
@@ -275,7 +275,7 @@ paths:
           description: A parameter was invalid.
       summary: Get types and statuses of jobs of current user
       tags:
-      - job
+      - Job
       parameters: []
   /job/typeandstatus/all:
     get:
@@ -287,7 +287,7 @@ paths:
           description: Admin access was denied for the job.
       summary: Get types and statuses of all jobs
       tags:
-      - job
+      - Job
       parameters: []
   /job/{id}:
     delete:
@@ -306,9 +306,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the job.
-      summary: Delete an existing job.
+      summary: Delete an existing job
       tags:
-      - job
+      - Job
     get:
       operationId: job_getJob_id
       parameters:
@@ -325,11 +325,11 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the job.
-      summary: Get a job by ID.
+      summary: Get a job by ID
       tags:
-      - job
+      - Job
     put:
-      description: In most cases, regular users should not call this endpoint. It will typically be used by a batch processing system to send updates regarding the execution of the job. If using a non-user-associated token for authorization, the token must be granted the "jobs.job_<id>" scope, where <id> is the ID of the job being updated.
+      description: In most cases, regular users should not call this endpoint. It will typically be used by a batch processing system to send updates regarding the execution of the job. If using a non-user-associated token for authorization, the token must be granted the "jobs.job_" scope, where is the ID of the job being updated.
       operationId: job_updateJob_put_id
       parameters:
       - name: id
@@ -391,9 +391,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the job.
-      summary: Update an existing job.
+      summary: Update an existing job
       tags:
-      - job
+      - Job
   /job/{id}/cancel:
     put:
       operationId: job_cancelJob_put_id_cancel
@@ -411,9 +411,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the job.
-      summary: Cancel a job by ID.
+      summary: Cancel a job by ID
       tags:
-      - job
+      - Job
 components:
   securitySchemes:
     Girder-Token:

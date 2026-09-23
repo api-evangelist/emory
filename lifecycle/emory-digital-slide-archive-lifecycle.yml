@@ -1,0 +1,61 @@
+---
+aid: emory
+name: Emory Digital Slide Archive (computablebrain) — lifecycle
+generated: '2026-09-01'
+method: probed
+source: https://computablebrain.emory.edu/api/v1
+description: >-
+  Lifecycle record for the Girder/HistomicsUI REST API that Emory's biomedical imaging group ran
+  at computablebrain.emory.edu. It is the source of 22 of the OpenAPI contracts in this repo, and
+  as of 2026-09-01 the host no longer serves it.
+surface: Girder REST API (Emory Digital Slide Archive)
+base_url: https://computablebrain.emory.edu/api/v1
+x-operator: institution
+x-operator-basis: >-
+  Host is under Emory's own registrable domain (emory.edu) and resolves inside Emory-owned address
+  space (170.140.138.156). The source contract self-identifies as the Emory Digital Slide Archive
+  and was converted from the live Swagger 2.0 document at /api/v1/describe. The software stack is
+  open-source Girder / HistomicsUI / large_image (Kitware); the deployment, the data and the
+  endpoint were Emory's, so the contract is correctly attributed to Emory.
+stages:
+  - stage: harvested
+    date: '2026-06-03'
+    detail: >-
+      Swagger 2.0 document retrieved from https://computablebrain.emory.edu/api/v1/describe and
+      converted to OpenAPI 3.0.3; archived at openapi/_original/emory-digital-slide-archive.yaml.
+    method: searched
+  - stage: retired
+    date: '2026-09-01'
+    detail: >-
+      Service no longer reachable. The contracts are retained as a historical, correctly attributed
+      Emory surface rather than deleted; the dead Documentation pointer was removed from each
+      apis[] entry and every entry carries x-status: retired.
+    method: probed
+evidence:
+  - url: https://computablebrain.emory.edu/api/v1/describe
+    scheme: https
+    status: 0
+    detail: 'curl (7) — connection refused on port 443; no TLS listener'
+    probed: '2026-09-01'
+  - url: http://computablebrain.emory.edu/api/v1/describe
+    scheme: http
+    status: 404
+    detail: 'nginx/1.31.3 default 404 page'
+    probed: '2026-09-01'
+  - url: http://computablebrain.emory.edu/
+    scheme: http
+    status: 200
+    detail: >-
+      Stock "Welcome to nginx!" placeholder page — a 200 that proves the host is up and the
+      application is gone. Read the body, not the code.
+    probed: '2026-09-01'
+  - url: dns://computablebrain.emory.edu
+    status: 200
+    detail: 'A record 170.140.138.156 (Emory-owned); no CNAME — never a vendor tenancy'
+    probed: '2026-09-01'
+repair_note: >-
+  Also repaired this run: refine-openapis had welded the first tag's name into the info.title of
+  the other 21 split contracts ("Girder REST API (Emory Digital Slide Archive) annotation
+  Assetstore API"). This is the `misbased` class and it is OURS, not a vendor's. Titles re-based
+  from openapi/_original/emory-digital-slide-archive.yaml; servers[] and paths[] were already
+  correct on every split and were not touched.

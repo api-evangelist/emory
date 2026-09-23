@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation item API
+  title: Girder REST API (Emory Digital Slide Archive) Item API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,11 +10,11 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: item resource
-  name: item
+  name: Item
 paths:
   /item:
     get:
-      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items. If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
       operationId: item_find_item
       parameters:
       - name: folderId
@@ -82,9 +82,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the parent folder.
-      summary: List or search for items.
+      summary: List or search for items
       tags:
-      - item
+      - Item
     post:
       operationId: item_createItem_post_item
       parameters:
@@ -125,9 +125,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied on the parent folder.
-      summary: Create a new item.
+      summary: Create a new item
       tags:
-      - item
+      - Item
       requestBody:
         content:
           multipart/form-data:
@@ -192,9 +192,9 @@ paths:
                 type: array
         '400':
           description: A parameter was invalid.
-      summary: List items that match a query.
+      summary: List items that match a query
       tags:
-      - item
+      - Item
   /item/test/tiles:
     get:
       operationId: item_getTestTilesInfo_test_tiles
@@ -203,9 +203,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get test large image metadata.
+      summary: Get test large image metadata
       tags:
-      - item
+      - Item
       parameters: []
   /item/test/tiles/zxy/{z}/{x}/{y}:
     get:
@@ -234,9 +234,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get a test large image tile.
+      summary: Get a test large image tile
       tags:
-      - item
+      - Item
   /item/{id}:
     delete:
       operationId: item_deleteItem_delete_id
@@ -254,9 +254,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item.
-      summary: Delete an item by ID.
+      summary: Delete an item by ID
       tags:
-      - item
+      - Item
     get:
       operationId: item_getItem_id
       parameters:
@@ -277,9 +277,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get an item by ID.
+      summary: Get an item by ID
       tags:
-      - item
+      - Item
     put:
       operationId: item_updateItem_put_id
       parameters:
@@ -318,9 +318,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item or folder.
-      summary: Edit an item or move it to another folder.
+      summary: Edit an item or move it to another folder
       tags:
-      - item
+      - Item
       requestBody:
         content:
           multipart/form-data:
@@ -353,9 +353,9 @@ paths:
           description: A parameter was invalid.
         '404':
           description: Image not found
-      summary: Get the previous and next image in the same folder as the given item.
+      summary: Get the previous and next image in the same folder as the given item
       tags:
-      - item
+      - Item
   /item/{id}/aperio:
     delete:
       operationId: item_removeAperio_delete_id_aperio
@@ -373,7 +373,7 @@ paths:
           description: A parameter was invalid.
       summary: Remove Aperio specific metadata from an item
       tags:
-      - item
+      - Item
     get:
       operationId: item_findAperio_id_aperio
       parameters:
@@ -428,9 +428,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Find Aperio annotation items associated with a slide image.
+      summary: Find Aperio annotation items associated with a slide image
       tags:
-      - item
+      - Item
     post:
       operationId: item_importDocument_post_id_aperio
       parameters:
@@ -459,7 +459,7 @@ paths:
           description: A parameter was invalid.
       summary: Import an item as an Aperio annotation
       tags:
-      - item
+      - Item
     put:
       operationId: item_modifyAperio_put_id_aperio
       parameters:
@@ -482,7 +482,7 @@ paths:
           description: A parameter was invalid.
       summary: Set the tag associated with the annotation file
       tags:
-      - item
+      - Item
   /item/{id}/copy:
     post:
       description: If no folderId parameter is specified, creates a copy of the item in its current containing folder.
@@ -535,9 +535,9 @@ paths:
 
 
             Write access was denied on the parent folder.'
-      summary: Copy an item.
+      summary: Copy an item
       tags:
-      - item
+      - Item
   /item/{id}/download:
     get:
       operationId: item_download_id_download
@@ -585,9 +585,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Download the contents of an item.
+      summary: Download the contents of an item
       tags:
-      - item
+      - Item
   /item/{id}/files:
     get:
       operationId: item_getFiles_id_files
@@ -645,9 +645,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get the files within an item.
+      summary: Get the files within an item
       tags:
-      - item
+      - Item
   /item/{id}/metadata:
     delete:
       operationId: item_deleteMetadata_delete_id_metadata
@@ -675,9 +675,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the item.
-      summary: Delete metadata fields on an item.
+      summary: Delete metadata fields on an item
       tags:
-      - item
+      - Item
       requestBody:
         content:
           application/json:
@@ -719,9 +719,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the item.
-      summary: Set metadata fields on an item.
+      summary: Set metadata fields on an item
       tags:
-      - item
+      - Item
       requestBody:
         content:
           application/json:
@@ -752,12 +752,12 @@ paths:
           description: A parameter was invalid.
         '404':
           description: Image not found
-      summary: Get the next image in the same folder as the given item.
+      summary: Get the next image in the same folder as the given item
       tags:
-      - item
+      - Item
   /item/{id}/position:
     get:
-      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for items. If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
       operationId: item_findPosition_id_position
       parameters:
       - name: id
@@ -809,9 +809,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the parent folder.
-      summary: Report the offset of an item in a list or search.
+      summary: Report the offset of an item in a list or search
       tags:
-      - item
+      - Item
   /item/{id}/previous_image:
     get:
       operationId: item_getPreviousImage_id_previous_image
@@ -835,9 +835,9 @@ paths:
           description: A parameter was invalid.
         '404':
           description: Image not found
-      summary: Get the previous image in the same folder as the given item.
+      summary: Get the previous image in the same folder as the given item
       tags:
-      - item
+      - Item
   /item/{id}/rootpath:
     get:
       operationId: item_rootpath_id_rootpath
@@ -855,9 +855,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get the path to the root of the item's hierarchy.
+      summary: Get the path to the root of the item's hierarchy
       tags:
-      - item
+      - Item
   /item/{itemId}/internal_metadata/{key}:
     delete:
       operationId: item_deleteMetadataKey_delete_itemId_internal_metadata_key
@@ -882,9 +882,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item.
-      summary: Delete a single internal metadata key on this item.
+      summary: Delete a single internal metadata key on this item
       tags:
-      - item
+      - Item
     get:
       operationId: item_getMetadataKey_itemId_internal_metadata_key
       parameters:
@@ -908,9 +908,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get the value for a single internal metadata key on this item.
+      summary: Get the value for a single internal metadata key on this item
       tags:
-      - item
+      - Item
     put:
       operationId: item_updateMetadataKey_put_itemId_internal_metadata_key
       parameters:
@@ -934,9 +934,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the item.
-      summary: Overwrite the value for a single internal metadata key on this item.
+      summary: Overwrite the value for a single internal metadata key on this item
       tags:
-      - item
+      - Item
       requestBody:
         content:
           application/json:
@@ -959,9 +959,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Remove a large image from this item.
+      summary: Remove a large image from this item
       tags:
-      - item
+      - Item
     get:
       operationId: item_getTilesInfo_itemId_tiles
       parameters:
@@ -978,9 +978,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get large image metadata.
+      summary: Get large image metadata
       tags:
-      - item
+      - Item
     post:
       operationId: item_createTiles_post_itemId_tiles
       parameters:
@@ -1091,9 +1091,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Create a large image for this item.
+      summary: Create a large image for this item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/bands:
     get:
       operationId: item_getBandInformation_itemId_tiles_bands
@@ -1118,9 +1118,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get band information for a large image item.
+      summary: Get band information for a large image item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/convert:
     post:
       description: This can be used to make an item that is a different internal format than the original item.
@@ -1249,7 +1249,7 @@ paths:
           description: A parameter was invalid.
       summary: Create a new large image item based on an existing item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/dzi.dzi:
     get:
       operationId: item_getDZIInfo_itemId_tiles_dzi.dzi
@@ -1281,9 +1281,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get DeepZoom compatible metadata.
+      summary: Get DeepZoom compatible metadata
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/dzi_files/{level}/{xandy}:
     get:
       operationId: item_getDZITile_itemId_tiles_dzi_files_level_xandy
@@ -1313,9 +1313,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a DeepZoom image tile.
+      summary: Get a DeepZoom image tile
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/fzxy/{frame}/{z}/{x}/{y}:
     get:
       operationId: item_getTileWithFrame_itemId_tiles_fzxy_frame_z_x_y
@@ -1369,12 +1369,12 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a large image tile with a frame number.
+      summary: Get a large image tile with a frame number
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/histogram:
     get:
-      description: This can take all of the parameters as the region endpoint, plus some histogram-specific parameters.  Only typically used parameters are listed.  The returned result is a list with one entry per channel (always one of L, LA, RGB, or RGBA colorspace).  Each entry has the histogram values, bin edges, minimum and maximum values for the channel, and number of samples (pixels) used in the computation.
+      description: This can take all of the parameters as the region endpoint, plus some histogram-specific parameters. Only typically used parameters are listed. The returned result is a list with one entry per channel (always one of L, LA, RGB, or RGBA colorspace). Each entry has the histogram values, bin edges, minimum and maximum values for the channel, and number of samples (pixels) used in the computation.
       operationId: item_getHistogram_itemId_tiles_histogram
       parameters:
       - name: itemId
@@ -1473,9 +1473,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a histogram for any region of a large image item.
+      summary: Get a histogram for any region of a large image item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/images:
     get:
       operationId: item_getAssociatedImagesList_itemId_tiles_images
@@ -1493,9 +1493,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a list of additional images associated with a large image.
+      summary: Get a list of additional images associated with a large image
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/images/{image}:
     get:
       description: Because associated images may contain PHI, admin access to the item is required.
@@ -1560,9 +1560,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get an image associated with a large image.
+      summary: Get an image associated with a large image
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/images/{image}/metadata:
     get:
       operationId: item_getAssociatedImageMetadata_itemId_tiles_images_image_metadata
@@ -1586,9 +1586,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get metadata for an image associated with a large image.
+      summary: Get metadata for an image associated with a large image
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/internal_metadata:
     get:
       operationId: item_getInternalMetadata_itemId_tiles_internal_metadata
@@ -1606,9 +1606,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get large image internal metadata.
+      summary: Get large image internal metadata
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/pixel:
     get:
       description: When frameList is provided, returns a list of pixel dictionaries, one for each frame. Otherwise returns a single pixel dictionary.
@@ -1672,12 +1672,12 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a single pixel of a large image item.
+      summary: Get a single pixel of a large image item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/region:
     get:
-      description: If neither width nor height is specified, the full resolution region is returned.  If a width or height is specified, aspect ratio is always preserved (if both are given, the resulting image may be smaller in one of the two dimensions).  When scaling must be applied, the image is downsampled from a higher resolution layer, never upsampled.
+      description: If neither width nor height is specified, the full resolution region is returned. If a width or height is specified, aspect ratio is always preserved (if both are given, the resulting image may be smaller in one of the two dimensions). When scaling must be applied, the image is downsampled from a higher resolution layer, never upsampled.
       operationId: item_getTilesRegion_itemId_tiles_region
       parameters:
       - name: itemId
@@ -1909,12 +1909,12 @@ paths:
             Insufficient memory.'
         '403':
           description: Read access was denied for the item.
-      summary: Get any region of a large image item, optionally scaling it.
+      summary: Get any region of a large image item, optionally scaling it
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/thumbnail:
     get:
-      description: Aspect ratio is always preserved.  If both width and height are specified, the resulting thumbnail may be smaller in one of the two dimensions.  If neither width nor height is given, a default size will be returned.  This creates a thumbnail from the lowest level of the source image, which means that asking for a large thumbnail will not be a high-quality image.
+      description: Aspect ratio is always preserved. If both width and height are specified, the resulting thumbnail may be smaller in one of the two dimensions. If neither width nor height is given, a default size will be returned. This creates a thumbnail from the lowest level of the source image, which means that asking for a large thumbnail will not be a high-quality image.
       operationId: item_getTilesThumbnail_itemId_tiles_thumbnail
       parameters:
       - name: itemId
@@ -2002,9 +2002,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a thumbnail of a large image item.
+      summary: Get a thumbnail of a large image item
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/thumbnails:
     delete:
       operationId: item_deleteTilesThumbnails_delete_itemId_tiles_thumbnails
@@ -2042,9 +2042,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Delete thumbnail and data files associated with a large_image item.
+      summary: Delete thumbnail and data files associated with a large_image item
       tags:
-      - item
+      - Item
     get:
       operationId: item_listTilesThumbnails_itemId_tiles_thumbnails
       parameters:
@@ -2061,9 +2061,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: List all thumbnail and data files associated with a large_image item.
+      summary: List all thumbnail and data files associated with a large_image item
       tags:
-      - item
+      - Item
     post:
       operationId: item_addTilesThumbnails_post_itemId_tiles_thumbnails
       parameters:
@@ -2102,9 +2102,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Associate or replace a thumbnail or data file with a large_image items.
+      summary: Associate or replace a thumbnail or data file with a large_image items
       tags:
-      - item
+      - Item
       requestBody:
         content:
           application/json:
@@ -2365,9 +2365,9 @@ paths:
             Insufficient memory.'
         '403':
           description: Read access was denied for the item.
-      summary: Composite thumbnails of multiple frames into a single image.
+      summary: Composite thumbnails of multiple frames into a single image
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/tile_frames/quad_info:
     get:
       operationId: item_tileFramesQuadInfo_itemId_tiles_tile_frames_quad_info
@@ -2477,9 +2477,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get parameters for using tile_frames as background sprite images.
+      summary: Get parameters for using tile_frames as background sprite images
       tags:
-      - item
+      - Item
   /item/{itemId}/tiles/zxy/{z}/{x}/{y}:
     get:
       operationId: item_getTile_itemId_tiles_zxy_z_x_y
@@ -2527,17 +2527,17 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the item.
-      summary: Get a large image tile.
+      summary: Get a large image tile
       tags:
-      - item
+      - Item
 components:
   schemas:
+    Item:
+      type: object
     File:
       type: object
     string:
       type: string
-    Item:
-      type: object
   securitySchemes:
     Girder-Token:
       in: header

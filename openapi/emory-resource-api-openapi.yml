@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation resource API
+  title: Girder REST API (Emory Digital Slide Archive) Resource API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: resource resource
-  name: resource
+  name: Resource
 paths:
   /resource:
     delete:
@@ -45,9 +45,9 @@ paths:
             Resource not found.'
         '403':
           description: Admin access was denied for a resource.
-      summary: Delete a set of items, folders, or other resources.
+      summary: Delete a set of items, folders, or other resources
       tags:
-      - resource
+      - Resource
   /resource/copy:
     post:
       operationId: resource_copyResources_post_copy
@@ -103,9 +103,9 @@ paths:
 
 
             ID was invalid.'
-      summary: Copy a set of items and folders.
+      summary: Copy a set of items and folders
       tags:
-      - resource
+      - Resource
   /resource/download:
     get:
       description: This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.
@@ -140,9 +140,9 @@ paths:
             Resource not found.'
         '403':
           description: Read access was denied for a resource.
-      summary: Download a set of items, folders, collections, and users as a zip archive.
+      summary: Download a set of items, folders, collections, and users as a zip archive
       tags:
-      - resource
+      - Resource
     post:
       description: This route is also exposed via the POST method because the request parameters can be quite long, and encoding them in the URL (as is standard when using the GET method) can cause the URL to become too long, which causes errors.
       operationId: resource_download_post_download
@@ -176,9 +176,9 @@ paths:
             Resource not found.'
         '403':
           description: Read access was denied for a resource.
-      summary: Download a set of items, folders, collections, and users as a zip archive.
+      summary: Download a set of items, folders, collections, and users as a zip archive
       tags:
-      - resource
+      - Resource
   /resource/lookup:
     get:
       operationId: resource_lookup_lookup
@@ -199,9 +199,9 @@ paths:
             Path refers to a resource that does not exist.'
         '403':
           description: Read access was denied for the resource.
-      summary: Look up a resource in the data hierarchy by path.
+      summary: Look up a resource in the data hierarchy by path
       tags:
-      - resource
+      - Resource
   /resource/metadata:
     put:
       operationId: resource_putResourceMetadata_put_metadata
@@ -235,9 +235,9 @@ paths:
             Resource not found.'
         '403':
           description: Write access was denied for a resource.
-      summary: Set metadata on multiple resources at once.
+      summary: Set metadata on multiple resources at once
       tags:
-      - resource
+      - Resource
       requestBody:
         content:
           application/json:
@@ -298,9 +298,9 @@ paths:
 
 
             ID was invalid.'
-      summary: Move a set of items and folders.
+      summary: Move a set of items and folders
       tags:
-      - resource
+      - Resource
   /resource/path/download/{path}:
     get:
       operationId: resource_pathDownload_path_download_path
@@ -323,7 +323,7 @@ paths:
           description: Read access was denied for the resource.
       summary: Download a resource based on its path
       tags:
-      - resource
+      - Resource
   /resource/path/redirect/{path}:
     delete:
       description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
@@ -347,7 +347,7 @@ paths:
           description: Read access was denied for the resource.
       summary: Redirect to a model endpoint based on a resource path
       tags:
-      - resource
+      - Resource
     get:
       description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
       operationId: resource_pathRedirect_path_redirect_path
@@ -370,7 +370,7 @@ paths:
           description: Read access was denied for the resource.
       summary: Redirect to a model endpoint based on a resource path
       tags:
-      - resource
+      - Resource
     post:
       description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
       operationId: resource_pathRedirect_post_path_redirect_path
@@ -393,7 +393,7 @@ paths:
           description: Read access was denied for the resource.
       summary: Redirect to a model endpoint based on a resource path
       tags:
-      - resource
+      - Resource
     put:
       description: This is significantly less efficient that using /(model)/(id)/..., as the route must validated and tested to that the longest sensible path is used.
       operationId: resource_pathRedirect_put_path_redirect_path
@@ -416,7 +416,7 @@ paths:
           description: Read access was denied for the resource.
       summary: Redirect to a model endpoint based on a resource path
       tags:
-      - resource
+      - Resource
   /resource/paths:
     post:
       operationId: resource_getMultipleResourcePaths_post_paths
@@ -426,9 +426,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get resource paths for multiple resources at once.
+      summary: Get resource paths for multiple resources at once
       tags:
-      - resource
+      - Resource
       requestBody:
         content:
           application/json:
@@ -488,9 +488,9 @@ paths:
           description: Success
         '400':
           description: Invalid type list format.
-      summary: Search for resources in the system.
+      summary: Search for resources in the system
       tags:
-      - resource
+      - Resource
   /resource/{id}:
     get:
       operationId: resource_getResource_id
@@ -514,9 +514,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the resource.
-      summary: Get any resource by ID.
+      summary: Get any resource by ID
       tags:
-      - resource
+      - Resource
   /resource/{id}/items:
     get:
       operationId: resource_getResourceItems_id_items
@@ -574,9 +574,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Access was denied for the resource.
-      summary: Get all of the items that are children of a resource.
+      summary: Get all of the items that are children of a resource
       tags:
-      - resource
+      - Resource
   /resource/{id}/path:
     get:
       operationId: resource_path_id_path
@@ -603,9 +603,9 @@ paths:
             Invalid resource type.'
         '403':
           description: Read access was denied for the resource.
-      summary: Get path of a resource.
+      summary: Get path of a resource
       tags:
-      - resource
+      - Resource
   /resource/{id}/timestamp:
     put:
       operationId: resource_setTimestamp_put_id_timestamp
@@ -641,9 +641,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Access was denied for the resource.
-      summary: Set the created or updated timestamp for a resource.
+      summary: Set the created or updated timestamp for a resource
       tags:
-      - resource
+      - Resource
 components:
   schemas:
     string:

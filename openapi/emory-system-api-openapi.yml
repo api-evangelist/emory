@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation system API
+  title: Girder REST API (Emory Digital Slide Archive) System API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: system resource
-  name: system
+  name: System
 paths:
   /system/access_flag:
     get:
@@ -20,9 +20,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all access flags available in the system.
+      summary: List all access flags available in the system
       tags:
-      - system
+      - System
       parameters: []
   /system/check:
     get:
@@ -45,11 +45,11 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Report the current system status.
+      summary: Report the current system status
       tags:
-      - system
+      - System
     put:
-      description: Must be a system administrator to call this.  This verifies and corrects some issues, such as incorrect folder sizes.
+      description: Must be a system administrator to call this. This verifies and corrects some issues, such as incorrect folder sizes.
       operationId: system_systemConsistencyCheck_put_check
       parameters:
       - name: progress
@@ -64,9 +64,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Perform a variety of system checks to verify that all is well.
+      summary: Perform a variety of system checks to verify that all is well
       tags:
-      - system
+      - System
   /system/configuration:
     get:
       description: Must be a system administrator to call this.
@@ -91,9 +91,9 @@ paths:
           description: You are not a system administrator.
         '404':
           description: No such option with the given section/key exists.
-      summary: Get the value of a system configuration option.
+      summary: Get the value of a system configuration option
       tags:
-      - system
+      - System
   /system/ldap_server/status:
     get:
       description: You must be an administrator to call this.
@@ -122,9 +122,9 @@ paths:
           description: Success
         '403':
           description: You are not an administrator.
-      summary: Test connection status to a LDAP server.
+      summary: Test connection status to a LDAP server
       tags:
-      - system
+      - System
   /system/log:
     get:
       description: Must be a system administrator to call this.
@@ -153,9 +153,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Show the most recent contents of the server logs.
+      summary: Show the most recent contents of the server logs
       tags:
-      - system
+      - System
   /system/log/level:
     get:
       description: Must be a system administrator to call this.
@@ -165,9 +165,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Get the current log level.
+      summary: Get the current log level
       tags:
-      - system
+      - System
       parameters: []
     put:
       description: Must be a system administrator to call this.
@@ -191,9 +191,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Set the current log level.
+      summary: Set the current log level
       tags:
-      - system
+      - System
   /system/plugins:
     get:
       description: Must be a system administrator to call this.
@@ -203,9 +203,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Get the lists of all available and all loaded plugins.
+      summary: Get the lists of all available and all loaded plugins
       tags:
-      - system
+      - System
       parameters: []
   /system/restart:
     put:
@@ -216,9 +216,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Restart the Girder REST server.
+      summary: Restart the Girder REST server
       tags:
-      - system
+      - System
       parameters: []
   /system/setting:
     delete:
@@ -236,9 +236,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Unset the value for a system setting.
+      summary: Unset the value for a system setting
       tags:
-      - system
+      - System
     get:
       description: Must be a system administrator to call this.
       operationId: system_getSetting_setting
@@ -260,9 +260,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Get the value of a system setting, or a list of them.
+      summary: Get the value of a system setting, or a list of them
       tags:
-      - system
+      - System
     put:
       description: Must be a system administrator to call this. If the value passed is a valid JSON object, it will be parsed and stored as an object.
       operationId: system_setSetting_put_setting
@@ -274,9 +274,9 @@ paths:
           description: You are not a system administrator.
         '500':
           description: Failed to set system setting.
-      summary: Set the value for a system setting, or a list of them.
+      summary: Set the value for a system setting, or a list of them
       tags:
-      - system
+      - System
       requestBody:
         content:
           multipart/form-data:
@@ -301,9 +301,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get access of content creation policy.
+      summary: Get access of content creation policy
       tags:
-      - system
+      - System
       parameters: []
   /system/setting/default:
     get:
@@ -333,9 +333,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Get the value of a system setting, or a list of them.
+      summary: Get the value of a system setting, or a list of them
       tags:
-      - system
+      - System
   /system/uploads:
     delete:
       description: Must be a system administrator to call this. This frees resources that were allocated for the uploads and clears the uploads from database.
@@ -386,9 +386,9 @@ paths:
           description: You are not a system administrator.
         '500':
           description: Failed to delete upload
-      summary: Discard uploads that have not been finished.
+      summary: Discard uploads that have not been finished
       tags:
-      - system
+      - System
     get:
       description: Must be a system administrator to call this.
       operationId: system_getPartialUploads_uploads
@@ -470,9 +470,9 @@ paths:
           description: Success
         '403':
           description: You are not a system administrator.
-      summary: Get a list of uploads that have not been finished.
+      summary: Get a list of uploads that have not been finished
       tags:
-      - system
+      - System
   /system/version:
     get:
       operationId: system_getVersion_version
@@ -481,9 +481,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get the version information for this server.
+      summary: Get the version information for this server
       tags:
-      - system
+      - System
       parameters: []
 components:
   securitySchemes:

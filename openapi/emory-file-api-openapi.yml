@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation file API
+  title: Girder REST API (Emory Digital Slide Archive) File API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,11 +10,11 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: file resource
-  name: file
+  name: File
 paths:
   /file:
     post:
-      description: Use POST /file/chunk to send the contents of the file.  The data for the first chunk of the file can be included with this query by sending it as the body of the request using an appropriate content-type and with the other parameters as part of the query string.  If the entire file is uploaded via this call, the resulting file is returned.
+      description: Use POST /file/chunk to send the contents of the file. The data for the first chunk of the file can be included with this query by sending it as the body of the request using an appropriate content-type and with the other parameters as part of the query string. If the entire file is uploaded via this call, the resulting file is returned.
       operationId: file_initUpload_post_file
       parameters:
       - name: parentType
@@ -88,9 +88,9 @@ paths:
           description: Write access was denied on the parent folder.
         '500':
           description: Failed to create upload.
-      summary: Start a new upload or create an empty or link file.
+      summary: Start a new upload or create an empty or link file
       tags:
-      - file
+      - File
   /file/chunk:
     post:
       description: The data for the chunk should be sent as the body of the request using an appropriate content-type and with the other parameters as part of the query string.
@@ -125,9 +125,9 @@ paths:
           description: You are not the user who initiated the upload.
         '500':
           description: Failed to store upload.
-      summary: Upload a chunk of a file.
+      summary: Upload a chunk of a file
       tags:
-      - file
+      - File
       requestBody:
         content:
           multipart/form-data:
@@ -157,9 +157,9 @@ paths:
             Not enough bytes have been uploaded.'
         '403':
           description: You are not the user who initiated the upload.
-      summary: Finalize an upload explicitly if necessary.
+      summary: Finalize an upload explicitly if necessary
       tags:
-      - file
+      - File
       requestBody:
         content:
           multipart/form-data:
@@ -194,9 +194,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Return a list of files matching a hashsum.
+      summary: Return a list of files matching a hashsum
       tags:
-      - file
+      - File
   /file/hashsum/{algo}/{hash}/download:
     get:
       operationId: file_downloadWithHash_hashsum_algo_hash_download
@@ -220,9 +220,9 @@ paths:
           description: Success
         '400':
           description: No file with the given hash exists.
-      summary: Download a file by its hashsum.
+      summary: Download a file by its hashsum
       tags:
-      - file
+      - File
   /file/offset:
     get:
       operationId: file_requestOffset_offset
@@ -232,9 +232,9 @@ paths:
           description: Success
         '400':
           description: The ID was invalid, or the offset did not match the server's record.
-      summary: Request required offset before resuming an upload.
+      summary: Request required offset before resuming an upload
       tags:
-      - file
+      - File
       requestBody:
         content:
           multipart/form-data:
@@ -301,9 +301,9 @@ paths:
                 type: array
         '400':
           description: A parameter was invalid.
-      summary: List files that match a query.
+      summary: List files that match a query
       tags:
-      - file
+      - File
   /file/upload/{id}:
     delete:
       operationId: file_cancelUpload_delete_upload_id
@@ -321,9 +321,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You lack permission to cancel this upload.
-      summary: Cancel a partially completed upload.
+      summary: Cancel a partially completed upload
       tags:
-      - file
+      - File
   /file/{id}:
     delete:
       operationId: file_deleteFile_delete_id
@@ -341,9 +341,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied on the parent folder.
-      summary: Delete a file by ID.
+      summary: Delete a file by ID
       tags:
-      - file
+      - File
     get:
       operationId: file_getFile_id
       parameters:
@@ -360,9 +360,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the file.
-      summary: Get a file's information.
+      summary: Get a file's information
       tags:
-      - file
+      - File
     put:
       operationId: file_updateFile_put_id
       parameters:
@@ -391,9 +391,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied on the parent folder.
-      summary: Change file metadata such as name or MIME type.
+      summary: Change file metadata such as name or MIME type
       tags:
-      - file
+      - File
   /file/{id}/contents:
     put:
       description: After calling this, send the chunks just like you would with a normal file upload.
@@ -429,9 +429,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Change the contents of an existing file.
+      summary: Change the contents of an existing file
       tags:
-      - file
+      - File
   /file/{id}/copy:
     post:
       operationId: file_copy_post_id_copy
@@ -447,9 +447,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Copy a file.
+      summary: Copy a file
       tags:
-      - file
+      - File
       requestBody:
         content:
           multipart/form-data:
@@ -510,12 +510,12 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied on the parent folder.
-      summary: Download a file.
+      summary: Download a file
       tags:
-      - file
+      - File
   /file/{id}/download/{name}:
     get:
-      description: The name parameter doesn't alter the download.  Some download clients save files based on the last part of a path, and specifying the name satisfies those clients.
+      description: The name parameter doesn't alter the download. Some download clients save files based on the last part of a path, and specifying the name satisfies those clients.
       operationId: file_downloadWithName_id_download_name
       parameters:
       - name: id
@@ -544,9 +544,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied on the parent folder.
-      summary: Download a file.
+      summary: Download a file
       tags:
-      - file
+      - File
   /file/{id}/hashsum:
     post:
       operationId: file_computeHashes_post_id_hashsum
@@ -571,9 +571,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied on the file.
-      summary: Manually compute the checksum values for a given file.
+      summary: Manually compute the checksum values for a given file
       tags:
-      - file
+      - File
   /file/{id}/hashsum_file/{algo}:
     get:
       description: This is meant to be used in conjunction with CMake's ExternalData module.
@@ -600,9 +600,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the file.
-      summary: Download the hashsum key file for a given file.
+      summary: Download the hashsum key file for a given file
       tags:
-      - file
+      - File
   /file/{id}/import/adjust_path:
     post:
       operationId: file_adjustFileImportPath_post_id_import_adjust_path
@@ -630,9 +630,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied on the parent folder.
-      summary: Adjust the import path of a file.
+      summary: Adjust the import path of a file
       tags:
-      - file
+      - File
   /file/{id}/move:
     put:
       operationId: file_moveFileToAssetstore_put_id_move
@@ -655,9 +655,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Move a file to a different assetstore.
+      summary: Move a file to a different assetstore
       tags:
-      - file
+      - File
       requestBody:
         content:
           multipart/form-data:

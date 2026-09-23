@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation large_image API
+  title: Girder REST API (Emory Digital Slide Archive) Large Image…
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -27,7 +27,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete cached associated image files from large_image items.
+      summary: Delete cached associated image files from large_image items
       tags:
       - large_image
     get:
@@ -45,7 +45,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Count the number of cached associated image files for large_image items.
+      summary: Count the number of cached associated image files for large_image items
       tags:
       - large_image
   /large_image/cache:
@@ -56,7 +56,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get information on caches.
+      summary: Get information on caches
       tags:
       - large_image
       parameters: []
@@ -68,7 +68,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Clear tile source caches to release resources and file handles.
+      summary: Clear tile source caches to release resources and file handles
       tags:
       - large_image
       parameters: []
@@ -194,7 +194,7 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the folder.
-      summary: Create large images for all items within a folder.
+      summary: Create large images for all items within a folder
       tags:
       - large_image
   /large_image/histograms:
@@ -205,7 +205,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete cached histograms from large_image items.
+      summary: Delete cached histograms from large_image items
       tags:
       - large_image
       parameters: []
@@ -216,7 +216,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Count the number of cached histograms for large_image items.
+      summary: Count the number of cached histograms for large_image items
       tags:
       - large_image
       parameters: []
@@ -228,7 +228,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get public settings for large image display.
+      summary: Get public settings for large image display
       tags:
       - large_image
       parameters: []
@@ -240,7 +240,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all Girder tile sources with associated extensions, mime types, and versions.  Lower values indicate a higher priority for an extension or mime type with that source.
+      summary: List all Girder tile sources with associated extensions, mime types, and…
       tags:
       - large_image
       parameters: []
@@ -259,7 +259,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Delete cached thumbnail files from large_image items.
+      summary: Delete cached thumbnail files from large_image items
       tags:
       - large_image
     get:
@@ -276,11 +276,11 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Count the number of cached thumbnail files for large_image items.
+      summary: Count the number of cached thumbnail files for large_image items
       tags:
       - large_image
     put:
-      description: 'This creates a local job that processes all large_image items.  A common spec for the Girder API is: [{"width": 160, "height": 100}, {"width": 160, "height": 100, "imageKey": "macro"}, {"width": 160, "height": 100, "imageKey": "label"}]'
+      description: 'This creates a local job that processes all large_image items. A common spec for the Girder API is: [{"width": 160, "height": 100}, {"width": 160, "height": 100, "imageKey": "macro"}, {"width": 160, "height": 100, "imageKey": "label"}]'
       operationId: large_image_createThumbnails_put_thumbnails
       parameters:
       - name: spec
@@ -308,19 +308,19 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Create cached thumbnail files from large_image items.
+      summary: Create cached thumbnail files from large_image items
       tags:
       - large_image
   /large_image/tiles/incomplete:
     delete:
-      description: This is used to clean up all large image conversion jobs that have failed to complete.  If a job is in progress, it will be cancelled.  The return value is the number of items that were adjusted.
+      description: This is used to clean up all large image conversion jobs that have failed to complete. If a job is in progress, it will be cancelled. The return value is the number of items that were adjusted.
       operationId: large_image_deleteIncompleteTiles_delete_tiles_incomplete
       responses:
         '200':
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Remove large images from items where the large image job incomplete.
+      summary: Remove large images from items where the large image job incomplete
       tags:
       - large_image
       parameters: []

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation notification API
+  title: Girder REST API (Emory Digital Slide Archive) Notification…
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: notification resource
-  name: notification
+  name: Notification
 paths:
   /notification:
     get:
@@ -33,10 +33,14 @@ paths:
           description: You are not logged in.
       summary: List notification events
       tags:
-      - notification
+      - Notification
   /notification/stream:
     get:
-      description: This uses long-polling to keep the connection open for several minutes at a time (or longer) and should be requested with an EventSource object or other SSE-capable client. <p>Notifications are returned within a few seconds of when they occur.  When no notification occurs for the timeout duration, the stream is closed. <p>This connection can stay open indefinitely long.
+      description: 'This uses long-polling to keep the connection open for several minutes at a time (or longer) and should be requested with an EventSource object or other SSE-capable client.
+
+        Notifications are returned within a few seconds of when they occur. When no notification occurs for the timeout duration, the stream is closed.
+
+        This connection can stay open indefinitely long.'
       operationId: notification_stream_stream
       parameters:
       - name: timeout
@@ -63,9 +67,9 @@ paths:
           description: You are not logged in.
         '503':
           description: The notification stream is not enabled.
-      summary: Stream notifications for a given user via the SSE protocol.
+      summary: Stream notifications for a given user via the SSE protocol
       tags:
-      - notification
+      - Notification
 components:
   securitySchemes:
     Girder-Token:

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation slicer_cli_web API
+  title: Girder REST API (Emory Digital Slide Archive) Slicer Cli…
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -32,7 +32,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ecf/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Unmixes the stains of a composite image given the stain colors<br/><br/>Version: 0.2.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Unmixes the stains of a composite image given the stain colors
+
+
+        Version: 0.2.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ecf_rerun
       parameters:
       - name: jobId
@@ -177,7 +192,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ecf/run:
     post:
-      description: 'Description: <br/><br/>Unmixes the stains of a composite image given the stain colors<br/><br/>Version: 0.2.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Unmixes the stains of a composite image given the stain colors
+
+
+        Version: 0.2.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ecf_run
       parameters:
       - name: inputImageFile
@@ -328,7 +358,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed1/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ed1_rerun
       parameters:
       - name: jobId
@@ -466,7 +511,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed1/run:
     post:
-      description: 'Description: <br/><br/>Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ed1_run
       parameters:
       - name: sample_slide_path
@@ -612,7 +672,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed3/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Detects nuclei in a whole-slide image<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Detects nuclei in a whole-slide image
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ed3_rerun
       parameters:
       - name: jobId
@@ -851,7 +926,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed3/run:
     post:
-      description: 'Description: <br/><br/>Detects nuclei in a whole-slide image<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Detects nuclei in a whole-slide image
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ed3_run
       parameters:
       - name: inputImageFile
@@ -1112,7 +1202,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed5/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Computes features for nuclei classification<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Computes features for nuclei classification
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ed5_rerun
       parameters:
       - name: jobId
@@ -1411,7 +1516,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed5/run:
     post:
-      description: 'Description: <br/><br/>Computes features for nuclei classification<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Computes features for nuclei classification
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ed5_run
       parameters:
       - name: inputImageFile
@@ -1741,7 +1861,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed7/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Classify nuclei in an image based on pre-computed features<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Classify nuclei in an image based on pre-computed features
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ed7_rerun
       parameters:
       - name: jobId
@@ -1833,7 +1968,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed7/run:
     post:
-      description: 'Description: <br/><br/>Classify nuclei in an image based on pre-computed features<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Classify nuclei in an image based on pre-computed features
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ed7_run
       parameters:
       - name: inputImageFile
@@ -1922,7 +2072,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed9/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Sample the background of a slide to compute the median background intensity.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Sample the background of a slide to compute the median background intensity.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566ed9_rerun
       parameters:
       - name: jobId
@@ -2013,7 +2178,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566ed9/run:
     post:
-      description: 'Description: <br/><br/>Sample the background of a slide to compute the median background intensity.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Sample the background of a slide to compute the median background intensity.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566ed9_run
       parameters:
       - name: slide_path
@@ -2106,7 +2286,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566edb/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Sample the foreground of a slide to compute the stain vectors using the Macenko method.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Sample the foreground of a slide to compute the stain vectors using the Macenko method.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566edb_rerun
       parameters:
       - name: jobId
@@ -2224,7 +2419,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566edb/run:
     post:
-      description: 'Description: <br/><br/>Sample the foreground of a slide to compute the stain vectors using the Macenko method.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Sample the foreground of a slide to compute the stain vectors using the Macenko method.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566edb_run
       parameters:
       - name: sample_slide_path
@@ -2347,7 +2557,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566edd/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Counts different types of positive pixels based on values in the HSI color space<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Counts different types of positive pixels based on values in the HSI color space
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_5f3d811c50cd9fe632566edd_rerun
       parameters:
       - name: jobId
@@ -2498,7 +2723,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/5f3d811c50cd9fe632566edd/run:
     post:
-      description: 'Description: <br/><br/>Counts different types of positive pixels based on values in the HSI color space<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Counts different types of positive pixels based on values in the HSI color space
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_5f3d811c50cd9fe632566edd_run
       parameters:
       - name: inputImageFile
@@ -2659,7 +2899,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/6226c700ea96453654b57afd/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Create a pixelmap image of superpixels using SLIC.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Kitware<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Create a pixelmap image of superpixels using SLIC.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Kitware
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_cli_6226c700ea96453654b57afd_rerun
       parameters:
       - name: jobId
@@ -2802,7 +3057,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/6226c700ea96453654b57afd/run:
     post:
-      description: 'Description: <br/><br/>Create a pixelmap image of superpixels using SLIC.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Kitware<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Create a pixelmap image of superpixels using SLIC.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Kitware
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_cli_6226c700ea96453654b57afd_run
       parameters:
       - name: inputImageFile
@@ -2954,7 +3224,19 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/63a0a1fd9a9ebb3f668acd34/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Simple Get Region<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Gutman and Jc Vizcarra'
+      description: 'Rerun a previous job: Description:
+
+
+        Simple Get Region
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Gutman and Jc Vizcarra'
       operationId: slicer_cli_web_rerunHandler_post_cli_63a0a1fd9a9ebb3f668acd34_rerun
       parameters:
       - name: jobId
@@ -3016,7 +3298,19 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/cli/63a0a1fd9a9ebb3f668acd34/run:
     post:
-      description: 'Description: <br/><br/>Simple Get Region<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Gutman and Jc Vizcarra'
+      description: 'Description:
+
+
+        Simple Get Region
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Gutman and Jc Vizcarra'
       operationId: slicer_cli_web_cliHandler_post_cli_63a0a1fd9a9ebb3f668acd34_run
       parameters:
       - name: in_file
@@ -3200,7 +3494,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/BackgroundIntensity/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Sample the background of a slide to compute the median background intensity.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Sample the background of a slide to compute the median background intensity.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_BackgroundIntensity_rerun
       parameters:
       - name: jobId
@@ -3291,7 +3600,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/BackgroundIntensity/run:
     post:
-      description: 'Description: <br/><br/>Sample the background of a slide to compute the median background intensity.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Sample the background of a slide to compute the median background intensity.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_BackgroundIntensity_run
       parameters:
       - name: slide_path
@@ -3384,7 +3708,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/ColorDeconvolution/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Unmixes the stains of a composite image given the stain colors<br/><br/>Version: 0.2.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Unmixes the stains of a composite image given the stain colors
+
+
+        Version: 0.2.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_ColorDeconvolution_rerun
       parameters:
       - name: jobId
@@ -3529,7 +3868,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/ColorDeconvolution/run:
     post:
-      description: 'Description: <br/><br/>Unmixes the stains of a composite image given the stain colors<br/><br/>Version: 0.2.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Unmixes the stains of a composite image given the stain colors
+
+
+        Version: 0.2.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_ColorDeconvolution_run
       parameters:
       - name: inputImageFile
@@ -3680,7 +4034,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/ComputeNucleiFeatures/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Computes features for nuclei classification<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Computes features for nuclei classification
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_ComputeNucleiFeatures_rerun
       parameters:
       - name: jobId
@@ -3979,7 +4348,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/ComputeNucleiFeatures/run:
     post:
-      description: 'Description: <br/><br/>Computes features for nuclei classification<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Computes features for nuclei classification
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Sanghoon Lee (Emory University)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_ComputeNucleiFeatures_run
       parameters:
       - name: inputImageFile
@@ -4309,7 +4693,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/NucleiClassification/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Classify nuclei in an image based on pre-computed features<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Classify nuclei in an image based on pre-computed features
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_NucleiClassification_rerun
       parameters:
       - name: jobId
@@ -4401,7 +4800,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/NucleiClassification/run:
     post:
-      description: 'Description: <br/><br/>Classify nuclei in an image based on pre-computed features<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Classify nuclei in an image based on pre-computed features
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware), Subin Erattakulangara (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_NucleiClassification_run
       parameters:
       - name: inputImageFile
@@ -4490,7 +4904,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/NucleiDetection/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Detects nuclei in a whole-slide image<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Detects nuclei in a whole-slide image
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_NucleiDetection_rerun
       parameters:
       - name: jobId
@@ -4729,7 +5158,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/NucleiDetection/run:
     post:
-      description: 'Description: <br/><br/>Detects nuclei in a whole-slide image<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Detects nuclei in a whole-slide image
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_NucleiDetection_run
       parameters:
       - name: inputImageFile
@@ -4990,7 +5434,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/PositivePixelCount/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Counts different types of positive pixels based on values in the HSI color space<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Counts different types of positive pixels based on values in the HSI color space
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_PositivePixelCount_rerun
       parameters:
       - name: jobId
@@ -5141,7 +5600,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/PositivePixelCount/run:
     post:
-      description: 'Description: <br/><br/>Counts different types of positive pixels based on values in the HSI color space<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Counts different types of positive pixels based on values in the HSI color space
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Manthey (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_PositivePixelCount_run
       parameters:
       - name: inputImageFile
@@ -5302,7 +5776,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SeparateStainsMacenkoPCA/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Sample the foreground of a slide to compute the stain vectors using the Macenko method.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Sample the foreground of a slide to compute the stain vectors using the Macenko method.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_SeparateStainsMacenkoPCA_rerun
       parameters:
       - name: jobId
@@ -5420,7 +5909,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SeparateStainsMacenkoPCA/run:
     post:
-      description: 'Description: <br/><br/>Sample the foreground of a slide to compute the stain vectors using the Macenko method.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Sample the foreground of a slide to compute the stain vectors using the Macenko method.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_SeparateStainsMacenkoPCA_run
       parameters:
       - name: sample_slide_path
@@ -5543,7 +6047,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SeparateStainsXuSnmf/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_SeparateStainsXuSnmf_rerun
       parameters:
       - name: jobId
@@ -5681,7 +6200,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SeparateStainsXuSnmf/run:
     post:
-      description: 'Description: <br/><br/>Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Use sparse non-negative matrix factorization to adaptively deconvolve a given RGB image into intensity images representing distinct stains.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Deepak Roy Chittajallu (Kitware), Neal Siekierski (Kitware)
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_SeparateStainsXuSnmf_run
       parameters:
       - name: sample_slide_path
@@ -5827,7 +6361,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SuperpixelSegmentation/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Create a pixelmap image of superpixels using SLIC.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Kitware<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Rerun a previous job: Description:
+
+
+        Create a pixelmap image of superpixels using SLIC.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Kitware
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_rerunHandler_post_dsarchive_histomicstk_latest_SuperpixelSegmentation_rerun
       parameters:
       - name: jobId
@@ -5970,7 +6519,22 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/dsarchive_histomicstk_latest/SuperpixelSegmentation/run:
     post:
-      description: 'Description: <br/><br/>Create a pixelmap image of superpixels using SLIC.<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): Kitware<br/><br/>Acknowledgements: This work is part of the HistomicsTK project.'
+      description: 'Description:
+
+
+        Create a pixelmap image of superpixels using SLIC.
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): Kitware
+
+
+        Acknowledgements: This work is part of the HistomicsTK project.'
       operationId: slicer_cli_web_cliHandler_post_dsarchive_histomicstk_latest_SuperpixelSegmentation_run
       parameters:
       - name: inputImageFile
@@ -6122,7 +6686,19 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/jvizcar_braak-study_cli-tasks/hp_tau_detection/rerun:
     post:
-      description: 'Rerun a previous job: Description: <br/><br/>Simple Get Region<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Gutman and Jc Vizcarra'
+      description: 'Rerun a previous job: Description:
+
+
+        Simple Get Region
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Gutman and Jc Vizcarra'
       operationId: slicer_cli_web_rerunHandler_post_jvizcar_braak-study_cli-tasks_hp_tau_detection_rerun
       parameters:
       - name: jobId
@@ -6184,7 +6760,19 @@ paths:
       - slicer_cli_web
   /slicer_cli_web/jvizcar_braak-study_cli-tasks/hp_tau_detection/run:
     post:
-      description: 'Description: <br/><br/>Simple Get Region<br/><br/>Version: 0.1.0<br/><br/>License: Apache 2.0<br/><br/>Author(s): David Gutman and Jc Vizcarra'
+      description: 'Description:
+
+
+        Simple Get Region
+
+
+        Version: 0.1.0
+
+
+        License: Apache 2.0
+
+
+        Author(s): David Gutman and Jc Vizcarra'
       operationId: slicer_cli_web_cliHandler_post_jvizcar_braak-study_cli-tasks_hp_tau_detection_run
       parameters:
       - name: in_file
@@ -6290,7 +6878,7 @@ paths:
 
 
             No matches.'
-      summary: Get the most recently updated resource that has a name and path that matches a regular expression
+      summary: Get the most recently updated resource that has a name and path that matches a…
       tags:
       - slicer_cli_web
 components:

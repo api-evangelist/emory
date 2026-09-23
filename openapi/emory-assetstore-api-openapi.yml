@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation assetstore API
+  title: Girder REST API (Emory Digital Slide Archive) Assetstore API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -57,7 +57,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: List assetstores.
+      summary: List assetstores
       tags:
       - assetstore
     post:
@@ -214,7 +214,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: Create a new assetstore.
+      summary: Create a new assetstore
       tags:
       - assetstore
   /assetstore/all_imports:
@@ -267,7 +267,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all past imports for all assetstores.
+      summary: List all past imports for all assetstores
       tags:
       - assetstore
   /assetstore/import/{id}:
@@ -285,7 +285,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get import for record from ID.
+      summary: Get import for record from ID
       tags:
       - assetstore
   /assetstore/{id}:
@@ -309,7 +309,7 @@ paths:
             The assetstore is not empty.'
         '403':
           description: You are not an administrator.
-      summary: Delete an assetstore.
+      summary: Delete an assetstore
       tags:
       - assetstore
     get:
@@ -328,7 +328,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: Get information about an assetstore.
+      summary: Get information about an assetstore
       tags:
       - assetstore
     put:
@@ -458,7 +458,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: Update an existing assetstore.
+      summary: Update an existing assetstore
       tags:
       - assetstore
   /assetstore/{id}/files:
@@ -512,7 +512,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: Get a list of files controlled by an assetstore.
+      summary: Get a list of files controlled by an assetstore
       tags:
       - assetstore
   /assetstore/{id}/import:
@@ -588,7 +588,7 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not an administrator.
-      summary: Import existing data into an assetstore.
+      summary: Import existing data into an assetstore
       tags:
       - assetstore
   /assetstore/{id}/import/single_path:
@@ -636,7 +636,7 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied on the parent folder.
-      summary: Import a single path into an assetstore.
+      summary: Import a single path into an assetstore
       tags:
       - assetstore
   /assetstore/{id}/imports:
@@ -695,7 +695,7 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: List all imports for a given assetstore.
+      summary: List all imports for a given assetstore
       tags:
       - assetstore
 components:

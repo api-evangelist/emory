@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation group API
+  title: Girder REST API (Emory Digital Slide Archive) Group API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: group resource
-  name: group
+  name: Group
 paths:
   /group:
     get:
@@ -68,9 +68,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Search for groups or list all groups.
+      summary: Search for groups or list all groups
       tags:
-      - group
+      - Group
     post:
       description: Must be logged in.
       operationId: group_createGroup_post_group
@@ -106,9 +106,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied on the parent
-      summary: Create a new group.
+      summary: Create a new group
       tags:
-      - group
+      - Group
   /group/{id}:
     delete:
       operationId: group_deleteGroup_delete_id
@@ -126,9 +126,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the group.
-      summary: Delete a group by ID.
+      summary: Delete a group by ID
       tags:
-      - group
+      - Group
     get:
       operationId: group_getGroup_id
       parameters:
@@ -149,9 +149,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the group.
-      summary: Get a group by ID.
+      summary: Get a group by ID
       tags:
-      - group
+      - Group
     put:
       operationId: group_updateGroup_put_id
       parameters:
@@ -197,9 +197,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied for the group.
-      summary: Update a group by ID.
+      summary: Update a group by ID
       tags:
-      - group
+      - Group
   /group/{id}/access:
     get:
       operationId: group_getGroupAccess_id_access
@@ -221,9 +221,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the group.
-      summary: Get the access control list for a group.
+      summary: Get the access control list for a group
       tags:
-      - group
+      - Group
   /group/{id}/admin:
     delete:
       operationId: group_demote_delete_id_admin
@@ -245,9 +245,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You don't have permission to demote users.
-      summary: Demote a user to a normal group member.
+      summary: Demote a user to a normal group member
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:
@@ -279,9 +279,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You don't have permission to promote users.
-      summary: Promote a member to be an administrator of the group.
+      summary: Promote a member to be an administrator of the group
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:
@@ -348,9 +348,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied for the group.
-      summary: Show outstanding invitations for a group.
+      summary: Show outstanding invitations for a group
       tags:
-      - group
+      - Group
     post:
       description: The "force" option to this endpoint is only available to administrators and can be used to bypass the invitation process and instead add the user directly to the group.
       operationId: group_inviteToGroup_post_id_invitation
@@ -394,9 +394,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied for the group.
-      summary: Invite a user to join a group, or accept a user's request to join.
+      summary: Invite a user to join a group, or accept a user's request to join
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:
@@ -430,9 +430,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You don't have permission to remove that user.
-      summary: Remove a user from a group, or uninvite them.
+      summary: Remove a user from a group, or uninvite them
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:
@@ -492,9 +492,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the group.
-      summary: List members of a group.
+      summary: List members of a group
       tags:
-      - group
+      - Group
     post:
       operationId: group_joinGroup_post_id_member
       parameters:
@@ -515,9 +515,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You were not invited to this group, or do not have read access to it.
-      summary: Request to join a group, or accept an invitation to join.
+      summary: Request to join a group, or accept an invitation to join
       tags:
-      - group
+      - Group
   /group/{id}/moderator:
     delete:
       operationId: group_demote_delete_id_moderator
@@ -539,9 +539,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You don't have permission to demote users.
-      summary: Demote a user to a normal group member.
+      summary: Demote a user to a normal group member
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:
@@ -573,9 +573,9 @@ paths:
           description: ID was invalid.
         '403':
           description: You don't have permission to promote users.
-      summary: Promote a member to be a moderator of the group.
+      summary: Promote a member to be a moderator of the group
       tags:
-      - group
+      - Group
       requestBody:
         content:
           multipart/form-data:

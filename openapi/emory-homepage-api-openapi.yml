@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation homepage API
+  title: Girder REST API (Emory Digital Slide Archive) Homepage API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: homepage resource
-  name: homepage
+  name: Homepage
 paths:
   /homepage:
     get:
@@ -20,9 +20,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Public url for getting the homepage properties.
+      summary: Public url for getting the homepage properties
       tags:
-      - homepage
+      - Homepage
       parameters: []
   /homepage/assets:
     get:
@@ -32,9 +32,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Return the folder IDs for uploaded asset content.
+      summary: Return the folder IDs for uploaded asset content
       tags:
-      - homepage
+      - Homepage
       parameters: []
 components:
   securitySchemes:

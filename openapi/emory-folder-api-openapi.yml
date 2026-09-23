@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation folder API
+  title: Girder REST API (Emory Digital Slide Archive) Folder API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,11 +10,11 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: folder resource
-  name: folder
+  name: Folder
 paths:
   /folder:
     get:
-      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders. If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
       operationId: folder_find_folder
       parameters:
       - name: parentType
@@ -92,9 +92,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the parent resource.
-      summary: Search for folders by certain properties.
+      summary: Search for folders by certain properties
       tags:
-      - folder
+      - Folder
     post:
       operationId: folder_createFolder_post_folder
       parameters:
@@ -170,9 +170,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Write access was denied on the parent
-      summary: Create a new folder.
+      summary: Create a new folder
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           multipart/form-data:
@@ -237,9 +237,9 @@ paths:
                 type: array
         '400':
           description: A parameter was invalid.
-      summary: List folders that match a query.
+      summary: List folders that match a query
       tags:
-      - folder
+      - Folder
   /folder/{id}:
     delete:
       operationId: folder_deleteFolder_delete_id
@@ -264,9 +264,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the folder.
-      summary: Delete a folder by ID.
+      summary: Delete a folder by ID
       tags:
-      - folder
+      - Folder
     get:
       operationId: folder_getFolder_id
       parameters:
@@ -287,9 +287,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the folder.
-      summary: Get a folder by ID.
+      summary: Get a folder by ID
       tags:
-      - folder
+      - Folder
     put:
       operationId: folder_updateFolder_put_id
       parameters:
@@ -356,9 +356,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied for the folder or its new parent object.
-      summary: Update a folder or move it into a new parent.
+      summary: Update a folder or move it into a new parent
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           multipart/form-data:
@@ -389,9 +389,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the folder.
-      summary: Get the access control list for a folder.
+      summary: Get the access control list for a folder
       tags:
-      - folder
+      - Folder
     put:
       operationId: folder_updateFolderAccess_put_id_access
       parameters:
@@ -440,9 +440,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin access was denied for the folder.
-      summary: Update the access control list for a folder.
+      summary: Update the access control list for a folder
       tags:
-      - folder
+      - Folder
   /folder/{id}/contents:
     delete:
       description: Cleans out all the items and subfolders from under a folder, but does not remove the folder itself.
@@ -468,9 +468,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write access was denied on the folder.
-      summary: Remove all contents from a folder.
+      summary: Remove all contents from a folder
       tags:
-      - folder
+      - Folder
   /folder/{id}/copy:
     post:
       operationId: folder_copyFolder_post_id_copy
@@ -549,9 +549,9 @@ paths:
 
 
             Write access was denied on the parent.'
-      summary: Copy a folder.
+      summary: Copy a folder
       tags:
-      - folder
+      - Folder
   /folder/{id}/details:
     get:
       operationId: folder_getFolderDetails_id_details
@@ -569,9 +569,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the folder.
-      summary: Get detailed information about a folder.
+      summary: Get detailed information about a folder
       tags:
-      - folder
+      - Folder
   /folder/{id}/download:
     get:
       operationId: folder_downloadFolder_id_download
@@ -595,9 +595,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the folder.
-      summary: Download an entire folder as a zip archive.
+      summary: Download an entire folder as a zip archive
       tags:
-      - folder
+      - Folder
   /folder/{id}/metadata:
     delete:
       operationId: folder_deleteMetadata_delete_id_metadata
@@ -625,9 +625,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the folder.
-      summary: Delete metadata fields on a folder.
+      summary: Delete metadata fields on a folder
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           application/json:
@@ -669,9 +669,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the folder.
-      summary: Set metadata fields on an folder.
+      summary: Set metadata fields on an folder
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           application/json:
@@ -708,9 +708,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Move folder contents to an assetstore.
+      summary: Move folder contents to an assetstore
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           multipart/form-data:
@@ -724,7 +724,7 @@ paths:
               - assetstoreId
   /folder/{id}/position:
     get:
-      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders.  If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
+      description: 'You must pass either a "folderId" or "text" field to specify how you are searching for folders. If you omit one of these parameters the request will fail and respond : "Invalid search mode."'
       operationId: folder_findPosition_id_position
       parameters:
       - name: id
@@ -786,9 +786,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the parent resource.
-      summary: Report the offset of a folder in a list or search.
+      summary: Report the offset of a folder in a list or search
       tags:
-      - folder
+      - Folder
   /folder/{id}/rootpath:
     get:
       operationId: folder_rootpath_id_rootpath
@@ -806,15 +806,15 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the folder.
-      summary: Get the path to the root of the folder's hierarchy.
+      summary: Get the path to the root of the folder's hierarchy
       tags:
-      - folder
+      - Folder
   /folder/{id}/yaml_config/{name}:
     get:
-      description: 'This walks up the chain of parent folders until the file is found.  If not found, the .config folder in the parent collection or user is checked.
+      description: 'This walks up the chain of parent folders until the file is found. If not found, the .config folder in the parent collection or user is checked.
 
 
-        Any yaml file can be returned.  If the top-level is a dictionary and contains keys "access" or "groups" where those are dictionaries, the returned value will be modified based on the current user.  The "groups" dictionary contains keys that are group names and values that update the main dictionary.  All groups that the user is a member of are merged in alphabetical order.  If a key and value of "\__all\__": True exists, the replacement is total; otherwise it is a merge.  If the "access" dictionary exists, the "user" and "admin" subdictionaries are merged if a calling user is present and if the user is an admin, respectively (both get merged for admins).'
+        Any yaml file can be returned. If the top-level is a dictionary and contains keys "access" or "groups" where those are dictionaries, the returned value will be modified based on the current user. The "groups" dictionary contains keys that are group names and values that update the main dictionary. All groups that the user is a member of are merged in alphabetical order. If a key and value of "\__all\__": True exists, the replacement is total; otherwise it is a merge. If the "access" dictionary exists, the "user" and "admin" subdictionaries are merged if a calling user is present and if the user is an admin, respectively (both get merged for admins).'
       operationId: folder_getYAMLConfigFile_id_yaml_config_name
       parameters:
       - name: id
@@ -834,11 +834,11 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get a config file.
+      summary: Get a config file
       tags:
-      - folder
+      - Folder
     put:
-      description: This replaces or creates an item in the specified folder with the specified name containing a single file also of the specified name.  The file is added to the default assetstore, and any existing file may be permanently deleted.
+      description: This replaces or creates an item in the specified folder with the specified name containing a single file also of the specified name. The file is added to the default assetstore, and any existing file may be permanently deleted.
       operationId: folder_putYAMLConfigFile_put_id_yaml_config_name
       parameters:
       - name: id
@@ -865,9 +865,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get a config file.
+      summary: Get a config file
       tags:
-      - folder
+      - Folder
       requestBody:
         content:
           application/json:

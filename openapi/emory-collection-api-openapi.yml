@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Girder REST API (Emory Digital Slide Archive) annotation collection API
+  title: Girder REST API (Emory Digital Slide Archive) Collection API
   version: 3.2.14
   description: OpenAPI 3.0 conversion of the Girder REST API powering the Emory Digital Slide Archive (computablebrain). Converted faithfully from the live Swagger 2.0 document at https://computablebrain.emory.edu/api/v1/describe.
   license:
@@ -10,7 +10,7 @@ servers:
 - url: https://computablebrain.emory.edu/api/v1
 tags:
 - description: collection resource
-  name: collection
+  name: Collection
 paths:
   /collection:
     get:
@@ -67,9 +67,9 @@ paths:
                 type: array
         '400':
           description: A parameter was invalid.
-      summary: List or search for collections.
+      summary: List or search for collections
       tags:
-      - collection
+      - Collection
     post:
       operationId: collection_createCollection_post_collection
       parameters:
@@ -103,9 +103,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: You are not authorized to create collections.
-      summary: Create a new collection.
+      summary: Create a new collection
       tags:
-      - collection
+      - Collection
   /collection/details:
     get:
       operationId: collection_getCollectionsDetails_details
@@ -114,9 +114,9 @@ paths:
           description: Success
         '400':
           description: A parameter was invalid.
-      summary: Get detailed information of accessible collections.
+      summary: Get detailed information of accessible collections
       tags:
-      - collection
+      - Collection
       parameters: []
   /collection/{id}:
     delete:
@@ -135,9 +135,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin permission denied on the collection.
-      summary: Delete a collection by ID.
+      summary: Delete a collection by ID
       tags:
-      - collection
+      - Collection
     get:
       operationId: collection_getCollection_id
       parameters:
@@ -158,9 +158,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read permission denied on the collection.
-      summary: Get a collection by ID.
+      summary: Get a collection by ID
       tags:
-      - collection
+      - Collection
     put:
       operationId: collection_updateCollection_put_id
       parameters:
@@ -193,9 +193,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Write permission denied on the collection.
-      summary: Edit a collection by ID.
+      summary: Edit a collection by ID
       tags:
-      - collection
+      - Collection
   /collection/{id}/access:
     get:
       operationId: collection_getCollectionAccess_id_access
@@ -213,9 +213,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin permission denied on the collection.
-      summary: Get the access control list for a collection.
+      summary: Get the access control list for a collection
       tags:
-      - collection
+      - Collection
     put:
       operationId: collection_updateCollectionAccess_put_id_access
       parameters:
@@ -264,9 +264,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Admin permission denied on the collection.
-      summary: Set the access control list for a collection.
+      summary: Set the access control list for a collection
       tags:
-      - collection
+      - Collection
   /collection/{id}/details:
     get:
       operationId: collection_getCollectionDetails_id_details
@@ -284,9 +284,9 @@ paths:
           description: A parameter was invalid.
         '403':
           description: Read access was denied on the collection.
-      summary: Get detailed information about a collection.
+      summary: Get detailed information about a collection
       tags:
-      - collection
+      - Collection
   /collection/{id}/download:
     get:
       operationId: collection_downloadCollection_id_download
@@ -310,9 +310,9 @@ paths:
           description: ID was invalid.
         '403':
           description: Read access was denied for the collection.
-      summary: Download an entire collection as a zip archive.
+      summary: Download an entire collection as a zip archive
       tags:
-      - collection
+      - Collection
   /collection/{id}/metadata:
     delete:
       operationId: collection_deleteMetadata_delete_id_metadata
@@ -340,9 +340,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the collection.
-      summary: Delete metadata fields on a collection.
+      summary: Delete metadata fields on a collection
       tags:
-      - collection
+      - Collection
       requestBody:
         content:
           application/json:
@@ -384,9 +384,9 @@ paths:
             Metadata key name was invalid.'
         '403':
           description: Write access was denied for the collection.
-      summary: Set metadata fields on a collection.
+      summary: Set metadata fields on a collection
       tags:
-      - collection
+      - Collection
       requestBody:
         content:
           application/json:
@@ -409,9 +409,9 @@ paths:
           description: Success
         '400':
           description: ID was invalid.
-      summary: Get quota and assetstore policies for the collection.
+      summary: Get quota and assetstore policies for the collection
       tags:
-      - collection
+      - Collection
     put:
       operationId: collection_setCollectionQuota_put_id_quota
       parameters:
@@ -432,9 +432,9 @@ paths:
           description: Success
         '400':
           description: ID was invalid.
-      summary: Set quota and assetstore policies for the collection.
+      summary: Set quota and assetstore policies for the collection
       tags:
-      - collection
+      - Collection
 components:
   schemas:
     Collection:
