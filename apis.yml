@@ -21,17 +21,20 @@ type: Index
 x-type: university
 x-category: Private Research University
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - emory-libraries/dlp-curate
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -53,6 +56,22 @@ access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/emory.png
 url: https://raw.githubusercontent.com/api-evangelist/emory/refs/heads/main/apis.yml
 tags:
+  - University
+  - Higher Education
+  - Education
+  - Private Research University
+  - Association of American Universities
+  - United States
+  - Georgia
+  - Atlanta
+  - Research
+  - Library
+  - Research Repository
+  - Library Catalog
+  - Course Catalog
+  - Identity Federation
+  - Digital Pathology
+tags_raw:
   - University
   - Higher Education
   - Education
@@ -138,8 +157,8 @@ apis:
     Technology and Digital Strategies division, and its applications are what
     digital.library.emory.edu and open.library.emory.edu actually run.
   tags:
-  - Libraries
-  - Open-Source
+  - Library
+  - Open Source
   - Digital Repository
   - Hyrax
   - Samvera
@@ -149,13 +168,14 @@ apis:
   - Digital Repository
   - Hyrax
   - Samvera
+  - Open-Source
   properties:
   - type: Documentation
     url: https://emory-libraries.github.io/
   - type: GitHub
     url: https://github.com/emory-libraries
 - aid: emory:emory-annotation-api
-  name: Emory University annotation API
+  name: Emory University Annotation API
   description: annotation resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -189,7 +209,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-api-key-api
-  name: Emory University api_key API
+  name: Emory University API Key API
   description: api_key resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -223,7 +243,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-assetstore-api
-  name: Emory University assetstore API
+  name: Emory University Assetstore API
   description: assetstore resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -255,7 +275,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-collection-api
-  name: Emory University collection API
+  name: Emory University Collection API
   description: collection resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -289,7 +309,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-dicomweb-assetstore-api
-  name: Emory University dicomweb_assetstore API
+  name: Emory University Dicomweb Assetstore API
   description: dicomweb_assetstore resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -322,7 +342,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-file-api
-  name: Emory University file API
+  name: Emory University File API
   description: file resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -356,7 +376,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-files-api
-  name: Emory University files API
+  name: Emory University Files API
   description: files resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -390,7 +410,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-folder-api
-  name: Emory University folder API
+  name: Emory University Folder API
   description: folder resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -424,7 +444,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-group-api
-  name: Emory University group API
+  name: Emory University Group API
   description: group resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -458,7 +478,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-histomicsui-api
-  name: Emory University histomicsui API
+  name: Emory University Histomicsui API
   description: histomicsui resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -490,7 +510,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-homepage-api
-  name: Emory University homepage API
+  name: Emory University Homepage API
   description: homepage resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -524,7 +544,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-item-api
-  name: Emory University item API
+  name: Emory University Item API
   description: item resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -558,7 +578,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-job-api
-  name: Emory University job API
+  name: Emory University Job API
   description: job resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -592,7 +612,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-large-image-api
-  name: Emory University large_image API
+  name: Emory University Large Image API
   description: large_image resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -625,7 +645,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-notification-api
-  name: Emory University notification API
+  name: Emory University Notification API
   description: notification resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -659,7 +679,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-resource-api
-  name: Emory University resource API
+  name: Emory University Resource API
   description: resource resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -693,7 +713,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-slicer-cli-web-api
-  name: Emory University slicer_cli_web API
+  name: Emory University Slicer Cli Web API
   description: slicer_cli_web resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -726,7 +746,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-system-api
-  name: Emory University system API
+  name: Emory University System API
   description: system resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -760,7 +780,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-tcga-api
-  name: Emory University tcga API
+  name: Emory University Tcga API
   description: tcga resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -794,7 +814,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-token-api
-  name: Emory University token API
+  name: Emory University Token API
   description: token resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -828,7 +848,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-user-api
-  name: Emory University user API
+  name: Emory University User API
   description: user resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -862,7 +882,7 @@ apis:
   - type: x-json-ld
     url: json-ld/emory-context.jsonld
 - aid: emory:emory-worker-api
-  name: Emory University worker API
+  name: Emory University Worker API
   description: worker resource
   humanURL: https://computablebrain.emory.edu/api/v1
   baseURL: https://computablebrain.emory.edu/api/v1
@@ -912,6 +932,12 @@ apis:
     application is Emory Libraries' own open-source code in github.com/emory-libraries.
     Probed 2026-09-01: HTTP 200, application/json, JSON:API envelope, 267 results for q=test.
   tags:
+  - Library
+  - Digital Repository
+  - Search
+  - Blacklight
+  - JSON:API
+  tags_raw:
   - Libraries
   - Digital Repository
   - Search
@@ -939,6 +965,12 @@ apis:
     the deployment is Emory's and the generator string names Emory Libraries' own overrides
     ("[Hyrax-override-v5.2.0]"). Probed 2026-09-01: HTTP 200, application/xml.
   tags:
+  - Library
+  - Digital Repository
+  - Open Access
+  - ResourceSync
+  - Hyrax
+  tags_raw:
   - Libraries
   - Digital Repository
   - Open Access
@@ -1011,7 +1043,7 @@ apis:
   x-operator-vendor: Ex Libris (Clarivate) — Primo VE
   x-tenant-id: 01GALI_EMORY:EMORY
   tags:
-  - Libraries
+  - Library
   - Library Catalog
   - Discovery
   - Tenants
@@ -1024,6 +1056,7 @@ apis:
   - type: Documentation
     url: https://search.library.emory.edu/
 - aid: emory:course-atlas
+  x-published: false
   name: Emory Course Atlas (CourseLeaf)
   description: >-
     Course Atlas is Emory's published course catalog and class schedule. It is a CourseLeaf (Leepfrog

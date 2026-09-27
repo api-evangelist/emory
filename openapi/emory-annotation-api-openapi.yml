@@ -1133,12 +1133,12 @@ paths:
       - Annotation
 components:
   schemas:
+    string:
+      type: string
     Item:
       type: object
     Annotation:
       type: object
-    string:
-      type: string
   securitySchemes:
     Girder-Token:
       in: header

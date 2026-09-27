@@ -877,10 +877,10 @@ paths:
         description: The contents of yaml config file to validate.
 components:
   schemas:
-    Folder:
-      type: object
     string:
       type: string
+    Folder:
+      type: object
   securitySchemes:
     Girder-Token:
       in: header

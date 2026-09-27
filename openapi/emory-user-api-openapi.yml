@@ -571,9 +571,9 @@ paths:
               - token
 components:
   schemas:
-    Token:
-      type: object
     User:
+      type: object
+    Token:
       type: object
   securitySchemes:
     Girder-Token:

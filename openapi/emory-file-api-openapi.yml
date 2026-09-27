@@ -671,9 +671,9 @@ paths:
               - assetstoreId
 components:
   schemas:
-    Upload:
-      type: object
     File:
+      type: object
+    Upload:
       type: object
   securitySchemes:
     Girder-Token:
