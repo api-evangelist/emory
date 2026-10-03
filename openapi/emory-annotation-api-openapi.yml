@@ -1133,10 +1133,10 @@ paths:
       - Annotation
 components:
   schemas:
-    string:
-      type: string
     Item:
       type: object
+    string:
+      type: string
     Annotation:
       type: object
   securitySchemes:
