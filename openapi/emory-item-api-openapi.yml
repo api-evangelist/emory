@@ -2532,11 +2532,11 @@ paths:
       - Item
 components:
   schemas:
-    Item:
+    File:
       type: object
     string:
       type: string
-    File:
+    Item:
       type: object
   securitySchemes:
     Girder-Token:
