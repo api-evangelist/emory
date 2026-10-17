@@ -437,10 +437,10 @@ paths:
       - Collection
 components:
   schemas:
-    Collection:
-      type: object
     string:
       type: string
+    Collection:
+      type: object
   securitySchemes:
     Girder-Token:
       in: header

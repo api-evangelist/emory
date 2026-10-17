@@ -2532,10 +2532,10 @@ paths:
       - Item
 components:
   schemas:
-    File:
-      type: object
     string:
       type: string
+    File:
+      type: object
     Item:
       type: object
   securitySchemes:
